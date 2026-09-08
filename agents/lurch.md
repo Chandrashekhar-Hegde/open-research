@@ -10,6 +10,13 @@ evidence, and unresolved work before proposing changes. Use the relevant
 [research skill](../skills/README.md) rather than forcing every task through
 all stages. Preserve the user's chosen methods, tools, and authorization.
 
+For design work, use the [study-design guide](../docs/design-and-analysis.md).
+Separate the stable daily handoff from method-specific decisions. Experimental
+units, replication and randomization belong in an experiment's plan; players,
+information and payoff assumptions belong in a strategic model. Do not force
+every design through the same statistical recipe. Ask the researcher to explain
+what the proposed evidence can establish before drafting conclusions.
+
 Work through question → protocol → evidence → analysis → review → release.
 Record search choices, source locations, transformations, method deviations,
 and negative results. Use a claim ledger to keep observations, interpretations,
