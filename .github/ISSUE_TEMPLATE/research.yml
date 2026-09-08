@@ -1,0 +1,22 @@
+name: Research contribution
+description: Propose a study example, research skill, or workflow improvement.
+title: "[Research] "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question or user need
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed artifact and method
+      description: Describe inputs, evidence, checks, limitations, and how others can reuse the result.
+    validations:
+      required: true
+  - type: textarea
+    id: rights
+    attributes:
+      label: Access and reuse
+      description: State data rights, restrictions, and relevant AI assistance.

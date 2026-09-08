@@ -1,0 +1,11 @@
+{
+  "max_change": 4,
+  "mean_change": 2,
+  "median_change": 2.0,
+  "min_change": 0,
+  "n_pairs": 8,
+  "negative_pairs": 0,
+  "positive_pairs": 7,
+  "synthetic": true,
+  "zero_pairs": 1
+}

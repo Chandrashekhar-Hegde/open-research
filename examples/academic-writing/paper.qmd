@@ -1,0 +1,39 @@
+---
+title: "An inspectable paired-measurement calculation"
+author: "Open Research contributors"
+bibliography: references.bib
+format:
+  html:
+    toc: true
+    embed-resources: true
+---
+
+## Purpose
+
+This teaching document demonstrates an inspectable result and a verified
+reference. Open research emphasizes transparent methods and responsible reuse
+[@unesco2021]. The measurements below are synthetic, not empirical observations.
+
+## Method and result
+
+For eight pairs, changes are 2, 3, 1, 2, 0, 4, 3, and 1 arbitrary units.
+The arithmetic mean is
+
+$$\bar{d}=\frac{1}{8}\sum_{i=1}^{8}d_i=\frac{16}{8}=2.$$
+
+Reproduce the source calculation from the repository root:
+
+```sh
+python examples/paired-measurements/analyze.py --check
+```
+
+## Limitations and availability
+
+The values were authored for a small example. They do not establish an
+intervention effect or support population inference. The source data, code,
+protocol, evidence ledger, and disclosure are in the paired-measurements example.
+The repository materials use the MIT license. This document was prepared with
+AI assistance and verified through the exposed arithmetic and executable checks;
+no independent peer review is claimed.
+
+## References

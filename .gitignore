@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+.env
+.env.*
+!.env.example
+studies/
+build/
+.agents/skills/
+.claude/skills/
+.opencode/skills/
+.quarto/
+*_files/
+examples/academic-writing/*.html

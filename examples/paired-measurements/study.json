@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "title": "Synthetic paired measurements",
+  "question": "What is the mean within-item change in these eight synthetic pairs?",
+  "owner": "Chandrashekhar Hegde",
+  "created": "2026-09-08",
+  "status": "complete",
+  "license": "MIT",
+  "data_access": "Open, synthetic fixture; no participant data.",
+  "reproduce": [
+    "From the repository root: python3 examples/paired-measurements/analyze.py --check"
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "0851f54d45d1e8b609f1630639ebe3354a74df209d304a615b7adc82e1a97836",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "ai-use.md",
+      "sha256": "33cabbf692d2817c3267d6c8e4f85d6221b7eda0920252ff6c4a03ff66d5b150",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "analysis-plan.md",
+      "sha256": "97d75df2af8762bf4e46e929c7f3803c929213eac30870b230d672f064eeff00",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "analyze.py",
+      "sha256": "63adec5b6f967a8e3ffcdc553b41bfc7e40d49df24f974cabc79e3423ae5b2a1",
+      "role": "code",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "claims.csv",
+      "sha256": "9b1b0e284b5dac7760c6c8ed23a472ef7b51e63fcd46399507ef53b5a50d2f3a",
+      "role": "input",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "de7bb01fabc3912e8bcef3fdc9b80f492e0be5745c9eee8581acbd2679bf7cd0",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "data/raw.csv",
+      "sha256": "bde80ddc4fe4f9bb3f2cac5175d4507c6cc9ba3bc4b357c8dccf725bc109451f",
+      "role": "input",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "evidence.csv",
+      "sha256": "6290a5a138fb3ff002ace03b4621cd4c2f6c8d36bb760bf81cd9c686ad88ab3d",
+      "role": "input",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "protocol.md",
+      "sha256": "7a4bb84661a752d41fa874b07522b948e2a10e3cf67973706f5353bf732d313b",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "report.md",
+      "sha256": "cb77942420308fd5a6d1257ab7620b1c99a72cc12f0d009d6cc0fab7a9a5da94",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "results/summary.json",
+      "sha256": "158ad6e1c401b586a374fbe83449bed9a551caeba3851d551fa93c019a1e839c",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    },
+    {
+      "path": "review.md",
+      "sha256": "d2f72af6fec9f624fe20986da52de2122779a31062043f66afa5987e92c127b3",
+      "role": "record",
+      "license": "MIT",
+      "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
+    }
+  ]
+}
