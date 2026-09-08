@@ -2,6 +2,11 @@
 
 Research and planning date: 2026-09-08.
 
+The first workbench is implemented. The next evidence-led iteration is recorded
+in [community needs and evaluation](community-needs.md): keep a stable daily
+checklist, expose method-specific decisions, add tested experiment/game examples,
+and collect actionable feedback without claiming unmeasured benefit.
+
 ## Problem and audience
 
 A researcher needs a repeatable daily path from an uncertain question to an

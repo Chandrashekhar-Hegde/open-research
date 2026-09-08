@@ -8,6 +8,8 @@ optional skills let an assistant follow the same inspectable workflow.
 | Decide what to do during a research day | [Daily workflow](daily-workflow.md) |
 | Set up Claude Code, Codex, OpenCode, or standalone use | [Tool setup](tool-setup.md) |
 | Frame a question and create a study | [Research lifecycle](research-lifecycle.md) |
+| Choose a study design, experiment, or strategic model | [Design and analysis](design-and-analysis.md) |
+| Understand the community need and test usefulness | [Evidence and evaluation plan](community-needs.md) |
 | Understand data before analyzing it | [Data understanding](data-understanding.md) |
 | Search, screen, and synthesize papers | [Literature review](literature-review.md) |
 | Calculate and verify mathematical results | [Mathematics](mathematics.md) |

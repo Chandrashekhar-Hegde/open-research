@@ -5,6 +5,12 @@ source evidence, or a fix to the tooling. Scope new material around an actual
 research task and a useful artifact. Negative results and failed replications
 are welcome when their methods and limitations are documented.
 
+For a real workflow experience, use the [feedback form](https://github.com/Chandrashekhar-Hegde/open-research/issues/new?template=feedback.yml).
+Describe the task, observed friction, and what was unnecessary. Issues are public;
+share only permitted, redacted examples. The [community evaluation plan](docs/community-needs.md)
+distinguishes published researcher feedback from still-uncollected project-user
+observations. No generated testimonials or invented user-study results.
+
 1. Open an issue for a substantial new direction; small fixes can go straight
    to a feature branch and pull request.
 2. Read [the handbook](docs/README.md) and the closest example. Keep Markdown

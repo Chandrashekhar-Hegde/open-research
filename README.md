@@ -9,6 +9,12 @@ Write what the results support. Leave enough behind for someone else to check.
 · [Download the source](https://github.com/Chandrashekhar-Hegde/open-research/archive/refs/heads/main.zip)
 · [Daily workflow](docs/daily-workflow.md) · [Tool setup](docs/tool-setup.md)
 
+**Why this exists:** reduce friction between modern AI tools and accountable
+research. Preserve decisions, inspect evidence, and use methods that fit the
+question. [Community evidence and the evaluation plan](docs/community-needs.md)
+explain what supports this direction and what remains untested. The project has
+not yet demonstrated improvements in research quality or time saved.
+
 Open Research brings together a local Python CLI, research skills, study
 records, and worked examples. **Lurch** is its optional assistant profile.
 Use Claude Code, Codex, OpenCode, another assistant, or just Python and an editor.
@@ -65,6 +71,8 @@ use the matching skill, preserve raw inputs, cite evidence, and report unknowns.
 | Task | Runnable starting point | What you get |
 | --- | --- | --- |
 | Plan a study | `python research.py init studies/my-study --title "My question"` | Protocol, analysis plan, evidence/claim ledgers |
+| Design an experiment | `python examples/experimental-design/design.py` | Randomized blocked factorial run order; no observations |
+| Study strategic decisions | `python examples/game-theory/analyze.py` | Checked pure equilibria in a two-player teaching model |
 | Understand data | `python research.py profile data.csv --output build/profile.json` | Shape, missingness, duplicates, descriptive summaries |
 | Keep a research log | `python research.py journal studies/my-study --note "Inspected missing values" --next "Decide exclusions"` | Dated local record and next action |
 | Draft academic writing | `python research.py draft examples/paired-measurements --output build/manuscript.md` | Evidence-based authoring scaffold |
@@ -93,6 +101,12 @@ The [daily guide](docs/daily-workflow.md) walks through a research session,
 including uncertainty, study changes, and end-of-day handoff. Start small;
 not every question needs every tool.
 
+The hosted guide keeps one daily checklist across tasks and AI tools. Choose a
+study design to see separate method questions; download the plan to preserve
+your decisions and checklist state. See [design and analysis](docs/design-and-analysis.md)
+for experiments, observational/qualitative studies, synthesis, computation and
+game theory. Examples are bounded demonstrations, not automatic study approval.
+
 ## Use good tools where they already exist
 
 [Jupyter](https://jupyter.org/) for exploration,
@@ -110,6 +124,7 @@ See the [research and design plan](docs/implementation-plan.md).
 - [Eight research skills](skills/README.md) · [Lurch and task roles](agents/README.md)
 - [Study format and CLI](docs/study-format.md) · [Academic document example](examples/academic-writing/README.md)
 - [Contributing](CONTRIBUTING.md) · [Governance](GOVERNANCE.md) · [Security](SECURITY.md)
+- [Report real workflow friction](https://github.com/Chandrashekhar-Hegde/open-research/issues/new?template=feedback.yml) · [Evaluation worksheet](site/feedback-study.md)
 
 ## Check and share
 

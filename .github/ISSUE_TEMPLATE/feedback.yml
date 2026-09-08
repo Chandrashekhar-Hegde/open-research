@@ -1,0 +1,36 @@
+name: Research workflow feedback
+description: Tell us what happened during a real task and what should be simpler.
+title: "[Feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: "This issue is public. Share only permitted, redacted examples. Do not include participant data, private research, credentials, or sensitive logs. Feedback is voluntary; observations and negative experiences are welcome."
+  - type: textarea
+    id: task
+    attributes:
+      label: What were you trying to understand or do?
+      description: Include the kind of study, chosen task/tool, and your existing workflow if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: observation
+    attributes:
+      label: What happened, and what did you expect?
+      description: Give a reproducible step or permitted example. Separate something you observed from a proposed improvement.
+    validations:
+      required: true
+  - type: textarea
+    id: friction
+    attributes:
+      label: What helped, what was unnecessary, and what was missing?
+      description: Include checklist consistency or method questions if relevant. Negative feedback is useful.
+  - type: textarea
+    id: understanding
+    attributes:
+      label: Did anything appear more certain than the evidence supported?
+      description: Link the wording, calculation, or source location so we can investigate.
+  - type: input
+    id: environment
+    attributes:
+      label: Environment and site version, if known
+      description: Browser, operating system, Python/AI host, date, and assistance needed; no identifying details required.
