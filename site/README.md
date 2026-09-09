@@ -1,29 +1,50 @@
-# Public research guide
+# Public study editor
 
-The static site uses HTML, CSS, and a small JavaScript module. It has no build
-step, external font, analytics, data uploads, model calls, or backend. Question and design notes stay in the current page; checklist booleans may
-persist in local storage. The same five handoff items survive task/tool/method
-changes. Full-plan copy and download include their state and method decisions.
-Experiment and game workflow shortcuts select the corresponding study design;
-other task changes preserve the selected method. Existing notes are not erased.
+The static site uses HTML, CSS, and JavaScript modules. It has no build step,
+external fonts, analytics, data uploads, model calls, or backend.
 
-The purpose/evidence section distinguishes published feedback from untested
-project usefulness. The public GitHub feedback form and downloadable worksheet
-collect no information until a user chooses to submit on GitHub.
+The main page edits one study through six stages. Fields stay mounted while
+switching stages; there is no navigation, forced scrolling, or document reload.
+Each stage has distinct review checks and a next action. Editing a stage or
+its method clears that stage’s checks; changing the question clears all checks
+so previous review is not silently reused for changed work. Plan includes common
+protocol fields plus fields for the selected study design. Alternative design
+notes are preserved separately.
 
-Preview from the repository root:
+`study.mjs` defines the data format, validation and document serializer.
+`app.mjs` binds it to the interface. The same serializer supplies full Markdown
+preview, clipboard copy, and download. Export requires a nonblank question and
+marks absent information explicitly; it never substitutes a generic question
+or inserts teaching results into a user's study. The review screen presents
+readable answers before export; plain Markdown remains available for manual copy.
+
+Drafts save to `open-research-study-v1` in local storage. This includes entered
+research text, so use care on shared devices. No research data is uploaded.
+A blocked/quota-limited store is reported; current answers remain in memory.
+Invalid stored data is preserved, with saving paused instead of silently
+replacing it. Updates from another tab pause saving to prevent accidental
+replacement. New study and import ask before replacing nonempty work. The old
+checklist storage key is untouched and is not interpreted as scientific review.
+
+JSON backups restore all editable content and are validated before replacing
+the current draft. This is the **browser editor format**, not the CLI's
+`study.json` schema. Save Markdown as a protocol or use it directly with an
+assistant; use the repository templates for CLI release validation. Browser
+copy/download support varies; readable Markdown is always available for manual
+copy, and the site never claims that initiating a download proves file delivery.
+
+Purpose, evidence, feedback, and the evaluation worksheet are linked from
+`about.html`. Models and teaching examples sit in a secondary tools section.
 
 ```sh
 python -m http.server 8000 --directory site
+node --test tests/site.test.mjs
 ```
 
-Open http://localhost:8000 in a browser. Do not open the HTML directly with a
-file URL because the module needs to be served. Run `node --test tests/site.test.mjs`
-with Node 18+ for task/host/method combinations, stable checklists, storage parsing, input
-boundaries, and document wiring.
+Open http://localhost:8000 in a browser. Do not use a file URL for ES modules.
+Tests cover exact question/protocol exports, independent stage checks, design
+preservation, JSON round-trips, malformed data and navigation wiring.
 
-GitHub Actions deploys this directory to GitHub Pages after the core, math,
-document, and guide checks pass on main. To host your own copy, enable Pages
-with GitHub Actions as its source and update project URLs in the documentation
-and site. The live page helps prepare commands and a plan; it cannot execute
-local tools or validate a research study in the browser.
+GitHub Actions publishes this directory after the core, math, writing and site
+checks pass on main. For a fork, enable Pages with GitHub Actions and update
+project URLs. See the [usability investigation](../docs/usability-redesign.md).

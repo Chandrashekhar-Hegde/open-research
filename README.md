@@ -101,11 +101,22 @@ The [daily guide](docs/daily-workflow.md) walks through a research session,
 including uncertainty, study changes, and end-of-day handoff. Start small;
 not every question needs every tool.
 
-The hosted guide keeps one daily checklist across tasks and AI tools. Choose a
-study design to see separate method questions; download the plan to preserve
-your decisions and checklist state. See [design and analysis](docs/design-and-analysis.md)
-for experiments, observational/qualitative studies, synthesis, computation and
-game theory. Examples are bounded demonstrations, not automatic study approval.
+The [hosted study editor](https://chandrashekhar-hegde.github.io/open-research/)
+keeps your question, protocol, evidence, analysis and writing in one locally
+saved draft. Research, Plan, Inspect, Analyze, Write and Review & export sit
+above the editor. Each stage has its own review checks and next action.
+
+Choose a design in Plan and record the actual decisions, including experiment
+factors/allocation or game-theory players/payoffs. Review the document before
+copying or downloading it. Export requires your question; missing results and
+decisions stay visibly unrecorded. Save an editable JSON backup to reopen the
+study, including notes for alternative designs. Nothing is uploaded; avoid
+restricted material on a shared device. These browser drafts are separate from
+the CLI's `study.json` format.
+
+[Design and analysis](docs/design-and-analysis.md) covers the methods;
+[the usability investigation](docs/usability-redesign.md) explains the changes.
+Examples and AI setup are available in the optional tools section.
 
 ## Use good tools where they already exist
 

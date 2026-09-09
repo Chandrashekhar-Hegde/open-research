@@ -44,8 +44,8 @@ without knowing which workflow was used. Otherwise disclose review limitations.
 1. What were you trying to understand or decide?
 2. Where did you get stuck? What happened, and what did you expect?
 3. Which step or artifact helped? Which would you remove?
-4. Did the shared daily checklist make sense across tasks? Give an example.
-5. Did the method questions fit your study? What was missing or unnecessary?
+4. Did stage switching preserve your work? Did the review checks fit each stage?
+5. Did the protocol fields and exported document fit your study? What was missing or unnecessary?
 6. What did the tool make look more certain than the evidence justified?
 7. Would you use any part of this again? Why, or why not?
 

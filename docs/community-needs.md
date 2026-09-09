@@ -1,6 +1,11 @@
 # Does the community need Open Research?
 
-Evidence review and implementation plan: 8 September 2026.
+Evidence review: 8 September 2026. Usability update: 9 September 2026.
+
+The initial fixed-checklist design below was tested by the maintainer and found
+confusing. The [usability redesign](usability-redesign.md) supersedes that choice
+with a saved study editor and stage-specific review checks. This is direct
+stakeholder feedback, not a representative user study.
 
 ## Why this exists
 
@@ -44,10 +49,10 @@ worth testing, with effectiveness still unknown**.
 
 | Need or hypothesis | Concrete response | Evidence still required |
 | --- | --- | --- |
-| Transfer work between tools without losing decisions | Portable session plan with method notes, stable daily checklist, and local commands | Observe a user resume the same task with another tool |
+| Transfer work between tools without losing decisions | Saved study with method notes, stage-specific review and local commands | Observe a user resume the same task with another tool |
 | Understand a study before analyzing it | Separate experiment, observational, qualitative, synthesis, computational, and strategic-model decisions | Domain researchers inspect whether the decisions fit their actual studies |
 | Learn through inspectable calculations | Runnable blocked factorial and game-theory examples with known-answer tests | Users explain the limits without mistaking demonstration data for observations |
-| Reduce unnecessary process | Keep one daily checklist across all tasks and tools; put method questions in a separate panel | Test whether this reduces confusion and omission compared with current practice |
+| Reduce unnecessary process | Keep one study across stages; put review checks and method decisions where they apply | Test whether this reduces confusion and omission compared with current practice |
 | Trust evidence rather than polished output | Source locations, uncertainty, negative results, and explicit verification | Audit resulting artifacts; self-reported confidence alone is insufficient |
 
 Do not add an autonomous scientist, paper factory, automated journal submission,
@@ -63,9 +68,11 @@ to spend the day writing about work. Reuse Jupyter, Zotero, Quarto, SymPy and
    explanation on the hosted page. Separate evidence, design decisions, and
    untested hypotheses; do not claim that the research community is universally
    broken or that a checklist repairs its incentives.
-2. **Repair the handoff.** Keep the existing five checklist statements and their
-   state across task/tool changes. Export them with the session. Reset only by
-   the user's explicit action; explain device-local storage and failure to save.
+2. **Repair the handoff.** The first iteration preserved five universal items.
+   Maintainer feedback showed that this was insufficient. The current editor
+   saves the question and answers, gives each stage its own review checks, and
+   uses the same entered data for preview, copy and export. A real refresh
+   restores the draft; an explicit new-study action is needed to replace it.
 3. **Make methods usable.** Add a study-design selector and decisions in the
    session export. Supply bounded experiments and strategic-game commands,
    expected outputs, assumption checks, and method-specific workflow guidance.
@@ -95,8 +102,7 @@ Run 30-minute sessions using two comparable, non-sensitive practice tasks. Ask
 participants to create a study plan and inspect an intentionally imperfect
 artifact, once using their usual workflow and once with Open Research. Alternate
 task versions and counterbalance workflow order. Record familiarity and assistance;
-novelty, learning and task differences are limitations. Keep the shared checklist
-identical throughout. Explain that the tool, not the person, is being evaluated.
+novelty, learning and task differences are limitations. Use the same stage-specific review criteria across the two workflow conditions. Explain that the tool, not the person, is being evaluated.
 
 Before observing sessions, define completion as: question and unit identified,
 design justified, one important defect detected, and a plan another person can
