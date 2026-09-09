@@ -3,9 +3,10 @@
 Research and planning date: 2026-09-08.
 
 The first workbench is implemented. The next evidence-led iteration is recorded
-in [community needs and evaluation](community-needs.md): keep a stable daily
-checklist, expose method-specific decisions, add tested experiment/game examples,
-and collect actionable feedback without claiming unmeasured benefit.
+in [community needs and evaluation](community-needs.md). Direct feedback then
+led to the [study-editor redesign](usability-redesign.md): one saved draft,
+stage-specific review, actual protocol fields and faithful exports. The initial
+command chooser described below is superseded on the hosted site.
 
 ## Problem and audience
 

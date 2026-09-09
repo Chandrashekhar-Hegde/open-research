@@ -6,14 +6,19 @@ unknown, and merely plausible. Inspiration produces candidate questions;
 it does not establish novelty or evidence. Compare at least one simpler
 explanation and one way the question could fail to be answerable.
 
-## One handoff, different methods
+## One study, distinct stages
 
-The website deliberately keeps the same five daily checklist statements across
-tasks, methods, and AI hosts. They record a handoff, not scientific approval.
-For work with no new evidence, record that absence and what must be obtained;
-do not check a box by inventing a source. Method-specific questions appear in
-the separate design panel and downloaded plan. This interface choice is not
-yet validated by a user study; see the [evaluation plan](community-needs.md).
+The website saves one study with separate Research, Plan, Inspect, Analyze,
+Write, and Review & export sections. Review checks and next actions belong to
+each stage: a Plan check never marks Inspect complete. The earlier fixed daily
+checklist was replaced after direct usability feedback. These checks are
+self-reported review notes, not scientific approval. Record absent evidence
+explicitly rather than inventing it to complete a field.
+
+Select a method in Plan to record its specific decisions. Copy and Markdown
+export contain your actual answers; an editable JSON backup also preserves
+notes for inactive designs. See the [usability redesign](usability-redesign.md)
+and [community evaluation plan](community-needs.md).
 
 | Kind of question | Decisions before analysis | Appropriate scope of the answer |
 | --- | --- | --- |
