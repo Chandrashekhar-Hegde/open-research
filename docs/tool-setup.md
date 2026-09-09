@@ -60,6 +60,14 @@ The browser's version-1 backup and the CLI's schema-version-1 manifest serve
 different purposes; use this command to connect them. The editor can reopen the
 browser backup, but it does not import arbitrary local folders or CLI manifests.
 
+## Named tool integrations
+
+Follow the [Claude Code, Codex and OpenCode guide](assistant-tools.md) for
+project-local installation, invoking skills, terminal runs and actual task
+recipes. [Verification](integration-verification.md) separates checked file
+installation from observed live execution. The [public tools page](https://chandrashekhar-hegde.github.io/open-research/tools.html)
+is the browser-friendly version.
+
 ## Optional task instructions
 
 Read the relevant [skill](../skills/README.md) yourself or provide it to a tool

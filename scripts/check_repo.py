@@ -16,7 +16,7 @@ from research import ROOT, check_study
 
 def markdown_files(root):
     for directory, dirs, files in os.walk(root):
-        dirs[:] = [d for d in dirs if d not in {'.git', '.venv', '__pycache__', 'studies', 'build', '.agents', '.quarto'}]
+        dirs[:] = [d for d in dirs if d not in {'.git', '.venv', '__pycache__', 'studies', 'build', '.agents', '.claude', '.opencode', '.quarto'}]
         for name in files:
             if name.endswith('.md'):
                 yield Path(directory) / name

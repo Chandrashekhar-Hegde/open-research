@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-09",
+  "host": "codex-cli 0.153.4",
+  "python": "3.14.7",
+  "mode": "read-only, ephemeral, default model (not pinned)",
+  "skill_loaded": ".agents/skills/reproduce-analysis/SKILL.md",
+  "skill_loading_evidence": "Completed file-read command included the installed SKILL.md; exit 0.",
+  "scope": "Selected command events from one live rehearsal; local paths and session metadata omitted. Not a model benchmark.",
+  "commands": [
+    {
+      "command": "/bin/zsh -lc 'PYTHONDONTWRITEBYTECODE=1 python3 examples/noaa-co2/analyze.py --check'",
+      "exit_code": 0,
+      "aggregated_output": "PASS: frozen NOAA reanalysis and source checksum match\n"
+    },
+    {
+      "command": "/bin/zsh -lc 'PYTHONDONTWRITEBYTECODE=1 python3 examples/noaa-co2/analyze.py'",
+      "exit_code": 0,
+      "aggregated_output": "{\n  \"input_sha256\": \"5d90c5c3152fd4bc0303ba9d271b9f84b8be40c2880e775aa1b6cf8b3571f43a\",\n  \"years\": [\n    2024,\n    2025\n  ],\n  \"months_per_year\": 12,\n  \"equal_month_mean_ppm\": {\n    \"2024\": 424.6042,\n    \"2025\": 427.3492\n  },\n  \"difference_ppm\": 2.745,\n  \"deseasonalized_difference_ppm\": 2.7433,\n  \"same_month_difference_range_ppm\": [\n    2.09,\n    3.85\n  ],\n  \"interpretation\": \"Descriptive difference between equal-weight monthly means in this frozen station record.\",\n  \"limits\": [\n    \"Not a global mean or a causal effect.\",\n    \"Months are time-dependent, not independent experimental replicates.\",\n    \"No confidence interval or significance test is claimed.\",\n    \"NOAA may revise its data; this result uses a dated snapshot.\",\n    \"Equal weighting of monthly means is not a day-weighted annual estimator.\"\n  ]\n}\n"
+    },
+    {
+      "command": "/bin/zsh -lc 'PYTHONDONTWRITEBYTECODE=1 python3 research.py check examples/noaa-co2 --release'",
+      "exit_code": 0,
+      "aggregated_output": "PASS: examples/noaa-co2 \u2014 structural checks only; scientific review remains necessary.\n"
+    }
+  ]
+}

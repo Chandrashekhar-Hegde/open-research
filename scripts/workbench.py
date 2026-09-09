@@ -10,6 +10,7 @@ import statistics
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+SKILL_DIRECTORIES = {'codex': '.agents/skills', 'claude': '.claude/skills', 'opencode': '.opencode/skills'}
 
 
 
@@ -23,7 +24,7 @@ def write_new(path, content):
 
 def doctor():
     return {'python': sys.version.split()[0], 'core_ready': sys.version_info >= (3, 11),
-            'tools': {name: shutil.which(name) for name in ('git', 'quarto', 'jupyter')},
+            'tools': {name: shutil.which(name) for name in ('git', 'quarto', 'jupyter', 'codex', 'claude', 'opencode')},
             'note': 'Optional tools are not required for the offline core. Presence does not establish authentication or model access.'}
 
 

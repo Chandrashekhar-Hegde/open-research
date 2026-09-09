@@ -88,3 +88,10 @@ workflow; they do not establish that this particular product improves research.
 
 These are implementation checks, not a participant usability study or evidence
 that the project improves research quality. The community pilot remains unrun.
+
+## Tool integration follow-up
+
+The [integration plan](integration-plan.md) adds named host setup, installation
+targets, executable workflow checks and a public tools guide. The
+[verification record](integration-verification.md) reports actual execution and
+untested hosts separately. Tool names describe supported usage, not authorship.

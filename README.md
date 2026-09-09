@@ -41,6 +41,23 @@ It is retrospective secondary research, not a new experiment or causal discovery
 The other [examples](docs/capabilities.md) teach calculations and are explicitly
 labeled synthetic or theoretical.
 
+## Use with your assistant
+
+[Claude Code, Codex and OpenCode setup](docs/assistant-tools.md) covers skill
+installation, invocation, real tasks, troubleshooting and execution evidence.
+Choose one host from the checkout:
+
+```sh
+python research.py install-skills --tool claude
+# Or: --tool codex / --tool opencode
+python scripts/verify_workflow.py
+```
+
+[Observed verification](docs/integration-verification.md): offline installation
+and workflow checks pass; one live Codex reproduction passed. Claude Code live
+execution is blocked by missing login here; OpenCode live execution is untested.
+The skills guide existing hosts; no model service is bundled.
+
 ## Bring your own question
 
 ```sh

@@ -25,3 +25,24 @@ resolution evidence, and remaining limits. If execution is unavailable, provide
 an inspected procedure and explicitly mark reproduction as not run. A matching
 result demonstrates repeatability under those conditions, not causal validity
 or generalization. Do not claim independent review for your own prior work.
+
+## Executable Open Research rehearsal
+
+When working in an Open Research checkout, inspect
+`examples/noaa-co2/README.md`, `protocol.md`, `data/README.md`, and `analyze.py`
+in that example directory. From the repository root run:
+
+```sh
+python3 examples/noaa-co2/analyze.py --check
+python3 research.py check examples/noaa-co2 --release
+```
+
+The frozen calculation compares 24 monthly observations from 2024–2025. Report
+both command exit statuses, the computed annual means and difference in ppm,
+and a limitation from the protocol. Do not copy expected numbers as evidence of
+execution. If Python is named `python` in this environment, use that executable.
+The release check validates records and hashes; it does not validate inference.
+
+For a new study, substitute its reviewed code and predeclared comparison criterion.
+If these example paths do not exist in the current project, ask for the local
+checkout or inspect the user's own documented analysis; do not invent a path.

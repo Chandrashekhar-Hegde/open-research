@@ -1,5 +1,6 @@
 // Portable study data and document generation. No browser or AI dependency.
-export const hosts={standalone:'Self-guided',assistant:'Optional assistant'};
+export const hosts={standalone:'Self-guided',claude:'Claude Code',codex:'Codex',opencode:'OpenCode',assistant:'Other assistant'};
+export function hostSetup(host){return ['claude','codex','opencode'].includes(host)?'python research.py install-skills --tool '+host+'\n'+host:'python research.py doctor\npython scripts/verify_workflow.py';}
 export const stages={
   research:{label:'Research',title:'Understand the question',help:'Explain what is known, why this matters, and what you still need to learn.',skill:'research-protocol',guide:'research-lifecycle.md',fields:[
     ['purpose','Why does this question matter?','Who needs the answer, and what decision would it change?'],
@@ -128,4 +129,4 @@ export function studyMarkdown(study){
   return lines.join('\n');
 }
 export function fileStem(study){return (study.title||study.question).normalize('NFKD').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60).toLowerCase()||'research-study';}
-export function assistantBrief(study){return 'Read AGENTS.md and agents/lurch.md. Use the '+stages[study.stage].skill+' skill.\nHelp with the '+stages[study.stage].label+' stage of the study below. Inspect recorded evidence, identify missing decisions, and preserve my actual question. Do not invent data, sources, approvals, or results.\n\n'+studyMarkdown(study);}
+export function assistantBrief(study){return 'Environment: '+hosts[study.host]+'. Launch in the Open Research checkout; name the local study folder before making changes.\nRead AGENTS.md and agents/lurch.md. Use the '+stages[study.stage].skill+' skill.\nHelp with the '+stages[study.stage].label+' stage of the study below. Inspect recorded evidence, identify missing decisions, and preserve my actual question. Do not invent data, sources, approvals, or results. For computations, inspect code first, run permitted commands and report actual outputs, exit statuses and limitations. If you cannot execute or verify a source, mark it unverified.\n\n'+studyMarkdown(study);}
