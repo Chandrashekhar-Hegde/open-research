@@ -17,11 +17,11 @@ metadata. They do not include credentials or execute themselves.
 
 ## Install or read directly
 
-Run `python research.py install-skills --tool codex`, replacing `codex` with
-`claude` or `opencode` for your host. Choose one host; the project-local copies
-are ignored by Git. No global settings or permissions change. Follow the
-[setup guide](../docs/tool-setup.md) for invocation, another project, chat-only
-use, and limitations. You can also read any skill and follow it manually.
+Run `python research.py install-skills --directory .agents/skills` from the
+repository. Choose the project-relative directory your tool supports. Existing
+conflicts are rejected. No global settings or permissions change. Read the
+[setup guide](../docs/tool-setup.md) and [capability-to-code map](../docs/capabilities.md).
+You can also follow any skill manually; installation is optional.
 
 [Lurch](../agents/lurch.md) coordinates the work. Load only the relevant skill.
 When adapting one, preserve evidence/provenance conventions and add the actual

@@ -36,13 +36,7 @@ an estimate and should retain its calibration and error assumptions.
 
 ## Model and API adaptation
 
-[Claude's vision documentation](https://platform.claude.com/docs/en/build-with-claude/vision)
-describes image content blocks with base64, URL, or file references, subject to
-platform-specific support. [Gemini's image documentation](https://ai.google.dev/gemini-api/docs/image-understanding)
-describes inline image data and file-upload workflows. Consult those current
-references for request formats; this repo does not pin a provider SDK.
-
-For another hosted provider or an open-weight model, inspect its official
+For a hosted provider or an open-weight model, inspect its official
 model card and processor documentation before assuming support for images,
 audio, or video. Record model revision, processor, image dimensions, sampling,
 and serialization. A sequence of sampled images does not establish native

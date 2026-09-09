@@ -10,7 +10,7 @@ import statistics
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-HOSTS = {'codex': '.agents/skills', 'claude': '.claude/skills', 'opencode': '.opencode/skills'}
+
 
 
 def write_new(path, content):
@@ -23,13 +23,16 @@ def write_new(path, content):
 
 def doctor():
     return {'python': sys.version.split()[0], 'core_ready': sys.version_info >= (3, 11),
-            'tools': {name: shutil.which(name) for name in ('git', 'codex', 'claude', 'opencode', 'quarto', 'jupyter')},
+            'tools': {name: shutil.which(name) for name in ('git', 'quarto', 'jupyter')},
             'note': 'Optional tools are not required for the offline core. Presence does not establish authentication or model access.'}
 
 
-def install_skills(tool, project):
+def install_skills(directory, project):
     project = Path(project).resolve()
-    destination = project / HOSTS[tool]
+    directory = Path(directory)
+    if directory.is_absolute() or '..' in directory.parts:
+        raise ValueError('skill directory must be relative to the project')
+    destination = project / directory
     if not destination.resolve().is_relative_to(project):
         raise ValueError('host skill directory escapes the selected project')
     planned = []
@@ -44,7 +47,7 @@ def install_skills(tool, project):
             planned.append((source, target))
     for source, target in planned:
         write_new(target, source.read_text(encoding='utf-8'))
-    return {'tool': tool, 'directory': str(destination), 'installed': len(planned),
+    return {'directory': str(destination), 'installed': len(planned),
             'note': 'Existing identical skills left intact. Launch the host in this project. No global settings or permissions changed.'}
 
 

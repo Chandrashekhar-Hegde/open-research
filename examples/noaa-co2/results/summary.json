@@ -1,0 +1,26 @@
+{
+  "input_sha256": "5d90c5c3152fd4bc0303ba9d271b9f84b8be40c2880e775aa1b6cf8b3571f43a",
+  "years": [
+    2024,
+    2025
+  ],
+  "months_per_year": 12,
+  "equal_month_mean_ppm": {
+    "2024": 424.6042,
+    "2025": 427.3492
+  },
+  "difference_ppm": 2.745,
+  "deseasonalized_difference_ppm": 2.7433,
+  "same_month_difference_range_ppm": [
+    2.09,
+    3.85
+  ],
+  "interpretation": "Descriptive difference between equal-weight monthly means in this frozen station record.",
+  "limits": [
+    "Not a global mean or a causal effect.",
+    "Months are time-dependent, not independent experimental replicates.",
+    "No confidence interval or significance test is claimed.",
+    "NOAA may revise its data; this result uses a dated snapshot.",
+    "Equal weighting of monthly means is not a day-weighted annual estimator."
+  ]
+}

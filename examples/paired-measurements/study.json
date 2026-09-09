@@ -20,7 +20,7 @@
     },
     {
       "path": "ai-use.md",
-      "sha256": "33cabbf692d2817c3267d6c8e4f85d6221b7eda0920252ff6c4a03ff66d5b150",
+      "sha256": "62ea643cdfe8e7b2698a6c5cbaae5e1777d942961877350b1157faffc81c9acf",
       "role": "record",
       "license": "MIT",
       "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"
@@ -90,7 +90,7 @@
     },
     {
       "path": "review.md",
-      "sha256": "d2f72af6fec9f624fe20986da52de2122779a31062043f66afa5987e92c127b3",
+      "sha256": "58fa0fd31761ddba7da16a569a05b8547bf1970c0f63a0d2c020d2c90005f329",
       "role": "record",
       "license": "MIT",
       "provenance": "Authored synthetic demonstration for Open Research; see ai-use.md"

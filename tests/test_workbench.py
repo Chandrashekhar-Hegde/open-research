@@ -6,7 +6,7 @@ import tempfile
 import unittest
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
-from workbench import profile_csv, install_skills, journal, draft, write_new, HOSTS
+from workbench import profile_csv, install_skills, journal, draft, write_new
 
 class WorkbenchChecks(unittest.TestCase):
     def setUp(self):
@@ -30,21 +30,21 @@ class WorkbenchChecks(unittest.TestCase):
         for text in ('','a,a\n1,2\n','a,\n1,2\n','a,b\n1\n'):
             with self.subTest(text=text),self.assertRaises(ValueError):profile_csv(self.csv(text))
     def test_host_install_is_idempotent_and_preserves_custom_work(self):
-        for tool,location in HOSTS.items():
+        for tool,location in [('default','.agents/skills'), ('custom','instructions/skills')]:
             with self.subTest(tool=tool):
                 project=self.root/tool
-                result=install_skills(tool,project);self.assertEqual(result['installed'],8)
-                self.assertEqual(install_skills(tool,project)['installed'],0)
+                result=install_skills(location,project);self.assertEqual(result['installed'],8)
+                self.assertEqual(install_skills(location,project)['installed'],0)
                 path=project/location/'research-protocol/SKILL.md'
                 path.write_text('custom work',encoding='utf-8')
-                with self.assertRaises(ValueError):install_skills(tool,project)
+                with self.assertRaises(ValueError):install_skills(location,project)
                 self.assertEqual(path.read_text(),'custom work')
     def test_installer_rejects_escaping_host_directory(self):
         outside=self.root/'outside';outside.mkdir()
         project=self.root/'project';project.mkdir()
         try:(project/'.agents').symlink_to(outside,target_is_directory=True)
         except OSError:return
-        with self.assertRaises(ValueError):install_skills('codex',project)
+        with self.assertRaises(ValueError):install_skills('.agents/skills',project)
         self.assertEqual(list(outside.iterdir()),[])
     def test_new_outputs_refuse_overwrite(self):
         path=self.root/'output.md';write_new(path,'first')

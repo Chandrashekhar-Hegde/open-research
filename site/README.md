@@ -48,3 +48,15 @@ preservation, JSON round-trips, malformed data and navigation wiring.
 GitHub Actions publishes this directory after the core, math, writing and site
 checks pass on main. For a fork, enable Pages with GitHub Actions and update
 project URLs. See the [usability investigation](../docs/usability-redesign.md).
+
+## Guided research and real code
+
+`guide.html` explains sequence and method families; `example.html` walks through
+an executed real NOAA reanalysis. `noaa.study.json` is its editable browser record,
+validated by the same decoder as user backups. The load button confirms before
+replacing nonempty work. `about.html` contains evidence, frustrations and contact.
+
+The browser backup now connects to the offline CLI through
+`python research.py import-browser FILE NEW_DIRECTORY`. This is explicit file
+transfer, not a backend upload or automatic synchronization. See
+[setup](../docs/tool-setup.md) and [capabilities](../docs/capabilities.md).

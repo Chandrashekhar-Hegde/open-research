@@ -20,7 +20,7 @@ test('blank questions cannot become generic exported studies',()=>{
  const study=emptyStudy();for(const text of ['', '   ', '\n\t']){study.question=text;assert.throws(()=>studyMarkdown(study),/research question/);assert.throws(()=>assistantBrief(study));}
 });
 test('JSON round-trip preserves all stages, designs, exact text and independent review checks',()=>{
- const study=irrigation();study.host='claude';study.stage='inspect';
+ const study=irrigation();study.host='assistant';study.stage='inspect';
  const loaded=decodeStudy(JSON.stringify(study));assert.deepEqual(loaded,study);assert.equal(studyMarkdown(loaded),studyMarkdown(study));
  loaded.checks.plan[1]=true;assert.equal(study.checks.plan[1],false);assert.equal(loaded.checks.inspect[0],false);
  loaded.method='game';assert.ok(fieldsFor(loaded,'plan').some(f=>f.value==='Retained alternative model notes.'));
@@ -52,4 +52,29 @@ test('site wiring and linked local assets are present; stage switches do not nav
  assert.ok(html.includes('Copy study'));assert.ok(html.includes('Save editable JSON'));
  for(const file of ['about.html','feedback-study.md','study.mjs','style.css'])assert.ok(readFileSync(new URL('../site/'+file,import.meta.url),'utf8'));
  for(const stage of Object.values(stages))assert.ok(readFileSync(new URL('../docs/'+stage.guide,import.meta.url),'utf8'));
+});
+test('real observation study loads into the editor and exports its executed evidence',()=>{
+ const study=decodeStudy(readFileSync(new URL('../site/noaa.study.json',import.meta.url),'utf8'));
+ const report=studyMarkdown(study);assert.ok(report.includes('2.745'));assert.ok(report.includes('gml.noaa.gov'));assert.ok(report.includes('Retrospective'));
+ assert.ok(report.includes(study.question));assert.equal(study.method,'observational');
+ const expected=JSON.parse(readFileSync(new URL('../examples/noaa-co2/results/summary.json',import.meta.url),'utf8'));
+ assert.deepEqual(JSON.parse(study.answers.results),expected);
+ const page=readFileSync(new URL('../site/example.html',import.meta.url),'utf8');
+ for(const value of [expected.difference_ppm,...Object.values(expected.equal_month_mean_ppm)])assert.ok(page.includes(String(value)));
+});
+test('retired tool preferences preserve existing draft content',()=>{
+ const old=irrigation();old.host='retired-provider';const loaded=decodeStudy(JSON.stringify(old));
+ assert.equal(loaded.host,'standalone');assert.equal(loaded.question,old.question);assert.deepEqual(loaded.designs,old.designs);
+});
+test('method links and the public guide have matching destinations',()=>{
+ const guide=readFileSync(new URL('../site/guide.html',import.meta.url),'utf8');
+ for(const key of Object.keys(methods).filter(k=>k!=='undecided'))assert.ok(guide.includes('id="'+key+'"'),key);
+ for(const file of ['index.html','guide.html','example.html','about.html']){
+  const html=readFileSync(new URL('../site/'+file,import.meta.url),'utf8');
+  for(const [,href] of html.matchAll(/(?:href|src)="([^"]+)"/g)){
+   if(/^(https?:|#)/.test(href)||href==='./')continue;
+   const [path,fragment]=href.split(/[?#]/);const target=readFileSync(new URL('../site/'+path,import.meta.url),'utf8');
+   if(href.includes('#'))assert.ok(target.includes('id="'+fragment+'"'),href);
+  }
+ }
 });

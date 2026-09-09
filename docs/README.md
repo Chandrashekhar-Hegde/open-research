@@ -5,8 +5,11 @@ optional skills let an assistant follow the same inspectable workflow.
 
 | Your task | Guide |
 | --- | --- |
+| Choose and conduct a study | [Methodology](methodology.md) |
+| Connect a task to actual code | [Capabilities](capabilities.md) |
+| Inspect research-quality problems | [Research quality](research-quality.md) |
 | Decide what to do during a research day | [Daily workflow](daily-workflow.md) |
-| Set up Claude Code, Codex, OpenCode, or standalone use | [Tool setup](tool-setup.md) |
+| Set up browser, standalone or optional task tools | [Tool setup](tool-setup.md) |
 | Frame a question and create a study | [Research lifecycle](research-lifecycle.md) |
 | Choose a study design, experiment, or strategic model | [Design and analysis](design-and-analysis.md) |
 | Understand the community need and test usefulness | [Evidence and evaluation plan](community-needs.md) |
