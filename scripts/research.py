@@ -165,7 +165,10 @@ def main():
     check.add_argument('--release', action='store_true', help='require completed release records')
     sub.add_parser('doctor', help='show runtime and optional CLI availability')
     install = sub.add_parser('install-skills', help='install project-local skills for a chosen host')
-    install.add_argument('--directory', default='.agents/skills', help='project-relative destination, default .agents/skills')
+    from workbench import SKILL_DIRECTORIES
+    target = install.add_mutually_exclusive_group()
+    target.add_argument('--directory', help='project-relative destination, default .agents/skills')
+    target.add_argument('--tool', choices=SKILL_DIRECTORIES, help='use the documented project skill directory for this tool')
     install.add_argument('--project', type=Path, default=Path.cwd())
     imported = sub.add_parser('import-browser', help='turn a browser JSON backup into a new local study')
     imported.add_argument('source', type=Path)
@@ -187,7 +190,7 @@ def main():
             if args.command == 'doctor':
                 result = doctor()
             elif args.command == 'install-skills':
-                result = install_skills(args.directory, args.project)
+                result = install_skills(args.directory or SKILL_DIRECTORIES.get(args.tool, '.agents/skills'), args.project)
             elif args.command == 'import-browser':
                 from import_study import import_browser
                 result = import_browser(args.source, args.path)

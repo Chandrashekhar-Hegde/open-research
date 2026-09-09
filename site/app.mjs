@@ -1,4 +1,4 @@
-import {stages,methods,STORAGE_KEY,MAX_FILE_SIZE,emptyStudy,decodeStudy,hasContent,fieldsFor,missingFor,studySections,studyMarkdown,fileStem,assistantBrief} from './study.mjs?v=guide-1';
+import {hostSetup,stages,methods,STORAGE_KEY,MAX_FILE_SIZE,emptyStudy,decodeStudy,hasContent,fieldsFor,missingFor,studySections,studyMarkdown,fileStem,assistantBrief} from './study.mjs?v=tools-1';
 const $=id=>document.getElementById(id);
 let study=emptyStudy(), storageBlocked=false;
 try {
@@ -81,7 +81,8 @@ function updateOutput(){
   }));
   $('study-preview').textContent=ready?studyMarkdown(study):'Add your research question above. Your entered decisions will appear here; missing information will be marked as not recorded.';
   $('assistant-preview').textContent=ready?assistantBrief(study):'Enter your question first.';
-  $('setup-command').textContent='python research.py doctor';
+  $('setup-command').textContent=hostSetup(study.host);
+  $('host-guide').href='tools.html#'+(['claude','codex','opencode'].includes(study.host)?study.host:'baseline');
   const [command,limit,guide]=examples[study.method]||examples.default;$('example-command').textContent=command;$('example-limit').textContent=limit;$('example-guide').href='https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/'+guide+'/README.md';
 }
 function populate(){
@@ -89,7 +90,7 @@ function populate(){
 }
 for(const [id,key] of [['study-title','title'],['question','question']])$(id).addEventListener('input',()=>{study[key]=$(id).value;if(key==='question')Object.keys(stages).forEach(resetReview);save();updateOutput();});
 $('host').addEventListener('change',()=>{study.host=$('host').value;save();updateOutput();});
-async function copy(text,status){try{await navigator.clipboard.writeText(text);$(status).textContent='Copied the current '+(status==='tool-status'?'assistant task and study.':'study document.');}catch{$('preview-details').open=true;$('markdown-details').open=true;$(status).textContent='Clipboard unavailable. Select and copy the full document below.';}}
+async function copy(text,status){try{await navigator.clipboard.writeText(text);$(status).textContent='Copied the current '+(status==='tool-status'?'assistant task and study.':'study document.');}catch{if(status==='tool-status'){$('assistant-details').open=true;$(status).textContent='Clipboard unavailable. Select and copy the assistant task below.';}else{$('preview-details').open=true;$('markdown-details').open=true;$(status).textContent='Clipboard unavailable. Select and copy the full document below.';}}}
 $('copy-backup').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(JSON.stringify(study,null,2));$('export-status').textContent='Copied the editable JSON backup.';}catch{$('json-details').open=true;$('export-status').textContent='Clipboard unavailable. Select and copy the JSON backup below.';}});
 $('copy-study').addEventListener('click',()=>copy(studyMarkdown(study),'export-status'));
 $('copy-brief').addEventListener('click',()=>copy(assistantBrief(study),'tool-status'));

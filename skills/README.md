@@ -31,3 +31,5 @@ a missing source, and a contradictory or invalid input as applicable.
 Metadata and installer tests do not prove a live model follows the procedure.
 Record the host, model, actual task, observed output and limitations when doing
 behavioral evaluation. Do not describe AI self-review as independent peer review.
+
+See [Claude Code, Codex and OpenCode setup](../docs/assistant-tools.md) for installation, invocation, task recipes and observed verification.

@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {emptyStudy,decodeStudy,stages,methods,fieldsFor,missingFor,studyMarkdown,assistantBrief,fileStem,hasContent,MAX_FILE_SIZE} from '../site/study.mjs';
+import {hostSetup,hosts,emptyStudy,decodeStudy,stages,methods,fieldsFor,missingFor,studyMarkdown,assistantBrief,fileStem,hasContent,MAX_FILE_SIZE} from '../site/study.mjs';
 function irrigation(){
  const study=emptyStudy();study.title='Irrigation study';study.question='Does 100 mL versus 200 mL daily irrigation change basil height after 21 days?\nMeasure height in cm — not leaf count.';study.method='experiment';
  study.answers={purpose:'Choose an irrigation level without assuming more water is better.',units:'Individual basil pots; repeated daily measurements belong to the same pot.',comparison:'100 mL versus 200 mL per day.',outcome:'Change in stem height (cm), day 0 to day 21.',sample:'Use pilot variability to justify precision; no sample size has been selected.',procedure:'Measure baseline; randomize pots within bench blocks; water daily; record day 21 height.',sources:'Local pilot protocol, methods section; observations not yet collected.'};
@@ -77,4 +77,25 @@ test('method links and the public guide have matching destinations',()=>{
    if(href.includes('#'))assert.ok(target.includes('id="'+fragment+'"'),href);
   }
  }
+});
+
+test('named host setup and stage handoffs preserve the study through every tool',()=>{
+ const source=irrigation();
+ for(const host of Object.keys(hosts)){
+  source.host=host;
+  const restored=decodeStudy(JSON.stringify(source));
+  assert.equal(restored.host,host);
+  const setup=hostSetup(host);
+  assert.ok(setup.includes(['claude','codex','opencode'].includes(host)?'--tool '+host:'verify_workflow.py'));
+  for(const stage of Object.keys(stages)){
+   restored.stage=stage;
+   const brief=assistantBrief(restored);
+   assert.ok(brief.includes(restored.question));
+   assert.ok(brief.includes(stages[stage].skill));
+   assert.ok(brief.includes(hosts[host]));
+   assert.ok(brief.includes('actual outputs, exit statuses'));
+  }
+ }
+ const page=readFileSync(new URL('../site/tools.html',import.meta.url),'utf8');
+ for(const host of ['claude','codex','opencode'])assert.ok(page.includes('id="'+host+'"'));
 });
