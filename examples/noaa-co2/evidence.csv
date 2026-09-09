@@ -1,0 +1,3 @@
+source_id,title,url,accessed,locator,notes
+N1,NOAA Mauna Loa monthly CO2,https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv,2026-09-09,CSV rows year=2024 or 2025; average and deseasonalized columns,Frozen excerpt in data/monthly.csv; see source header and data/README.md
+R1,Executed descriptive reanalysis,results/summary.json,2026-09-09,equal_month_mean_ppm and difference_ppm,Produced by analyze.py; source checksum included

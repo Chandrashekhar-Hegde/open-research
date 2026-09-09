@@ -8,8 +8,6 @@ __pycache__/
 studies/
 build/
 .agents/skills/
-.claude/skills/
-.opencode/skills/
 .quarto/
 *_files/
 examples/academic-writing/*.html

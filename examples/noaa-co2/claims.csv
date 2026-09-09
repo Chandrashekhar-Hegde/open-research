@@ -1,0 +1,2 @@
+claim_id,claim,source_ids,status,limitations
+C1,Equal-month mean CO2 increased by 2.745 ppm between 2024 and 2025 in this snapshot.,N1;R1,supported,"This is a retrospective descriptive reanalysis of one station series, not new data collection, preregistered confirmation, a global mean or a causal attribution. Months are serially dependent. No confidence interval or significance test is claimed. Equal weighting of monthly means differs from day weighting. NOAA may revise its series; the frozen snapshot defines this result."

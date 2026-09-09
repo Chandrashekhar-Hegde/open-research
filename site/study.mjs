@@ -1,5 +1,5 @@
 // Portable study data and document generation. No browser or AI dependency.
-export const hosts={standalone:'No AI tool',codex:'Codex',claude:'Claude Code',opencode:'OpenCode'};
+export const hosts={standalone:'Self-guided',assistant:'Optional assistant'};
 export const stages={
   research:{label:'Research',title:'Understand the question',help:'Explain what is known, why this matters, and what you still need to learn.',skill:'research-protocol',guide:'research-lifecycle.md',fields:[
     ['purpose','Why does this question matter?','Who needs the answer, and what decision would it change?'],
@@ -79,9 +79,11 @@ export function decodeStudy(raw){
     if(typeof data[key]!=='string'||data[key].length>(key==='title'?200:8000))throw new Error('Invalid '+key+'.');
     study[key]=data[key];
   }
-  for(const [key,options] of [['method',methods],['stage',stages],['host',hosts]]){
+  for(const [key,options] of [['method',methods],['stage',stages]]){
     if(!Object.hasOwn(options,data[key]))throw new Error('Unknown '+key+'.');study[key]=data[key];
   }
+  if(typeof data.host!=='string'||data.host.length>80)throw new Error('Invalid tool preference.');
+  study.host=Object.hasOwn(hosts,data.host)?data.host:'standalone'; // Preserve older drafts while retiring provider-specific preferences.
   const allFields=Object.values(stages).flatMap(s=>s.fields.map(f=>f[0]));
   function strings(input,keys){
     if(!object(input)||Object.keys(input).some(k=>!keys.includes(k)))throw new Error('Invalid study answers.');

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "title": "NOAA CO2: 2024–2025 descriptive reanalysis",
+  "question": "How much did the equal-weight mean of NOAA Mauna Loa monthly CO₂ concentrations change from 2024 to 2025?",
+  "owner": "Open Research maintainers",
+  "created": "2026-09-09",
+  "status": "complete",
+  "license": "MIT for project code/text; NOAA public-domain terms for data",
+  "data_access": "Public frozen excerpt with attribution and provenance in data/README.md",
+  "reproduce": [
+    "python examples/noaa-co2/analyze.py --check"
+  ],
+  "artifacts": [
+    {
+      "path": "README.md",
+      "sha256": "91d5b405d145fa23725fd6cdd2369c737e5aeb56a835c4e1864ed15dae8bc9c4",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "ai-use.md",
+      "sha256": "d7f55085773efd075525bf49314f02f21a228ec3da3134d926d385dc28934108",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "analysis-plan.md",
+      "sha256": "13679caf282ef7db1447b582ab81b7ae8eb1b125d368c5b77d265ba689c08b9a",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "analyze.py",
+      "sha256": "8b9e1d240228e07f317757045cd80465e80d0716861abb8ad28843cddd260b32",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "claims.csv",
+      "sha256": "1495c28b2e7b560ac8ca0b97b47f4818d3d9e923746628f9734f802ee514bdfa",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "f08e0ddf5282a52769658744349d0ba249714b9f6be9bf4d0dc9d012c3e626ce",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "data/monthly.csv",
+      "sha256": "5d90c5c3152fd4bc0303ba9d271b9f84b8be40c2880e775aa1b6cf8b3571f43a",
+      "role": "data",
+      "license": "NOAA public-domain terms",
+      "provenance": "NOAA source excerpt documented in data/README.md"
+    },
+    {
+      "path": "evidence.csv",
+      "sha256": "44838ad0c89d788ff67a2f73299c977124613a912f92db9b7bc00221a793c3f7",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "protocol.md",
+      "sha256": "bebf308fdb02ffe5c17437a2aad73385bf52a2fbec288b864c15eda1df15fe79",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "report.md",
+      "sha256": "6255bfad12ba8d28ecfe528545cc95ba2e56be9d2a586a88848e4940fee7759d",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "results/summary.json",
+      "sha256": "bc398ce7b50825ae16d0343f07117bb5ac36bd2aad7d4d123b86841246d8fa25",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    },
+    {
+      "path": "review.md",
+      "sha256": "c8481b8fb7a9e56f20ee968e28dc83332dd44ae6968e4075542c56896c68dae4",
+      "role": "research record or computation",
+      "license": "MIT",
+      "provenance": "Prepared for this retrospective reanalysis; see review.md"
+    }
+  ]
+}

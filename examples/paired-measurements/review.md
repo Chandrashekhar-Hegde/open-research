@@ -1,6 +1,6 @@
 # Review record
 
-Prepared 2026-09-08 with Codex assistance. This is an author/tool review record,
+Prepared 2026-09-08 with automated assistance. This is an author/tool review record,
 not independent human review.
 
 Mechanical review scope: verify file hashes, CSV structure, claim references,

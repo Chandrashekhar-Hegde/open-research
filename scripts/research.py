@@ -165,8 +165,11 @@ def main():
     check.add_argument('--release', action='store_true', help='require completed release records')
     sub.add_parser('doctor', help='show runtime and optional CLI availability')
     install = sub.add_parser('install-skills', help='install project-local skills for a chosen host')
-    install.add_argument('--tool', choices=['codex', 'claude', 'opencode'], required=True)
+    install.add_argument('--directory', default='.agents/skills', help='project-relative destination, default .agents/skills')
     install.add_argument('--project', type=Path, default=Path.cwd())
+    imported = sub.add_parser('import-browser', help='turn a browser JSON backup into a new local study')
+    imported.add_argument('source', type=Path)
+    imported.add_argument('path', type=Path)
     profile = sub.add_parser('profile', help='inspect CSV shape, missingness, duplicates, and numeric values')
     profile.add_argument('path', type=Path)
     profile.add_argument('--output', type=Path)
@@ -184,7 +187,10 @@ def main():
             if args.command == 'doctor':
                 result = doctor()
             elif args.command == 'install-skills':
-                result = install_skills(args.tool, args.project)
+                result = install_skills(args.directory, args.project)
+            elif args.command == 'import-browser':
+                from import_study import import_browser
+                result = import_browser(args.source, args.path)
             elif args.command == 'profile':
                 result = profile_csv(args.path)
                 if args.output:

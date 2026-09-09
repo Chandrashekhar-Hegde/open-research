@@ -1,6 +1,6 @@
 # AI assistance
 
-Date: 2026-09-08. Codex assisted in preparing this synthetic fixture, protocol,
+Date: 2026-09-08. Automated tools assisted in preparing this synthetic fixture, protocol,
 Python analysis, documentation, and tests for Open Research.
 No model API is called by this example. Its arithmetic uses Python only.
 No actual participant data or external research findings were generated.

@@ -1,0 +1,65 @@
+# --------------------------------------------------------------------
+# USE OF NOAA GML DATA
+#
+# These data are made freely available to the public and the scientific
+# community in the belief that their wide dissemination will lead to
+# greater understanding and new scientific insights. To ensure that GML
+# receives fair credit for their work please include relevant citation
+# text in publications. We encourage users to contact the data providers,
+# who can provide detailed information about the measurements and
+# scientific insight.  In cases where the data are central to a
+# publication, coauthorship for data providers may be appropriate.
+#
+#
+#
+# Contact:  Xin Lan (xin.lan@noaa.gov)
+#
+# File Creation: Sat Sep  5 03:55:38 2026
+#
+#
+# --------------------------------------------------------------------
+#
+#
+# See gml.noaa.gov/ccgg/trends/ for additional details.
+#
+# Data from March 1958 through April 1974 have been obtained by C. David Keeling
+# of the Scripps Institution of Oceanography (SIO) and were obtained from the
+# Scripps website (scrippsco2.ucsd.edu).
+# Monthly mean CO2 constructed from daily mean values.
+# Scripps data downloaded from http://scrippsco2.ucsd.edu/data/atmospheric_co2
+# Monthly values are corrected to center of month based on average seasonal
+# cycle. Missing days can be asymmetric which would produce a high or low bias.
+# Missing months have been interpolated, for NOAA data indicated by negative stdev
+# and uncertainty. We have no information for SIO data about Ndays, stdv, unc
+# so that they are also indicated by negative numbers
+#
+# NOTE: Due to the eruption of the Mauna Loa Volcano, measurements from Mauna Loa Observatory
+# were suspended as of Nov. 29, 2022 and resumed in July 2023.
+# Observations starting from December 2022 to July 4, 2023 are from a site at the
+# Maunakea Observatories, approximately 21 miles north of the Mauna Loa Observatory.
+#
+year,month,decimal date,average,deseasonalized,ndays,sdev,unc
+2024,1,2024.0417,422.80,422.51,27,0.70,0.26
+2024,2,2024.1250,424.55,423.60,22,1.24,0.51
+2024,3,2024.2083,425.38,423.92,22,0.99,0.40
+2024,4,2024.2917,426.51,424.00,22,0.99,0.40
+2024,5,2024.3750,426.90,423.62,29,0.76,0.27
+2024,6,2024.4583,426.91,424.47,20,0.65,0.28
+2024,7,2024.5417,425.55,425.21,24,0.69,0.27
+2024,8,2024.6250,422.99,424.95,22,1.08,0.44
+2024,9,2024.7083,422.03,425.45,18,0.41,0.18
+2024,10,2024.7917,422.38,425.60,22,0.35,0.14
+2024,11,2024.8750,423.85,425.82,24,0.33,0.13
+2024,12,2024.9583,425.40,426.13,28,0.70,0.25
+2025,1,2025.0417,426.65,426.36,29,0.62,0.22
+2025,2,2025.1250,427.09,426.14,24,0.64,0.25
+2025,3,2025.2083,428.15,426.68,27,1.13,0.41
+2025,4,2025.2917,429.64,427.13,23,0.73,0.29
+2025,5,2025.3750,430.51,427.23,23,0.39,0.16
+2025,6,2025.4583,429.61,427.17,26,0.71,0.27
+2025,7,2025.5417,427.87,427.53,24,0.31,0.12
+2025,8,2025.6250,425.48,427.44,24,0.38,0.15
+2025,9,2025.7083,424.37,427.79,19,0.48,0.21
+2025,10,2025.7917,424.87,428.09,19,0.32,0.14
+2025,11,2025.8750,426.46,428.42,20,0.69,0.30
+2025,12,2025.9583,427.49,428.22,24,0.32,0.12

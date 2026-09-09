@@ -1,158 +1,115 @@
 # Open Research
 
-**A small, open-source workbench for everyday research.**
+**Plan the study. Do the work. Show the evidence.**
 
-Understand a question. Inspect the evidence and data. Plan a study. Calculate.
-Write what the results support. Leave enough behind for someone else to check.
+An open-source research workbench with a browser study editor, an offline Python
+CLI, method guidance, reusable task procedures, and code you can inspect and run.
 
-[**Open the interactive guide →**](https://chandrashekhar-hegde.github.io/open-research/)
-· [Download the source](https://github.com/Chandrashekhar-Hegde/open-research/archive/refs/heads/main.zip)
-· [Daily workflow](docs/daily-workflow.md) · [Tool setup](docs/tool-setup.md)
+[**Open the study editor →**](https://chandrashekhar-hegde.github.io/open-research/)
+· [Start here](https://chandrashekhar-hegde.github.io/open-research/guide.html)
+· [Real-data walkthrough](examples/noaa-co2/README.md)
+· [Download source](https://github.com/Chandrashekhar-Hegde/open-research/archive/refs/heads/main.zip)
 
-**Why this exists:** reduce friction between modern AI tools and accountable
-research. Preserve decisions, inspect evidence, and use methods that fit the
-question. [Community evidence and the evaluation plan](docs/community-needs.md)
-explain what supports this direction and what remains untested. The project has
-not yet demonstrated improvements in research quality or time saved.
+## Your first study
 
-Open Research brings together a local Python CLI, research skills, study
-records, and worked examples. **Lurch** is its optional assistant profile.
-Use Claude Code, Codex, OpenCode, another assistant, or just Python and an editor.
-The core is offline and has no package dependencies. AI hosts use their own
-accounts, models, permissions, and costs; this project does not provide them.
+1. Define the question and who needs the answer.
+2. Use the [methodology guide](docs/methodology.md) to choose and justify a design.
+3. Record the protocol before collecting or analyzing outcomes; date changes.
+4. Inspect permitted sources/data, execute the analysis, and retain the outputs.
+5. Write supported claims, limitations and implications; review before sharing.
 
-## Start with a real calculation
+The editor follows **Research → Plan → Inspect → Analyze → Write → Review & export**.
+You can revisit stages without losing notes. Each has its own review checks.
+Missing evidence stays missing. Save editable JSON to back up or move your draft;
+the hosted editor stores one draft on your device and uploads nothing.
 
-Install Python 3.11+ and Git, then:
+## Run a real reanalysis
+
+Install Python 3.11+ and Git:
 
 ```sh
 git clone https://github.com/Chandrashekhar-Hegde/open-research.git
 cd open-research
 python research.py doctor
-python research.py profile examples/paired-measurements/data/raw.csv
-python examples/paired-measurements/analyze.py --check
+python examples/noaa-co2/analyze.py --check
+python research.py check examples/noaa-co2 --release
 ```
 
-Use `python3` if that is your Python command. The example contains eight
-**synthetic** pairs; mean change is **2.0 units**. The arithmetic is real, but
-there is no empirical population or intervention claim.
-[Inspect the complete study](examples/paired-measurements/README.md).
+This reanalysis uses **real NOAA monthly CO₂ observations**, with a frozen input,
+provenance, protocol, code, computed output and a bounded descriptive conclusion.
+It is retrospective secondary research, not a new experiment or causal discovery.
+The other [examples](docs/capabilities.md) teach calculations and are explicitly
+labeled synthetic or theoretical.
 
-## Pick how you work
+## Bring your own question
 
-| Environment | Setup from this clone | Start |
+```sh
+python research.py init studies/my-study --title "My research question"
+```
+
+Or save JSON from the browser editor and continue locally:
+
+```sh
+python research.py import-browser /path/to/my-study.study.json studies/my-study
+```
+
+This creates a new local study with your exact question and notes. Fill missing
+metadata and methods, add your permitted data and execute an analysis appropriate
+to your design. Nothing is invented or executed during import.
+[Full instructions, commands and hosting](docs/tool-setup.md).
+
+## What is actually implemented?
+
+| Component | Does | Does not do |
 | --- | --- | --- |
-| **Standalone** | Python 3.11+ | `python research.py --help` |
-| **Codex** | `python research.py install-skills --tool codex` | `codex` |
-| **Claude Code** | `python research.py install-skills --tool claude` | `claude` |
-| **OpenCode** | `python research.py install-skills --tool opencode` | `opencode` |
-| **Chat-only assistant** | Supply the relevant skill and permitted files | Follow the [chat workflow](docs/tool-setup.md#chat-only-and-other-assistants) |
+| Browser editor | Saves question, design, evidence, analysis and writing; exports Markdown/JSON | Run Python, collect data or certify a study |
+| Python CLI | Imports plans, checks records/hashes, profiles CSV, logs work, assembles writing scaffolds | Choose a valid method automatically |
+| Reanalysis code | Executes the documented NOAA comparison offline | Establish causes or replace domain expertise |
+| Skills and Lurch roles | Reusable, readable task procedures linked to tools | Execute themselves or provide a model service |
+| Method guides | Explain major study families, sequence and implications | Cover every specialized method or approval requirement |
 
-Install the chosen host separately and authenticate it through its own setup.
-Skills are installed only in this project; existing differing files are never
-overwritten. [Exact usage, batch commands, prerequisites, and test status](docs/tool-setup.md).
+[Capability-to-code map](docs/capabilities.md) · [Eight skills](skills/README.md)
+· [Task roles](agents/README.md) · [Study format](docs/study-format.md)
 
-<details>
-<summary><strong>Try a first assistant task</strong></summary>
+## Why this exists
 
-```text
-Read AGENTS.md and agents/lurch.md. Inspect the paired-measurements example.
-Run its checks, explain what the data can and cannot support, then help me
-plan a new study. Record assumptions before starting analysis.
-```
+Research becomes hard to trust when conclusions outrun methods, sources cannot
+be located, or nobody can reproduce the calculation. This project aims to reduce
+that friction through inspectable records and useful tools.
+[Research-quality frustrations and evidence](docs/research-quality.md) describe
+concrete failure modes without guessing authors' or journals' motives.
+[Community evidence](docs/community-needs.md) distinguishes published research
+from still-unmeasured benefits of this workbench. We have not demonstrated an
+improvement in scientific quality or time saved.
 
-For a real task, supply your question and permitted data. The assistant should
-use the matching skill, preserve raw inputs, cite evidence, and report unknowns.
+## Learn, extend and share
 
-</details>
-
-## What do you need to do today?
-
-| Task | Runnable starting point | What you get |
-| --- | --- | --- |
-| Plan a study | `python research.py init studies/my-study --title "My question"` | Protocol, analysis plan, evidence/claim ledgers |
-| Design an experiment | `python examples/experimental-design/design.py` | Randomized blocked factorial run order; no observations |
-| Study strategic decisions | `python examples/game-theory/analyze.py` | Checked pure equilibria in a two-player teaching model |
-| Understand data | `python research.py profile data.csv --output build/profile.json` | Shape, missingness, duplicates, descriptive summaries |
-| Keep a research log | `python research.py journal studies/my-study --note "Inspected missing values" --next "Decide exclusions"` | Dated local record and next action |
-| Draft academic writing | `python research.py draft examples/paired-measurements --output build/manuscript.md` | Evidence-based authoring scaffold |
-| Do symbolic math | [Run the mathematics example](examples/mathematics/README.md) | Checked derivatives, integrals, roots, linear algebra |
-| Prepare a shareable study | `python research.py check examples/paired-measurements --release` | Structure, evidence-reference and integrity checks |
-| Build a research tool | [Small-tool recipe](docs/building-tools.md) | A narrow CLI, regression check, and skill |
-
-A new study is deliberately incomplete until you fill in its metadata and
-methods. `profile` describes data; it does not choose a valid design or infer
-causation. `draft` assembles recorded claims; it does not write a finished paper.
-
-## A daily research loop
-
-```mermaid
-flowchart LR
-  Q[Question] --> P[Protocol]
-  P --> E[Evidence and data]
-  E --> A[Analysis and mathematics]
-  A --> I[Interpretation]
-  I --> W[Writing and review]
-  W --> R[Reusable release]
-  I --> Q
-```
-
-The [daily guide](docs/daily-workflow.md) walks through a research session,
-including uncertainty, study changes, and end-of-day handoff. Start small;
-not every question needs every tool.
-
-The [hosted study editor](https://chandrashekhar-hegde.github.io/open-research/)
-keeps your question, protocol, evidence, analysis and writing in one locally
-saved draft. Research, Plan, Inspect, Analyze, Write and Review & export sit
-above the editor. Each stage has its own review checks and next action.
-
-Choose a design in Plan and record the actual decisions, including experiment
-factors/allocation or game-theory players/payoffs. Review the document before
-copying or downloading it. Export requires your question; missing results and
-decisions stay visibly unrecorded. Save an editable JSON backup to reopen the
-study, including notes for alternative designs. Nothing is uploaded; avoid
-restricted material on a shared device. These browser drafts are separate from
-the CLI's `study.json` format.
-
-[Design and analysis](docs/design-and-analysis.md) covers the methods;
-[the usability investigation](docs/usability-redesign.md) explains the changes.
-Examples and AI setup are available in the optional tools section.
-
-## Use good tools where they already exist
-
-[Jupyter](https://jupyter.org/) for exploration,
-[SymPy](https://docs.sympy.org/latest/index.html) for symbolic mathematics,
-[SciPy](https://docs.scipy.org/doc/scipy/tutorial/stats.html) for justified statistical methods,
-[Zotero](https://www.zotero.org/support/quick_start_guide) for sources, and
-[Quarto](https://quarto.org/docs/get-started/) for scholarly publishing.
-Open Research connects their artifacts; it does not replace them.
-See the [research and design plan](docs/implementation-plan.md).
-
-## Explore the workbench
-
-- [Handbook](docs/README.md): study design, literature reviews, data quality,
-  reproducibility, writing, mathematics, security, and open release.
-- [Eight research skills](skills/README.md) · [Lurch and task roles](agents/README.md)
-- [Study format and CLI](docs/study-format.md) · [Academic document example](examples/academic-writing/README.md)
-- [Contributing](CONTRIBUTING.md) · [Governance](GOVERNANCE.md) · [Security](SECURITY.md)
-- [Report real workflow friction](https://github.com/Chandrashekhar-Hegde/open-research/issues/new?template=feedback.yml) · [Evaluation worksheet](site/feedback-study.md)
-
-## Check and share
+- [Handbook](docs/README.md): design, synthesis, mathematics, writing and review.
+- [Use locally, on the web or with optional task tools](docs/tool-setup.md).
+- [Build a research tool](docs/building-tools.md): inputs, narrow computation,
+  inspectable outputs and a meaningful regression check.
+- [Implementation plan](docs/research-workbench-plan.md) · [Contribute](CONTRIBUTING.md).
+- [Feedback](https://github.com/Chandrashekhar-Hegde/open-research/issues/new?template=feedback.yml).
 
 ```sh
 python scripts/check_repo.py
 python -m unittest discover -s tests -v
+node --test tests/site.test.mjs
 ```
 
-CI checks the offline core on Linux, macOS, and Windows. Math and the static
-site have their own checks. Validation identifies specific mechanical problems;
-it does not certify scientific quality or independent review.
+The Python core has no required packages. Optional symbolic mathematics and
+scholarly rendering use their documented dependencies. CI covers Linux, macOS
+and Windows; checks establish only their stated mechanical properties.
 
-Open Research follows transparent methods, traceable evidence, reusable
-artifacts, and responsible access, informed by
-[UNESCO's open science recommendation](https://www.unesco.org/en/open-science/about).
-Publish data only when rights and consent allow. Report null results, missing
-evidence, protocol deviations, and AI assistance honestly.
+## About and contact
 
-[MIT licensed](LICENSE). Copy, adapt, and contribute. Cite the version you used
-with [CITATION.cff](CITATION.cff); third-party data and tools retain their own terms.
+Maintained by **Chandrashekhar Hegde**.
+[LinkedIn / contact](https://www.linkedin.com/in/hegdechandrashekhar/)
+· [GitHub](https://github.com/Chandrashekhar-Hegde)
+· [About the project](https://chandrashekhar-hegde.github.io/open-research/about.html#maintainer).
+
+[MIT licensed](LICENSE). Copy and adapt the code; third-party data retain their
+own terms. Cite the version using [CITATION.cff](CITATION.cff). Share only material
+you have rights to release. Preserve null results, deviations and truthful
+contribution records. Open methods make work inspectable; publication is not
+scientific approval.

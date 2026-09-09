@@ -13,8 +13,6 @@ its example. Guides separate source-backed concepts from project conventions.
 | [ReAct, Yao et al.](https://arxiv.org/abs/2210.03629) | Interleaving reasoning and tool actions |
 | [Reflexion, Shinn et al.](https://arxiv.org/abs/2303.11366) | Verbal feedback in language agents |
 | [OWASP prompt injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) | Injection threats and layered mitigation |
-| [Claude vision](https://platform.claude.com/docs/en/build-with-claude/vision) | Provider-specific image input formats |
-| [Gemini image understanding](https://ai.google.dev/gemini-api/docs/image-understanding) | Provider-specific image input workflows |
 
 For a new claim, read the relevant original source and cite its precise
 location in the study. Prefer a stable identifier and check corrections or
@@ -26,9 +24,6 @@ access limitation; do not call the source dead solely from that response.
 The [implementation plan](implementation-plan.md) records the tool survey and
 design decisions. Official sources for host setup and research tools:
 
-- [Codex skills](https://learn.chatgpt.com/docs/build-skills) and [instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
-- [Claude Code skills](https://code.claude.com/docs/en/skills).
-- [OpenCode skills](https://opencode.ai/docs/skills/) and [CLI](https://opencode.ai/docs/cli/).
 - [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org/).
 - [Jupyter](https://jupyter.org/), [Quarto](https://quarto.org/docs/get-started/), [Zotero](https://www.zotero.org/support/quick_start_guide).
 - [SymPy calculus](https://docs.sympy.org/latest/tutorials/intro-tutorial/calculus.html) and [SciPy statistics](https://docs.scipy.org/doc/scipy/tutorial/stats.html).

@@ -96,12 +96,12 @@ accepts the same arguments. The core is Python 3.11+, standard library only.
 | Command | Purpose | File effects |
 | --- | --- | --- |
 | `doctor` | Report runtime and optional CLI availability | None; does not inspect credentials |
-| `install-skills --tool codex --project PATH` | Copy skills into one host's project directory | Creates new skill files; identical files remain, conflicting files cause an error |
+| `install-skills --directory .agents/skills --project PATH` | Copy skills into one host's project directory | Creates new skill files; identical files remain, conflicting files cause an error |
 | `profile data.csv --output build/profile.json` | Describe CSV shape, blanks, duplicates and finite numeric values | Creates a new JSON file; without output prints JSON |
 | `journal STUDY --note TEXT --next TEXT` | Record a research decision and next action | Appends a UTC-dated JSON record to `journal.jsonl` |
 | `draft STUDY --output build/manuscript.md` | Assemble claims and source locations into an authoring scaffold | Requires passing basic study checks and a new output file |
 
-For `install-skills`, tool choices are `codex`, `claude`, and `opencode`.
+For `install-skills`, choose a project-relative directory supported by your tool.
 Installed copies do not include this repository's scripts; use the full clone
 when you need executable tools. Output commands refuse to overwrite existing
 files. The local journal is designed for a single writer. Include a journal
@@ -111,3 +111,11 @@ Profiling is descriptive and keeps all rows in memory. Type inference is a
 starting observation, not a data dictionary. See [data understanding](data-understanding.md).
 The draft preserves claim statuses and intentionally leaves author sections
 incomplete; see [academic writing](academic-writing.md).
+
+## Browser import
+
+`python research.py import-browser draft.study.json studies/new-study` converts
+a version-1 browser backup into a new local study. See [setup](tool-setup.md).
+It preserves the exact question, imports protocol and analysis notes, and retains
+the full original backup. Evidence notes must be turned into verified ledgers by
+the researcher. The destination must be new; missing metadata stays incomplete.

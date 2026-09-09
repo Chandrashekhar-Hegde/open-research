@@ -1,111 +1,104 @@
-# Choose your tools
+# Use the workbench
 
-The core needs Python 3.11+. Git is convenient, but the GitHub ZIP also works.
-Commands below run from the extracted/cloned repository root. Use `python3`
-instead of `python` if necessary. Start with `python research.py doctor`.
+## In the browser
+
+Open the [study editor](https://chandrashekhar-hegde.github.io/open-research/).
+Read Start here, enter a question, choose a design in Plan, and work through the
+stages. The page saves one draft in this browser. Nothing is uploaded. Copy the
+Markdown document or save editable JSON before clearing browser data or changing
+devices. Open study JSON restores that backup. A browser draft is not a registered
+protocol, completed study or cloud backup.
+
+Use the [real-data walkthrough](../examples/noaa-co2/README.md) to see filled
+records connected to executed code. The editor cannot run Python, search academic
+databases or collect observations. Those actions happen in your research environment.
 
 ## Standalone
 
+Install Python 3.11+ and Git. No package or account is required for the core.
+
 ```sh
+git clone https://github.com/Chandrashekhar-Hegde/open-research.git
+cd open-research
+python research.py doctor
+python examples/noaa-co2/analyze.py --check
 python research.py init studies/my-study --title "My research question"
-python research.py profile examples/paired-measurements/data/raw.csv
-python examples/paired-measurements/analyze.py --check
-python research.py draft examples/paired-measurements --output build/draft.md
 ```
 
-Edit study files in any text editor. There is no model or network call in these
-commands. A draft study needs metadata, a protocol, and an analysis plan before
-validation passes. [Full command reference](study-format.md).
-
-## Codex
-
-Install and authenticate Codex using its [official CLI guide](https://developers.openai.com/codex/cli/).
-Open this folder in the Codex app, or use the CLI:
+Use `python3` if required by your system. Fill the new study's `study.json`,
+protocol and analysis plan; the default template is deliberately incomplete.
+Keep originals in `data/`, record sources in `evidence.csv`, and add a small
+analysis script appropriate to the design. Then:
 
 ```sh
-python research.py install-skills --tool codex
-codex
+python research.py profile studies/my-study/data/input.csv --output build/profile.json
+python research.py journal studies/my-study --note "Checked units and missingness" --next "Resolve exclusions"
+python research.py check studies/my-study
+python research.py draft studies/my-study --output build/manuscript.md
 ```
 
-Codex reads project instructions from `AGENTS.md`; local skills are discovered
-under `.agents/skills`. See the official
-[skills guide](https://learn.chatgpt.com/docs/build-skills) and
-[AGENTS.md guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
-Ask it to use `research-protocol` for your question, or point to the skill file.
-For a batch task, with your account and usual host permissions configured:
+The profile describes a CSV; it does not select a statistical test. Drafting needs
+valid study records and produces an authoring scaffold, not a finished paper.
+Output paths must be new; rename outputs when retaining an earlier version.
+
+## Continue a browser study locally
+
+Save editable JSON from the editor and run, using its actual file path:
 
 ```sh
-codex exec "Read AGENTS.md. Use the reproduce-analysis skill to inspect the paired-measurements example and run its checks. Report limitations."
+python research.py import-browser /path/to/my-study.study.json studies/my-study
 ```
 
-## Claude Code
+The destination must not exist. This preserves the exact question, imports notes
+into protocol/analysis/report documents, and retains all original data in
+`browser.study.json`. Source notes remain notes until you extract verified entries
+into `evidence.csv` and `claims.csv`. Fill owner, license and access conditions in
+`study.json`. Missing information stays incomplete. The importer never executes
+commands in the file, invents citations or marks a study complete.
 
-Install and authenticate using [Claude Code's setup guide](https://code.claude.com/docs/en/setup).
+The browser's version-1 backup and the CLI's schema-version-1 manifest serve
+different purposes; use this command to connect them. The editor can reopen the
+browser backup, but it does not import arbitrary local folders or CLI manifests.
+
+## Optional task instructions
+
+Read the relevant [skill](../skills/README.md) yourself or provide it to a tool
+that can follow Markdown instructions. [Lurch](../agents/lurch.md) coordinates the
+stages; specialist roles help inspect evidence, reproduce analysis and review.
+These files do not execute themselves and are not a hosted model service.
 
 ```sh
-python research.py install-skills --tool claude
-claude
+python research.py install-skills --directory .agents/skills
 ```
 
-The repository's `CLAUDE.md` points to shared research instructions. The installer
-copies skills to `.claude/skills`. Invoke `/research-protocol` in an interactive
-session or ask for a skill by name. Batch use:
+Choose a project-relative directory supported by your own tool, using
+`--project /path/to/project` for another project. The installer preserves existing
+identical files and rejects conflicts or escaping paths. Configure discovery,
+accounts and permissions in the chosen tool separately. Supply only permitted
+material and require source locations and executed outputs. Tool behavior still
+needs evaluation; copying an instruction file is not evidence that it is followed.
+
+## Hosting and teams
+
+For a local site, run from the repository root:
 
 ```sh
-claude -p "Read AGENTS.md. Use the evidence-synthesis skill on the supplied sources. Return claims with exact source locations and missing evidence."
+python -m http.server 8765 --bind 127.0.0.1 --directory site
 ```
 
-This follows [Claude Code's skill conventions](https://code.claude.com/docs/en/skills).
-Keep normal permission checks; this project installs no automatic command hooks.
+Open `http://127.0.0.1:8765/`. Stop with Ctrl+C. A static host serves HTML, CSS,
+JavaScript and example JSON; it cannot run the Python CLI. No backend, database,
+API key or server-side upload is configured. Local browser storage is per origin,
+so the local and hosted editors have separate drafts.
 
-## OpenCode
+To publish your copy, fork the repository, enable Actions, and select GitHub
+Actions under Settings → Pages. The existing workflow runs checks and publishes
+`site/` from main. Update hard-coded upstream links if you want your own fork's
+handbook, issues and contact details. Review the diff before pushing: public
+repository files and issue content are visible to everyone. For another static
+host, upload `site/` unchanged, preserving relative file paths and module types.
 
-Install and configure a provider through [OpenCode](https://opencode.ai/docs/).
-
-```sh
-python research.py install-skills --tool opencode
-opencode
-```
-
-Skills go to `.opencode/skills`. Ask OpenCode to load `data-understanding` or
-another skill appropriate to the task. For a batch run:
-
-```sh
-opencode run "Read AGENTS.md. Use the reproduce-analysis skill to inspect the paired-measurements example and run its checks. Explain uncertainty."
-```
-
-See the official [skills](https://opencode.ai/docs/skills/) and
-[CLI](https://opencode.ai/docs/cli/) documentation. Provider/model availability
-is controlled by your OpenCode setup. No provider credentials are bundled.
-
-## Chat-only and other assistants
-
-Give the assistant the relevant `skills/<name>/SKILL.md`, your question, and
-only the data/sources you can share. Ask it to return editable artifacts.
-Run proposed commands yourself after inspection if the chat cannot execute them.
-Do not claim execution, source access, or skill auto-discovery where unavailable.
-Claude's chat application and Claude Code are different environments; the
-project-local installer targets the CLI, not a chat account's settings.
-
-## Use skills in another project
-
-```sh
-python research.py install-skills --tool codex --project /path/to/research-project
-```
-
-Choose exactly the host you use. The eight skill files are self-contained.
-The installer does not copy this repository's scripts or study examples; copy
-the repository or supply its path if your task needs them. It never edits global
-configuration, credentials, or host permissions. Identical installed skills
-are left alone; differing files produce an error so custom work is preserved.
-To update, review/move your existing skill and rerun. Do not install all host
-copies into one project unnecessarily: some hosts discover multiple directories.
-
-## What was actually tested
-
-The installer is tested in isolated folders for all three host layouts,
-including repeated installs, conflicts, and path escapes. The documented
-interactive/batch syntax was checked against official docs; local Codex
-0.153.4 and Claude Code 2.1.252 help output was inspected during development.
-No paid model session or live OpenCode model workflow is claimed as validated.
-The offline CLI, mathematics example, and CI are tested separately.
+For collaboration, exchange permitted JSON/Markdown files or use Git branches and
+reviewed merges for local studies. The browser is a single-draft editor, not a
+multi-user synchronization service. The repository ignores `studies/` by default;
+make a separate appropriately private research repository for real project records.

@@ -16,7 +16,7 @@ from research import ROOT, check_study
 
 def markdown_files(root):
     for directory, dirs, files in os.walk(root):
-        dirs[:] = [d for d in dirs if d not in {'.git', '.venv', '__pycache__', 'studies', 'build', '.agents', '.claude', '.opencode', '.quarto'}]
+        dirs[:] = [d for d in dirs if d not in {'.git', '.venv', '__pycache__', 'studies', 'build', '.agents', '.quarto'}]
         for name in files:
             if name.endswith('.md'):
                 yield Path(directory) / name
@@ -79,6 +79,7 @@ def main():
         errors.append(result.stderr or result.stdout)
     else:
         print(result.stdout.strip())
+    errors.extend(check_study(ROOT / 'examples' / 'noaa-co2', release=True))
     if args.external:
         with ThreadPoolExecutor(max_workers=8) as pool:
             for url, status in pool.map(check_external, sorted(urls)):

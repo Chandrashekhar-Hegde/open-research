@@ -1,4 +1,4 @@
-import {hosts,stages,methods,STORAGE_KEY,MAX_FILE_SIZE,emptyStudy,decodeStudy,hasContent,fieldsFor,missingFor,studySections,studyMarkdown,fileStem,assistantBrief} from './study.mjs?v=editor-4';
+import {stages,methods,STORAGE_KEY,MAX_FILE_SIZE,emptyStudy,decodeStudy,hasContent,fieldsFor,missingFor,studySections,studyMarkdown,fileStem,assistantBrief} from './study.mjs?v=guide-1';
 const $=id=>document.getElementById(id);
 let study=emptyStudy(), storageBlocked=false;
 try {
@@ -49,6 +49,7 @@ function buildDesignFields(){
   const container=$('design-fields');container.replaceChildren();
   if(study.method==='undecided'){container.append(node('p','Select a design to record the specific decisions your protocol needs.','notice'));return;}
   container.append(node('h3',methods[study.method].label+' decisions'));
+  const guidance=node('a','How to conduct this study: steps, analysis and limits →','guide-link');guidance.href='guide.html#'+study.method;container.append(guidance);
   for(const [id,label,hint] of methods[study.method].fields)field(container,'design-'+id,label,hint,study.designs[study.method]?.[id]||'',value=>{study.designs[study.method]??={};study.designs[study.method][id]=value;resetReview('plan');});
 }
 function selectStage(key){study.stage=key;showStage();save();updateOutput();}
@@ -80,7 +81,7 @@ function updateOutput(){
   }));
   $('study-preview').textContent=ready?studyMarkdown(study):'Add your research question above. Your entered decisions will appear here; missing information will be marked as not recorded.';
   $('assistant-preview').textContent=ready?assistantBrief(study):'Enter your question first.';
-  $('setup-command').textContent=study.host==='standalone'?'python research.py doctor':'python research.py install-skills --tool '+study.host+'\n'+study.host;
+  $('setup-command').textContent='python research.py doctor';
   const [command,limit,guide]=examples[study.method]||examples.default;$('example-command').textContent=command;$('example-limit').textContent=limit;$('example-guide').href='https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/'+guide+'/README.md';
 }
 function populate(){
@@ -119,3 +120,12 @@ window.addEventListener('storage',event=>{
 populate();
 if(storageBlocked)$('save-status').textContent='Not saved to browser storage — use JSON backup.';
 else if(hasContent(study))$('save-status').textContent='Restored your saved study from this device.';
+
+$('load-example').addEventListener('click',async()=>{
+  try{
+    const response=await fetch('noaa.study.json');if(!response.ok)throw new Error('Could not load example');
+    const imported=decodeStudy(await response.text());
+    if((hasContent(study)||storageBlocked)&&!confirm('Open the NOAA study and replace this draft? Save editable JSON first if you need your current work.'))return;
+    study=imported;storageBlocked=false;$('storage-warning').hidden=true;populate();save();$('export-status').textContent='Opened the real-data NOAA reanalysis. Read the walkthrough for source, code and limits.';
+  }catch(error){$('export-status').textContent=error.message;}
+});
