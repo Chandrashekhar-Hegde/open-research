@@ -21,3 +21,5 @@ html{overflow-anchor:none}
 .manuscript-tools pre {max-height:28rem;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
 .guide-page pre {overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
 .guide-page li {margin:.65rem 0}
+
+.personal-intro{padding:1.2rem 1.4rem;margin:0 0 1.8rem;border-left:4px solid var(--accent);background:var(--soft);border-radius:0 8px 8px 0}.personal-intro h1{font-size:clamp(1.6rem,3vw,2.2rem);margin:.2rem 0 .65rem;line-height:1.2}.personal-intro>p{max-width:88ch;margin:.5rem 0}.personal-actions{display:flex;flex-wrap:wrap;gap:.65rem 1.5rem;margin-top:.85rem;font-weight:600}.editor-title{font-size:clamp(1.85rem,3vw,2.5rem);line-height:1.2;margin:.35rem 0}.personal-story>p{max-width:76ch}.personal-story h2{margin-top:1.7rem}.personal-story .lede{font-size:1.15rem}#study{scroll-margin-top:1rem}

@@ -128,6 +128,15 @@ to your design. Nothing is invented or executed during import.
 
 ## Why this exists
 
+I started Open Research because I was struggling with my own research: finding
+and sourcing papers, understanding them, and deciding what I could rely on.
+Reading an entire paper only to find that it did not help my question or support
+its claims was deeply frustrating. I built this mainly to give myself a clearer
+workflow, then made it open for others facing the same problems.
+— Chandrashekhar Hegde
+
+[Read my personal perspective](https://chandrashekhar-hegde.github.io/open-research/about.html#maintainer).
+
 Research becomes hard to trust when conclusions outrun methods, sources cannot
 be located, or nobody can reproduce the calculation. This project aims to reduce
 that friction through inspectable records and useful tools.
