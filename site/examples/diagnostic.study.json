@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "title": "Medical test arithmetic",
+  "question": "For a constructed 100-case table, what are sensitivity, specificity and predictive values at a fixed test threshold?",
+  "classification": {
+    "domain": "medical",
+    "subarea": "clinical",
+    "goal": "predict",
+    "pattern": "diagnostic"
+  },
+  "patternNotes": {
+    "diagnostic": {
+      "reference": "Reference labels and a binary threshold are assumed for this arithmetic example; no actual reference procedure was conducted.",
+      "spectrum": "The constructed table has 20 condition-positive and 80 condition-negative cases; it is not a recruitment sample."
+    }
+  },
+  "method": "observational",
+  "stage": "analyze",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Rehearse an explicit calculation before adapting a protocol to real research. These inputs are constructed teaching data, not collected observations.",
+    "sample": "Fixed teaching fixture, not a sample-size recommendation or a representative population.",
+    "safeguards": "Synthetic public inputs under the repository license; no participants, clinical validation or research approval implied.",
+    "validation": "Recompute using the command in Analyze and compare with the frozen output. Inspect invalid-input tests and the domain-specific limits.",
+    "review": "Self-check through code and known-answer tests; no independent research review.",
+    "units": "100 synthetic cases: TP 18, FN 2, FP 8, TN 72.",
+    "comparison": "For a constructed 100-case table, what are sensitivity, specificity and predictive values at a fixed test threshold?",
+    "outcome": "Fractions calculated from the 2×2 table.",
+    "procedure": "Read the constructed counts; check integer counts; retain the table; calculate TP/(TP+FN), TN/(TN+FP), TP/(TP+FP), and TN/(TN+FN). Undefined ratios are null.",
+    "analysis": "Retain the 2×2 table, calculate sensitivity and specificity with justified intervals, and report predictive values in context of prevalence. A synthetic table does not validate a test.",
+    "sources": "Local constructed fixture: examples/study-patterns/inputs/diagnostic.json; all entries.",
+    "data": "Input: examples/study-patterns/inputs/diagnostic.json. Code: examples/study-patterns/analyze.py. Expected output: examples/study-patterns/results/diagnostic.json.",
+    "limitations": "Synthetic counts, no clinical validation or uncertainty interval. Null means undefined denominator. Predictive values depend on the sampled prevalence.",
+    "interpretation": "The computed quantities describe this fixture only; they do not establish a finding about patients, deployed systems or the physical world.",
+    "results": "{\n  \"kind\": \"diagnostic\",\n  \"evidence_type\": \"synthetic or mathematical demonstration\",\n  \"table\": {\n    \"tp\": 18,\n    \"fn\": 2,\n    \"fp\": 8,\n    \"tn\": 72\n  },\n  \"n\": 100,\n  \"sensitivity\": 0.9,\n  \"specificity\": 0.9,\n  \"positive_predictive_value\": 0.6923076923076923,\n  \"negative_predictive_value\": 0.972972972972973,\n  \"limits\": \"Synthetic counts, no clinical validation or uncertainty interval. Null means undefined denominator. Predictive values depend on the sampled prevalence.\",\n  \"input_sha256\": \"b19ea52c68dce96889549643bc1813d50ae1ff3bdd1d240ffb4c65df5628c675\"\n}",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

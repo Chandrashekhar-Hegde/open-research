@@ -29,3 +29,23 @@ and proposed ways to resolve them. Preserve protocol versions and deviations.
 When a repository study template is available, fill its protocol and plan;
 otherwise return portable Markdown. Finish with the question, method,
 justification, assumptions, and decisions still needed.
+
+## Select a study pattern
+
+Separate research area/subsection from goal and design. Medical, engineering or
+software is a setting, not a method. In an Open Research checkout, use
+`python research.py designs --domain medical --goal predict` (substitute actual
+IDs) or `python research.py designs --pattern cohort`. Inspect fit, prerequisites,
+limitations, planning fields and analysis guidance before proposing a design.
+Offer a small explained choice when the user lacks terminology; do not silently
+assign a design from the domain. Preserve classification in `study.json` and
+browser records; record why the design answers the question. For mixed methods,
+plan both components and their integration. Templates with no results stay plans.
+
+## Follow the subject and report paths
+
+When working in an Open Research checkout, inspect `python research.py guides`
+and the selected path with `--path medical`, `engineering`, `materials`,
+`chemistry`, `physics`, `theory`, `research-papers` or `review-papers`. Match the
+required records and checks to the actual claim; theoretical work crosses fields.
+Chemistry includes organic, physical and experimental/analytical branches.

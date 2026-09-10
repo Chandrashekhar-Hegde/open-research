@@ -30,3 +30,20 @@ Return a review record and release note with actionable gaps and citation
 metadata. Assign no DOI or registration identifier unless actually issued.
 When authorized publication occurs, verify its destination and report the
 real version, URL, and remaining access or review limitations.
+
+## Check classification and example provenance
+
+Compare the recorded area, goal and pattern with the actual method and evidence.
+A structurally valid classification does not validate the design. Preserve the
+version-2 browser backup and retained notes when importing; legacy version-1
+studies remain readable. Verify that teaching fixtures and unexecuted plans are
+labeled and cannot be mistaken for observed findings. Run the selected example's
+actual command, then the study checks; disclose any procedure not executed.
+
+## Follow the subject and report paths
+
+When working in an Open Research checkout, inspect `python research.py guides`
+and the selected path with `--path medical`, `engineering`, `materials`,
+`chemistry`, `physics`, `theory`, `research-papers` or `review-papers`. Match the
+required records and checks to the actual claim; theoretical work crosses fields.
+Chemistry includes organic, physical and experimental/analytical branches.

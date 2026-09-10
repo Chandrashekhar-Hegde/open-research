@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "title": "Planning-tool mixed-methods plan",
+  "question": "Where does a planning tool cause delays, and how do users explain those delays?",
+  "classification": {
+    "domain": "software",
+    "subarea": "hci",
+    "goal": "mixed",
+    "pattern": "mixed"
+  },
+  "patternNotes": {
+    "mixed": {}
+  },
+  "method": "mixed",
+  "stage": "plan",
+  "host": "standalone",
+  "answers": {
+    "purpose": "An illustrative protocol starting point. Resolve the actual context and feasibility before gathering evidence.",
+    "procedure": "Planned sequence, not conducted:\n1. State why both forms of evidence are needed\n2. Plan sampling and connection\n3. Collect and analyze each component\n4. Integrate results and contradictions\n5. Explain combined and separate limitations",
+    "analysis": "Planned, not executed: Analyze each component with its own justified method, then integrate at the prespecified points. Keep discrepancies visible and bound combined inferences.",
+    "limitations": "No observations, interviews, search results or findings have been collected. Collecting a survey and interviews without integrating findings is not sufficient.",
+    "sample": "Sampling and sample rationale have not been chosen.",
+    "safeguards": "Access, consent and applicable review must be resolved for the actual setting.",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

@@ -49,6 +49,9 @@ def check_study(root, release=False):
             raise ValueError('study.json must be an object')
         if type(metadata.get('schema_version')) is not int or metadata['schema_version'] != 1:
             errors.append('schema_version must be integer 1')
+        if 'classification' in metadata:
+            from study_catalog import classify
+            classify(metadata['classification'])
         for key in ('title', 'question', 'owner', 'license', 'data_access', 'created'):
             if not isinstance(metadata.get(key), str) or not metadata[key].strip():
                 errors.append(f'study.json: fill {key}')
@@ -142,24 +145,43 @@ def check_study(root, release=False):
     return errors
 
 
-def init_study(destination, title):
+def init_study(destination, title, classification=None):
     destination = Path(destination)
     if not title.strip():
         raise ValueError('title cannot be blank')
+    if classification is not None:
+        from study_catalog import CATALOG, classify
+        classify(classification)
     # copytree refuses existing destinations, including empty directories.
     shutil.copytree(ROOT / 'templates' / 'study', destination)
     path = destination / 'study.json'
     metadata = json.loads(path.read_text(encoding='utf-8'))
     metadata.update(title=title, created=date.today().isoformat())
+    if classification is not None:
+        metadata['classification'] = classification
+        guide = CATALOG['domains'][classification['domain']].get('guide')
+        if guide:
+            from guide_paths import portable_guide
+            (destination / 'guide.md').write_text(portable_guide(guide), encoding='utf-8')
     path.write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    from study_catalog import CATALOG
     sub = parser.add_subparsers(dest='command', required=True)
     init = sub.add_parser('init', help='copy an incomplete study template into a new directory')
     init.add_argument('path', type=Path)
     init.add_argument('--title', required=True)
+    init.add_argument('--domain', choices=CATALOG['domains'], default='undecided')
+    init.add_argument('--subarea', default='undecided')
+    init.add_argument('--pattern', choices=CATALOG['patterns'])
+    designs = sub.add_parser('designs', help='show research areas, goals and explained design choices')
+    designs.add_argument('--domain', choices=CATALOG['domains'], default='undecided')
+    designs.add_argument('--goal', choices=CATALOG['goals'], default='undecided')
+    designs.add_argument('--pattern', choices=CATALOG['patterns'])
+    guides = sub.add_parser('guides', help='show discipline and manuscript guide paths')
+    guides.add_argument('--path', choices=CATALOG['guides'])
     check = sub.add_parser('check', help='check metadata, evidence links, and artifact hashes')
     check.add_argument('path', type=Path)
     check.add_argument('--release', action='store_true', help='require completed release records')
@@ -182,12 +204,24 @@ def main():
     log.add_argument('--next', dest='next_action', required=True)
     paper = sub.add_parser('draft', help='create an evidence-based academic manuscript scaffold')
     paper.add_argument('path', type=Path)
+    paper.add_argument('--kind', choices=CATALOG['papers'], help='default: review for a classified synthesis, otherwise research')
+    paper.add_argument('--format', choices=['markdown', 'quarto'], default='markdown')
     paper.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     if args.command not in ('init', 'check'):
         from workbench import doctor, install_skills, profile_csv, journal, draft, write_new
         try:
-            if args.command == 'doctor':
+            if args.command == 'designs':
+                from study_catalog import candidates
+                if args.pattern:
+                    result = {'id': args.pattern, **CATALOG['patterns'][args.pattern]}
+                else:
+                    result = {'domains': CATALOG['domains'], 'goals': CATALOG['goals'],
+                              'candidates': candidates(args.domain, args.goal),
+                              'note': 'Area orders candidates, never restricts designs. Select a design only after checking its prerequisites.'}
+            elif args.command == 'guides':
+                result = CATALOG['guides'][args.path] if args.path else CATALOG['guides']
+            elif args.command == 'doctor':
                 result = doctor()
             elif args.command == 'install-skills':
                 result = install_skills(args.directory or SKILL_DIRECTORIES.get(args.tool, '.agents/skills'), args.project)
@@ -203,7 +237,7 @@ def main():
             elif args.command == 'journal':
                 result = journal(args.path, args.note, args.next_action)
             else:
-                write_new(args.output, draft(args.path))
+                write_new(args.output, draft(args.path, kind=args.kind, output_format=args.format))
                 print(f'Wrote authoring scaffold: {args.output}')
                 return 0
             print(json.dumps(result, indent=2, allow_nan=False))
@@ -212,7 +246,10 @@ def main():
             parser.exit(1, f'Cannot complete {args.command}: {exc}\n')
     if args.command == 'init':
         try:
-            init_study(args.path, args.title)
+            classification = {'domain': args.domain, 'subarea': args.subarea,
+                              'goal': CATALOG['patterns'][args.pattern]['goal'] if args.pattern else 'undecided',
+                              'pattern': args.pattern or 'undecided'}
+            init_study(args.path, args.title, classification)
         except (OSError, ValueError) as exc:
             parser.exit(1, f'Cannot initialize: {exc}\n')
         print(f'Created {args.path}. Fill metadata, protocol, and analysis plan before checking.')

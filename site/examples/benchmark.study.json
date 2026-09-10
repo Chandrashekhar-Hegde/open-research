@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "title": "Software search benchmark",
+  "question": "How many array probes do linear and binary search use for four fixed queries on 16 sorted values?",
+  "classification": {
+    "domain": "software",
+    "subarea": "systems",
+    "goal": "build",
+    "pattern": "benchmark"
+  },
+  "patternNotes": {
+    "benchmark": {
+      "workload": "Fixed successful and unsuccessful queries on one 16-element array. No timing or representative-workload claim.",
+      "fairness": "Both algorithms receive the same array and queries; correctness uses the standard-library bisect reference; sorting costs are excluded."
+    }
+  },
+  "method": "computational",
+  "stage": "analyze",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Rehearse an explicit calculation before adapting a protocol to real research. These inputs are constructed teaching data, not collected observations.",
+    "sample": "Fixed teaching fixture, not a sample-size recommendation or a representative population.",
+    "safeguards": "Synthetic public inputs under the repository license; no participants, clinical validation or research approval implied.",
+    "validation": "Recompute using the command in Analyze and compare with the frozen output. Inspect invalid-input tests and the domain-specific limits.",
+    "review": "Self-check through code and known-answer tests; no independent research review.",
+    "units": "An array of even integers 0–30; queries 0, 14, 30 and 31.",
+    "comparison": "How many array probes do linear and binary search use for four fixed queries on 16 sorted values?",
+    "outcome": "Array probes per query, including the unsuccessful query.",
+    "procedure": "Verify sorted unique inputs; run both search algorithms; compare found values with bisect_left; retain per-query probe counts.",
+    "analysis": "Check correctness first; summarize paired performance over workloads and repeats. Distinguish counted operations from elapsed time; retain outliers and failures.",
+    "sources": "Local constructed fixture: examples/study-patterns/inputs/benchmark.json; all entries.",
+    "data": "Input: examples/study-patterns/inputs/benchmark.json. Code: examples/study-patterns/analyze.py. Expected output: examples/study-patterns/results/benchmark.json.",
+    "limitations": "A probe inspects one array element, not one CPU operation. Deterministic synthetic workload; no elapsed-time or general-performance claim. Sorting costs are excluded.",
+    "interpretation": "The computed quantities describe this fixture only; they do not establish a finding about patients, deployed systems or the physical world.",
+    "results": "{\n  \"kind\": \"benchmark\",\n  \"evidence_type\": \"synthetic or mathematical demonstration\",\n  \"n\": 16,\n  \"queries\": [\n    {\n      \"query\": 0,\n      \"found\": true,\n      \"linear_probes\": 1,\n      \"binary_probes\": 4\n    },\n    {\n      \"query\": 14,\n      \"found\": true,\n      \"linear_probes\": 8,\n      \"binary_probes\": 1\n    },\n    {\n      \"query\": 30,\n      \"found\": true,\n      \"linear_probes\": 16,\n      \"binary_probes\": 5\n    },\n    {\n      \"query\": 31,\n      \"found\": false,\n      \"linear_probes\": 16,\n      \"binary_probes\": 5\n    }\n  ],\n  \"total_linear_probes\": 41,\n  \"total_binary_probes\": 15,\n  \"limits\": \"A probe inspects one array element, not one CPU operation. Deterministic synthetic workload; no elapsed-time or general-performance claim. Sorting costs are excluded.\",\n  \"input_sha256\": \"1b7a8c0c8455584a409e625c7fa241953a12dd720a57d5df9ac7e2478372a3de\"\n}",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

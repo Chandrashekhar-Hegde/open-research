@@ -30,3 +30,13 @@ Project conventions complement disciplinary methods and reporting requirements;
 they do not replace them. A passing check is evidence only for what it tests.
 
 See [Claude Code, Codex and OpenCode setup](assistant-tools.md) for installation, invocation, task recipes and observed verification.
+
+See [research areas and 20 design patterns](study-designs.md) for selection criteria,
+subsections, work sequences and the connected example library.
+
+## Subject and paper paths
+
+Use [the eight guide paths](guide-paths.md) for field-specific records and work
+sequences, and [manuscript formats](manuscript-formats.md) for research/review
+scaffolds in Markdown or Quarto. The same catalog is available locally with
+`python research.py guides --path chemistry`.

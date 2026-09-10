@@ -5,9 +5,10 @@ import re
 import tempfile
 
 from research import init_study
+from study_catalog import CATALOG, classify, classification_text
 
 STAGES = ('research', 'plan', 'inspect', 'analyze', 'write', 'share')
-DESIGNS = ('undecided', 'experiment', 'observational', 'qualitative', 'synthesis', 'computational', 'game')
+DESIGNS = ('undecided', 'experiment', 'observational', 'qualitative', 'synthesis', 'computational', 'game', 'mixed')
 GROUPS = {
     'protocol.md': ('purpose', 'background', 'hypothesis', 'units', 'comparison', 'outcome', 'sample', 'procedure', 'safeguards'),
     'analysis-plan.md': ('analysis', 'validation'),
@@ -22,8 +23,8 @@ def load_browser(path):
     if path.stat().st_size > 8 * 1024 * 1024:
         raise ValueError('Browser backup must be at most 8 MiB')
     data = json.loads(path.read_text(encoding='utf-8'))
-    if not isinstance(data, dict) or type(data.get('version')) is not int or data['version'] != 1:
-        raise ValueError('Expected version 1 browser backup, not CLI study.json')
+    if not isinstance(data, dict) or type(data.get('version')) is not int or data['version'] not in (1, 2):
+        raise ValueError('Expected version 1 or 2 browser backup, not CLI study.json')
     for key, limit in [('title', 200), ('question', 8000)]:
         if not isinstance(data.get(key), str) or len(data[key]) > limit:
             raise ValueError(f'Invalid {key}')
@@ -49,6 +50,15 @@ def load_browser(path):
     for values in checks.values():
         if not isinstance(values, list) or len(values) != 3 or any(type(v) is not bool for v in values):
             raise ValueError('Invalid review checks')
+    if data['version'] == 2:
+        classify(data.get('classification'), data['method'])
+        patterns = data.get('patternNotes')
+        if not isinstance(patterns, dict) or set(patterns) - set(CATALOG['patterns']):
+            raise ValueError('Invalid pattern notes')
+        for key, values in patterns.items():
+            notes(values)
+            if set(values) - {f[0] for f in CATALOG['patterns'][key]['fields']}:
+                raise ValueError('Unknown pattern decision')
     return data
 
 
@@ -63,6 +73,12 @@ def import_browser(source, destination):
         init_study(root, data['title'].strip() or 'Research study')
         metadata = json.loads((root / 'study.json').read_text(encoding='utf-8'))
         metadata['question'] = data['question']
+        if data['version'] == 2:
+            metadata['classification'] = data['classification']
+            guide = CATALOG['domains'][data['classification']['domain']].get('guide')
+            if guide:
+                from guide_paths import portable_guide
+                (root / 'guide.md').write_text(portable_guide(guide), encoding='utf-8')
         (root / 'study.json').write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
         (root / 'browser.study.json').write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
         answers = data['answers']
@@ -72,6 +88,11 @@ def import_browser(source, destination):
                 lines += ['## ' + key.replace('_', ' ').title(), '', answers.get(key, '').strip() and answers[key] or '[fill: not recorded in browser draft]', '']
             if filename == 'protocol.md':
                 lines += ['## Selected design', '', data['method'], '']
+                if data['version'] == 2:
+                    lines += ['## Research classification', '', classification_text(data['classification']), '']
+                    chosen = data['classification']['pattern']
+                    for key, label, hint in CATALOG['patterns'].get(chosen, {}).get('fields', []):
+                        lines += ['### ' + label, '', data['patternNotes'].get(chosen, {}).get(key) or '[fill: ' + hint + ']', '']
                 for key, value in data['designs'].get(data['method'], {}).items():
                     lines += ['### ' + key.title(), '', value or '[fill: design decision]', '']
             if filename == 'review.md':

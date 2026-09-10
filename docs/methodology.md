@@ -172,3 +172,13 @@ attach interviews to a survey. For diagnostic accuracy, historical/archival,
 ethnographic, engineering safety or other specialist designs, use this record
 structure with the discipline's actual methodological literature. The editor's
 broad categories are entry points, not a claim to cover every method.
+
+See [research areas and 20 design patterns](study-designs.md) for selection criteria,
+subsections, work sequences and the connected example library.
+
+## Subject and paper paths
+
+Use [the eight guide paths](guide-paths.md) for field-specific records and work
+sequences, and [manuscript formats](manuscript-formats.md) for research/review
+scaffolds in Markdown or Quarto. The same catalog is available locally with
+`python research.py guides --path chemistry`.

@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "title": "Researcher workflow interviews",
+  "question": "How do researchers describe barriers when moving a study plan into actual analysis?",
+  "classification": {
+    "domain": "social",
+    "subarea": "education",
+    "goal": "understand",
+    "pattern": "interviews"
+  },
+  "patternNotes": {
+    "interviews": {}
+  },
+  "method": "qualitative",
+  "stage": "plan",
+  "host": "standalone",
+  "answers": {
+    "purpose": "An illustrative protocol starting point. Resolve the actual context and feasibility before gathering evidence.",
+    "procedure": "Planned sequence, not conducted:\n1. Bound phenomenon and researcher position\n2. Recruit and collect permitted material\n3. Develop interpretations through documented analysis\n4. Seek contradictory cases\n5. Connect claims to contextual excerpts",
+    "analysis": "Planned, not executed: Apply the chosen interpretive method to source material, retaining context, reflexivity and negative cases. Agreement statistics are not mandatory for every qualitative tradition.",
+    "limitations": "No observations, interviews, search results or findings have been collected. Code frequency alone is not thematic understanding; do not fabricate quotations or saturation.",
+    "sample": "Sampling and sample rationale have not been chosen.",
+    "safeguards": "Access, consent and applicable review must be resolved for the actual setting.",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

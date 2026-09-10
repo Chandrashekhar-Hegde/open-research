@@ -57,3 +57,50 @@ what still needs to be measured with consenting users.
 
 Use respectful, specific feedback. Publish permitted review records and failed
 checks as well as successes. Do not substitute a score or an accusation for evidence.
+
+## More papers does not automatically mean more reliable evidence
+
+Publication volume has grown. NSF/NCSES reports worldwide science and engineering
+output increasing from about 2.0 million articles in 2010 to 3.3 million in 2022,
+within its filtered Scopus coverage. This measures output, not methodological
+quality. It is a historical comparison, not a live count of all research.
+[NCSES, Output by Region, Country, or Economy](https://ncses.nsf.gov/pubs/nsb202333/publication-output-by-region-country-or-economy-and-by-scientific-field).
+
+Writing tools also create specific verification burdens. A 2023 experiment examined
+636 references in 84 generated short reviews across 42 topics. Fabricated references
+accounted for 55% with GPT-3.5 and 18% with GPT-4. Those results describe the tested
+models and procedure, not current tools or the prevalence of fabricated citations
+in published journals. They show why a plausible citation needs independent checking.
+[Walters and Wilder, abstract and methods](https://pmc.ncbi.nlm.nih.gov/articles/PMC10484980/).
+
+Retraction totals require care as an indicator. A study of 2,047 PubMed-indexed
+retracted articles found changes in both author and institutional behavior, including
+faster retraction. Detection and correction practices affect the observed counts.
+[Steen et al., abstract and discussion](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0068397).
+
+Together with the publication-pressure survey above, these sources motivate our
+concern about incentives and work that is easier to produce than verify. They do
+**not** establish that all research is getting worse every day, that every review
+is unreliable, or that AI causes a universal decline. We should demand better
+methods without replacing evidence with an unsupported story about science.
+
+## Daily friction we want to remove
+
+These are design targets, not frequencies measured among our users:
+
+- Rebuilding a question and protocol every time a tool or collaborator changes:
+  keep one portable study record and stage-specific next actions.
+- Searching for the source behind a polished sentence: retain inspected locators
+  and claim IDs while reading, before drafting.
+- Discovering too late that a study used the wrong comparison or counted repeated
+  readings as independent samples: surface prerequisites during Plan.
+- Reformatting unsupported prose repeatedly: settle the evidence and outline first,
+  then render an editable manuscript for the chosen venue.
+- Reviewing a review without knowing what was excluded: retain the search and
+  screening process, including disagreements and contrary results.
+- Feeling pushed to report a positive result: keep null, failed and inconclusive
+  findings visible and distinguish them from a study that was never executed.
+
+Our response is usable record-keeping and checkable computation. Whether this saves
+time or improves reporting must still be evaluated with real, consenting users;
+we do not invent testimonials or claim an efficacy result for this workbench.

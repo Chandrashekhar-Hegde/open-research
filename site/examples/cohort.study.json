@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "title": "Return-to-work cohort plan",
+  "question": "How does return-to-work over six months differ across baseline job conditions?",
+  "classification": {
+    "domain": "medical",
+    "subarea": "public-health",
+    "goal": "observe",
+    "pattern": "cohort"
+  },
+  "patternNotes": {
+    "cohort": {}
+  },
+  "method": "observational",
+  "stage": "plan",
+  "host": "standalone",
+  "answers": {
+    "purpose": "An illustrative protocol starting point. Resolve the actual context and feasibility before gathering evidence.",
+    "procedure": "Planned sequence, not conducted:\n1. Define cohort and time origin\n2. Specify exposures and confounders\n3. Record outcomes and follow-up\n4. Analyze risk or event timing\n5. Assess attrition and alternative explanations",
+    "analysis": "Planned, not executed: Estimate risks, rates or time-to-event quantities suited to follow-up. Account for censoring and confounding; sensitivity matters more than a causal label.",
+    "limitations": "No observations, interviews, search results or findings have been collected. Outcome-based sampling calls for another design; unequal follow-up can bias simple proportions.",
+    "sample": "Sampling and sample rationale have not been chosen.",
+    "safeguards": "Access, consent and applicable review must be resolved for the actual setting.",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

@@ -1,0 +1,10 @@
+{
+  "kind": "prediction",
+  "evidence_type": "synthetic or mathematical demonstration",
+  "n": 4,
+  "model_mae": 1,
+  "baseline_mae": 2,
+  "mae_reduction": 1,
+  "limits": "Synthetic supplied predictions in arbitrary units; no model was trained. This arithmetic does not establish a valid split, calibration, generalization or benefit.",
+  "input_sha256": "eedb76093879397f7ed706413cea9b15ea6970f680554d7551bbbce00432a25a"
+}

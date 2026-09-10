@@ -56,7 +56,7 @@ into `evidence.csv` and `claims.csv`. Fill owner, license and access conditions 
 `study.json`. Missing information stays incomplete. The importer never executes
 commands in the file, invents citations or marks a study complete.
 
-The browser's version-1 backup and the CLI's schema-version-1 manifest serve
+The browser's version-2 backup (with version-1 reads) and the CLI's schema-version-1 manifest serve
 different purposes; use this command to connect them. The editor can reopen the
 browser backup, but it does not import arbitrary local folders or CLI manifests.
 
@@ -110,3 +110,13 @@ For collaboration, exchange permitted JSON/Markdown files or use Git branches an
 reviewed merges for local studies. The browser is a single-draft editor, not a
 multi-user synchronization service. The repository ignores `studies/` by default;
 make a separate appropriately private research repository for real project records.
+
+## Guided study selection
+
+Use Plan's area/subsection and plain-language goal controls before choosing a
+specific pattern. [Selection guidance](study-designs.md) is also available through
+`python research.py designs`. The same catalog supplies the Python and browser
+choices. Analyze shows relevant guidance and examples; browse the complete
+[library](https://chandrashekhar-hegde.github.io/open-research/examples.html) for
+real-data, synthetic/model and unexecuted-plan examples. Example replacement asks
+before discarding the current draft. Save JSON first if you need both versions.

@@ -1,3 +1,5 @@
+import {catalog} from './catalog.mjs?v=designs-2';
+export {catalog};
 // Portable study data and document generation. No browser or AI dependency.
 export const hosts={standalone:'Self-guided',claude:'Claude Code',codex:'Codex',opencode:'OpenCode',assistant:'Other assistant'};
 export function hostSetup(host){return ['claude','codex','opencode'].includes(host)?'python research.py install-skills --tool '+host+'\n'+host:'python research.py doctor\npython scripts/verify_workflow.py';}
@@ -36,6 +38,7 @@ export const stages={
   ],checks:['I have read the exported question, design and conclusions.','I have checked permissions and removed material I cannot share.','I have identified unresolved work and the scope of review.']}
 };
 export const methods={
+  mixed:{label:'Mixed-methods study',fields:[['components','Quantitative and qualitative components','State the method for each component and how their samples and findings connect.']]},
   undecided:{label:'Not decided yet',fields:[]},
   experiment:{label:'Controlled experiment',fields:[
     ['factors','Factors and treatment levels','Name the interventions or factors and their actual levels, including the control.'],
@@ -67,13 +70,13 @@ export const methods={
 };
 export const STORAGE_KEY='open-research-study-v1';
 export const MAX_FILE_SIZE=8*1024*1024;
-export function emptyStudy(){return {version:1,title:'',question:'',method:'undecided',stage:'research',host:'standalone',answers:{},designs:{},checks:{},next:{}};}
-export function hasContent(study){return Boolean(study.title||study.question||Object.values(study.answers).some(Boolean)||Object.values(study.designs).some(d=>Object.values(d).some(Boolean))||Object.values(study.next).some(Boolean)||Object.values(study.checks).some(a=>a.some(Boolean)));}
+export function emptyStudy(){return {version:2,classification:{domain:'undecided',subarea:'undecided',goal:'undecided',pattern:'undecided'},patternNotes:{},title:'',question:'',method:'undecided',stage:'research',host:'standalone',answers:{},designs:{},checks:{},next:{}};}
+export function hasContent(study){return Boolean(study.title||study.question||study.classification?.domain!=='undecided'||study.classification?.goal!=='undecided'||Object.values(study.patternNotes||{}).some(d=>Object.values(d).some(Boolean))||Object.values(study.answers).some(Boolean)||Object.values(study.designs).some(d=>Object.values(d).some(Boolean))||Object.values(study.next).some(Boolean)||Object.values(study.checks).some(a=>a.some(Boolean)));}
 export function decodeStudy(raw){
   if(typeof raw!=='string'||raw.length>MAX_FILE_SIZE)throw new Error('The study file must be smaller than 8 MiB.');
   const data=JSON.parse(raw);
   const object=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);
-  if(!object(data)||data.version!==1)throw new Error('Unsupported study format. Choose an Open Research study JSON backup.');
+  if(!object(data)||![1,2].includes(data.version))throw new Error('Unsupported study format. Choose an Open Research study JSON backup.');
   const study=emptyStudy();
   if(Object.keys(data).some(k=>!Object.hasOwn(study,k)))throw new Error('Unexpected fields in the study file.');
   for(const key of ['title','question']){
@@ -98,21 +101,30 @@ export function decodeStudy(raw){
   for(const [k,v] of Object.entries(data.checks)){
     if(!Array.isArray(v)||v.length!==stages[k].checks.length||v.some(x=>typeof x!=='boolean'))throw new Error('Invalid review checks.');study.checks[k]=[...v];
   }
+  if(data.version===2){
+    study.classification=validateClassification(data.classification,study.method);
+    if(!object(data.patternNotes)||Object.keys(data.patternNotes).some(k=>!Object.hasOwn(catalog.patterns,k)))throw new Error('Invalid pattern notes.');
+    for(const [k,v] of Object.entries(data.patternNotes))study.patternNotes[k]=strings(v,catalog.patterns[k].fields.map(f=>f[0]));
+  }
   return study;
 }
 export function fieldsFor(study,stage){
   const entries=stages[stage].fields.map(([id,label,hint])=>({id,label,hint,value:study.answers[id]||'',design:false}));
   if(stage==='plan')entries.push(...methods[study.method].fields.map(([id,label,hint])=>({id,label,hint,value:study.designs[study.method]?.[id]||'',design:true})));
+  if(stage==='plan'&&selectedPattern(study))entries.push(...selectedPattern(study).fields.map(([id,label,hint])=>({id:'pattern-'+id,label,hint,value:study.patternNotes[study.classification.pattern]?.[id]||'',design:true})));
   return entries;
 }
 export function missingFor(study,stage){
   const missing=fieldsFor(study,stage).filter(f=>!f.value.trim()).map(f=>f.label);
   if(stage==='research'&&!study.question.trim())missing.unshift('Research question');
   if(stage==='plan'&&study.method==='undecided')missing.unshift('Study design');
+  if(stage==='plan'&&study.classification.domain==='undecided')missing.unshift('Research area');
+  if(stage==='plan'&&study.classification.goal==='undecided')missing.push('Research goal');
+  if(stage==='plan'&&study.classification.pattern==='undecided')missing.push('Specific study pattern (or explain your own design)');
   return missing;
 }
 export function studySections(study){
-  const sections=[{title:'Research question',entries:[{label:'Question',value:study.question},{label:'Study design',value:methods[study.method].label}]}];
+  const sections=[{title:'Research question',entries:[{label:'Question',value:study.question},{label:'Study design',value:methods[study.method].label},...classificationEntries(study)]}];
   for(const [stage,definition] of Object.entries(stages))sections.push({title:definition.label,stage,entries:fieldsFor(study,stage).map(f=>({label:f.label,value:f.value})),checks:definition.checks.map((label,i)=>({label,checked:study.checks[stage]?.[i]===true})),next:study.next[stage]||''});
   return sections;
 }
@@ -126,7 +138,48 @@ export function studyMarkdown(study){
   }
   const inactive=Object.entries(study.designs).filter(([key,values])=>key!==study.method&&Object.values(values).some(v=>v.trim()));
   if(inactive.length)lines.push('## Other design notes','','Notes for '+inactive.map(([key])=>methods[key].label).join(', ')+' are retained in the editable JSON backup. They are not part of the selected protocol.','');
+  const retained=Object.entries(study.patternNotes||{}).filter(([id,notes])=>id!==study.classification.pattern&&Object.values(notes).some(Boolean));
+  if(retained.length)lines.push('## Other pattern notes','','Retained in the editable JSON backup: '+retained.map(([id])=>catalog.patterns[id].label).join(', ')+'.','');
   return lines.join('\n');
 }
 export function fileStem(study){return (study.title||study.question).normalize('NFKD').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60).toLowerCase()||'research-study';}
-export function assistantBrief(study){return 'Environment: '+hosts[study.host]+'. Launch in the Open Research checkout; name the local study folder before making changes.\nRead AGENTS.md and agents/lurch.md. Use the '+stages[study.stage].skill+' skill.\nHelp with the '+stages[study.stage].label+' stage of the study below. Inspect recorded evidence, identify missing decisions, and preserve my actual question. Do not invent data, sources, approvals, or results. For computations, inspect code first, run permitted commands and report actual outputs, exit statuses and limitations. If you cannot execute or verify a source, mark it unverified.\n\n'+studyMarkdown(study);}
+export function assistantBrief(study){return 'Environment: '+hosts[study.host]+'. Launch in the Open Research checkout; name the local study folder before making changes.\nRead AGENTS.md and agents/lurch.md. Use the '+skillFor(study)+' skill.\nHelp with the '+stages[study.stage].label+' stage of the study below. Inspect recorded evidence, identify missing decisions, and preserve my actual question. Do not invent data, sources, approvals, or results. For computations, inspect code first, run permitted commands and report actual outputs, exit statuses and limitations. If you cannot execute or verify a source, mark it unverified.\n\n'+studyMarkdown(study);}
+
+export function validateClassification(value,method){
+ if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).sort().join(',')!=='domain,goal,pattern,subarea'||Object.values(value).some(v=>typeof v!=='string'))throw new Error('Invalid classification.');
+ const {domain,subarea,goal,pattern}=value;
+ if(!Object.hasOwn(catalog.domains,domain)||!Object.hasOwn(catalog.goals,goal))throw new Error('Unknown research area or goal.');
+ if(subarea!=='undecided'&&!Object.hasOwn(catalog.domains[domain].subareas,subarea))throw new Error('Subsection does not match research area.');
+ if(pattern!=='undecided'&&(!Object.hasOwn(catalog.patterns,pattern)||catalog.patterns[pattern].goal!==goal||catalog.patterns[pattern].family!==method))throw new Error('Pattern does not match goal or method.');
+ return {...value};
+}
+export function selectedPattern(study){return catalog.patterns[study.classification.pattern];}
+export function designCandidates(domain,goal){
+ return Object.entries(catalog.patterns).filter(([,p])=>goal==='undecided'||p.goal===goal).sort((a,b)=>Number(!a[1].domains.includes(domain))-Number(!b[1].domains.includes(domain)));
+}
+export function setClassification(study,key,value){
+ if(key==='domain'){
+  if(!Object.hasOwn(catalog.domains,value))throw new Error('Unknown area.');
+  study.classification.domain=value;study.classification.subarea='undecided';
+ }else if(key==='subarea'){
+  if(value!=='undecided'&&!Object.hasOwn(catalog.domains[study.classification.domain].subareas,value))throw new Error('Unknown subsection.');
+  study.classification.subarea=value;
+ }else if(key==='goal'){
+  if(!Object.hasOwn(catalog.goals,value))throw new Error('Unknown goal.');
+  study.classification.goal=value;study.classification.pattern='undecided';study.method='undecided';
+ }else if(key==='pattern'){
+  if(!Object.hasOwn(catalog.patterns,value))throw new Error('Unknown pattern.');
+  study.classification.pattern=value;study.classification.goal=catalog.patterns[value].goal;study.method=catalog.patterns[value].family;
+ }else throw new Error('Unknown classification field.');
+ for(const stage of ['plan','analyze','write','share'])study.checks[stage]=stages[stage].checks.map(()=>false);
+}
+export function classificationEntries(study){
+ const c=study.classification,area=catalog.domains[c.domain];
+ return [{label:'Research area',value:c.domain==='undecided'?'':area.label},{label:'Subsection',value:area.subareas[c.subarea]||''},{label:'Research goal',value:c.goal==='undecided'?'':catalog.goals[c.goal].label},{label:'Study pattern',value:selectedPattern(study)?.label||''}];
+}
+
+export function skillFor(study){
+ if(study.stage==='analyze'&&selectedPattern(study))return selectedPattern(study).analysisSkill;
+ if(study.stage==='inspect'&&study.method==='synthesis')return 'evidence-synthesis';
+ return stages[study.stage].skill;
+}

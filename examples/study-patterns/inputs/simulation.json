@@ -1,0 +1,7 @@
+{
+  "kind": "simulation",
+  "initial": 1,
+  "rate": 0.5,
+  "duration": 2,
+  "steps": 20
+}
