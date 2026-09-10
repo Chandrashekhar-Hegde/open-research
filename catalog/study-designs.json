@@ -1,0 +1,1661 @@
+{
+  "version": 1,
+  "sources": {
+    "nist": {
+      "label": "NIST: choosing experimental designs",
+      "url": "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3.htm"
+    },
+    "nih": {
+      "label": "NIH: clinical research basics",
+      "url": "https://www.nih.gov/health-information/nih-clinical-research-trials-you/basics"
+    },
+    "equator": {
+      "label": "EQUATOR: reporting by study type",
+      "url": "https://www.equator-network.org/reporting-guidelines/"
+    },
+    "sigsoft": {
+      "label": "ACM SIGSOFT: empirical standards",
+      "url": "https://www2.sigsoft.org/EmpiricalStandards/"
+    },
+    "prisma": {
+      "label": "PRISMA: review reporting",
+      "url": "https://www.prisma-statement.org/prisma-2020"
+    },
+    "fda": {
+      "label": "FDA: diagnostic-test result reporting",
+      "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/statistical-guidance-reporting-results-studies-evaluating-diagnostic-tests-guidance-industry-and-fda"
+    },
+    "euler": {
+      "label": "MIT: numerical methods for differential equations",
+      "url": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/pages/unit-i-first-order-differential-equations/numerical-methods/"
+    },
+    "proof": {
+      "label": "MIT: Mathematics for Computer Science",
+      "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/"
+    },
+    "gum": {
+      "label": "BIPM / JCGM — measurement uncertainty and modelling",
+      "url": "https://www.bipm.org/en/committees/jc/jcgm/publications"
+    },
+    "rsc": {
+      "label": "Royal Society of Chemistry — experimental reporting",
+      "url": "https://www.rsc.org/publishing/publish-with-us/publish-a-journal-article/experimental-reporting"
+    },
+    "icmje": {
+      "label": "ICMJE — manuscript preparation",
+      "url": "https://icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html"
+    },
+    "aps": {
+      "label": "APS — author guidance and journal requirements",
+      "url": "https://journals.aps.org/authors"
+    },
+    "quarto": {
+      "label": "Quarto — rendering Word documents",
+      "url": "https://quarto.org/docs/output-formats/ms-word.html"
+    },
+    "game": {
+      "label": "MIT OpenCourseWare — Nash equilibrium and game representation",
+      "url": "https://ocw.mit.edu/courses/14-12-economic-applications-of-game-theory-fall-2025/resources/lecture-notes/"
+    }
+  },
+  "domains": {
+    "undecided": {
+      "label": "Choose a research area",
+      "subareas": {},
+      "context": "Choose the setting; the goal determines which designs to consider.",
+      "guide": null
+    },
+    "medical": {
+      "label": "Medical & health",
+      "subareas": {
+        "clinical": "Clinical / patient care",
+        "public-health": "Public health / epidemiology",
+        "biomedical": "Biomedical / laboratory",
+        "services": "Health services"
+      },
+      "context": "Define the population, clinically meaningful outcome, data access and applicable participant review. A laboratory study and a patient trial need different procedures.",
+      "guide": "medical"
+    },
+    "engineering": {
+      "label": "Engineering",
+      "subareas": {
+        "materials": "Materials / manufacturing",
+        "energy": "Energy / mechanical systems",
+        "civil": "Civil / infrastructure",
+        "electronics": "Electronics / devices"
+      },
+      "context": "Define physical units, calibration, operating conditions, independent test units and acceptable failure or safety limits.",
+      "guide": "engineering"
+    },
+    "materials": {
+      "label": "Materials science",
+      "subareas": {
+        "metals": "Metals and alloys",
+        "polymers": "Polymers and composites",
+        "ceramics": "Ceramics and functional materials",
+        "surfaces": "Surfaces and interfaces"
+      },
+      "context": "Connect processing, structure, properties and performance. Track independent batches, specimen history and characterization; repeated scans are not independent specimens.",
+      "guide": "materials"
+    },
+    "chemistry": {
+      "label": "Chemistry",
+      "subareas": {
+        "organic": "Organic chemistry",
+        "physical": "Physical chemistry",
+        "experimental": "Experimental and analytical chemistry"
+      },
+      "context": "Choose the chemical claim first: identity, yield, mechanism, rate or measurement performance. Preserve sample identity, conditions, calibration and raw characterization.",
+      "guide": "chemistry"
+    },
+    "physics": {
+      "label": "Experimental physics",
+      "subareas": {
+        "optics": "Optics and spectroscopy",
+        "condensed": "Condensed matter",
+        "particles": "Nuclear and particle measurements",
+        "instrumentation": "Instrumentation and metrology"
+      },
+      "context": "Define the measurand, instrument response and uncertainty model. Separate random variation, drift, background and calibration effects.",
+      "guide": "physics"
+    },
+    "mathematics": {
+      "label": "Mathematics",
+      "subareas": {
+        "pure": "Pure mathematics",
+        "applied": "Applied / numerical mathematics",
+        "decision": "Game theory / decision models"
+      },
+      "context": "State domains and assumptions. Separate a proof, numerical evidence and an empirical claim about a real system.",
+      "guide": "theory"
+    },
+    "software": {
+      "label": "Software & computing",
+      "subareas": {
+        "systems": "Software / systems",
+        "ai": "AI / machine learning",
+        "hci": "Human–computer interaction",
+        "security": "Security / networks"
+      },
+      "context": "Specify software versions, workload or dataset, baseline, leakage controls, hardware and the claim the evaluation can support.",
+      "guide": null
+    },
+    "social": {
+      "label": "Social & behavioral",
+      "subareas": {
+        "education": "Education",
+        "behavior": "Psychology / behavior",
+        "policy": "Policy / organizations",
+        "economics": "Economics / decision-making"
+      },
+      "context": "Describe the setting, sampling, measurement meaning, participant protections and researcher relationship to the material.",
+      "guide": null
+    },
+    "environment": {
+      "label": "Environment & agriculture",
+      "subareas": {
+        "climate": "Climate / earth systems",
+        "ecology": "Ecology / conservation",
+        "agriculture": "Agriculture / food",
+        "water": "Water / environmental monitoring"
+      },
+      "context": "Record spatial and temporal coverage, calibration, seasonality, site selection and dependence between observations.",
+      "guide": null
+    },
+    "other": {
+      "label": "Other / interdisciplinary",
+      "subareas": {
+        "interdisciplinary": "Across multiple disciplines",
+        "humanities": "Humanities / interpretive work",
+        "other": "Another area"
+      },
+      "context": "Name the discipline and combine relevant methods explicitly. These starting patterns do not cover every specialized research tradition.",
+      "guide": null
+    }
+  },
+  "goals": {
+    "undecided": {
+      "label": "Not sure yet",
+      "help": "Choose the sentence closest to what you want to find out."
+    },
+    "effect": {
+      "label": "Test whether a change makes a difference",
+      "help": "You want to compare an intervention, policy, treatment or controlled factor."
+    },
+    "observe": {
+      "label": "Describe patterns in existing observations",
+      "help": "You measure what happens without assigning the exposure."
+    },
+    "predict": {
+      "label": "Evaluate a test or predict an outcome",
+      "help": "You need to assess diagnostic accuracy or predictions on separate evidence."
+    },
+    "build": {
+      "label": "Build or compare a tool or system",
+      "help": "You need to evaluate an artifact against a baseline or requirement."
+    },
+    "understand": {
+      "label": "Understand experiences or a specific case",
+      "help": "You need context and interpretation from interviews, documents or observations."
+    },
+    "synthesize": {
+      "label": "Find out what existing research supports",
+      "help": "You need a documented review or a map of a research area."
+    },
+    "model": {
+      "label": "Prove, simulate or model decisions",
+      "help": "You work with explicit mathematical assumptions, models or algorithms."
+    },
+    "mixed": {
+      "label": "Connect measurements with experiences",
+      "help": "Your question needs quantitative and qualitative evidence integrated together."
+    }
+  },
+  "patterns": {
+    "randomized": {
+      "label": "Randomized comparison",
+      "family": "experiment",
+      "goal": "effect",
+      "domains": [
+        "medical",
+        "engineering",
+        "software",
+        "social",
+        "environment",
+        "other"
+      ],
+      "fit": "You can assign independent units to alternatives by chance.",
+      "needs": "A justified comparison, allocation process, feasible independent units and an outcome measured consistently.",
+      "avoid": "If assignment is infeasible, consider a quasi-experiment; if nothing is assigned, consider observation.",
+      "question": "Does a reminder improve appointment attendance compared with usual communication?",
+      "fields": [
+        [
+          "assignment",
+          "What is randomized?",
+          "Specify people, sites or test units; conceal the allocation where relevant."
+        ],
+        [
+          "estimand",
+          "Which effect will you estimate?",
+          "Specify the outcome, follow-up, assignment-based analysis and handling of nonadherence."
+        ]
+      ],
+      "analysis": "Estimate the declared between-group effect and uncertainty, accounting for clusters, repeated measures and missing outcomes. Do not select a test from outcome type alone.",
+      "steps": [
+        "Define outcome and comparison",
+        "Justify sample precision and obtain applicable permissions",
+        "Generate and retain allocation",
+        "Collect outcomes and deviations",
+        "Estimate effect and sensitivity"
+      ],
+      "sources": [
+        "nih",
+        "nist"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "factorial": {
+      "label": "Factorial experiment",
+      "family": "experiment",
+      "goal": "effect",
+      "domains": [
+        "engineering",
+        "environment",
+        "medical",
+        "software",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "You can vary two or more factors and want to learn about their interactions.",
+      "needs": "Physical or operational levels, a balanced or justified design, random run order and independent replication.",
+      "avoid": "A long list of factors with too few runs may confound effects; repeated readings are not replication.",
+      "question": "How do temperature and feed rate affect the yield of a manufacturing process?",
+      "fields": [
+        [
+          "levels",
+          "Map coded factors to real levels",
+          "Give low/high values and units; never use coded -1/+1 as unexplained physical settings."
+        ],
+        [
+          "interactions",
+          "Which interactions matter?",
+          "Prespecify contrasts, blocks, aliasing if fractional, and independent replication."
+        ]
+      ],
+      "analysis": "Estimate factor and interaction contrasts using the actual design; account for blocks and inspect residuals. A noiseless demonstration cannot supply uncertainty for a real process.",
+      "steps": [
+        "Set objective and operating range",
+        "Choose factors, levels and blocks",
+        "Randomize and pilot measurements",
+        "Collect independent runs",
+        "Estimate contrasts and model checks"
+      ],
+      "sources": [
+        "nist"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "quasi": {
+      "label": "Quasi-experiment",
+      "family": "experiment",
+      "goal": "effect",
+      "domains": [
+        "medical",
+        "engineering",
+        "software",
+        "social",
+        "environment",
+        "other"
+      ],
+      "fit": "A change happens without random assignment, and a credible comparison is available.",
+      "needs": "Timing, a comparison strategy and an explicit identification argument.",
+      "avoid": "A simple before/after difference alone does not separate the change from time trends.",
+      "question": "Did a new service policy change waiting times relative to comparable services?",
+      "fields": [
+        [
+          "identification",
+          "Why is the comparison credible?",
+          "State the assignment mechanism and the assumptions for discontinuity, differences-in-differences or another design."
+        ],
+        [
+          "pretrends",
+          "How will assumptions be challenged?",
+          "Record pre-periods, concurrent changes, placebo checks and dependence."
+        ]
+      ],
+      "analysis": "Choose analysis for the identification design; inspect pre-trends when relevant, alternative specifications and uncertainty. Preserve concurrent explanations.",
+      "steps": [
+        "Describe change and comparison",
+        "Specify identification assumptions",
+        "Inspect pre-change evidence",
+        "Estimate the declared contrast",
+        "Challenge assumptions and explain limits"
+      ],
+      "sources": [
+        "sigsoft",
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "cross-sectional": {
+      "label": "Cross-sectional snapshot",
+      "family": "observational",
+      "goal": "observe",
+      "domains": [
+        "medical",
+        "social",
+        "environment",
+        "engineering",
+        "software",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "You need prevalence, characteristics or associations in a defined time window.",
+      "needs": "A sampling frame, denominators, a time window and comparable measurements.",
+      "avoid": "A snapshot generally cannot establish whether exposure preceded outcome.",
+      "question": "What proportion of sampled households report a service interruption this month?",
+      "fields": [
+        [
+          "denominator",
+          "Who is in the denominator?",
+          "Define eligibility, response rate, weighting and exclusions."
+        ],
+        [
+          "window",
+          "What does the snapshot cover?",
+          "Record the observation period and whether variables refer to the same window."
+        ]
+      ],
+      "analysis": "Report estimates with denominators and sampling uncertainty where justified; account for survey design and missingness. Keep association separate from causation.",
+      "steps": [
+        "Define population and window",
+        "Select sampling and measures",
+        "Record participation and missingness",
+        "Estimate descriptive quantities",
+        "Explain selection and time-order limits"
+      ],
+      "sources": [
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "cohort": {
+      "label": "Cohort / follow-up study",
+      "family": "observational",
+      "goal": "observe",
+      "domains": [
+        "medical",
+        "social",
+        "environment",
+        "software",
+        "engineering",
+        "other"
+      ],
+      "fit": "You follow a defined group from exposure or baseline to later outcomes.",
+      "needs": "Time origin, eligibility, follow-up, exposure definitions and attrition records.",
+      "avoid": "Outcome-based sampling calls for another design; unequal follow-up can bias simple proportions.",
+      "question": "How does return-to-work over six months differ across baseline job conditions?",
+      "fields": [
+        [
+          "followup",
+          "Set time zero and follow-up",
+          "Define entry, exposure timing, censoring, loss to follow-up and outcome ascertainment."
+        ],
+        [
+          "adjustment",
+          "Plan confounding control",
+          "Choose covariates from the causal question; avoid adjusting indiscriminately for post-exposure variables."
+        ]
+      ],
+      "analysis": "Estimate risks, rates or time-to-event quantities suited to follow-up. Account for censoring and confounding; sensitivity matters more than a causal label.",
+      "steps": [
+        "Define cohort and time origin",
+        "Specify exposures and confounders",
+        "Record outcomes and follow-up",
+        "Analyze risk or event timing",
+        "Assess attrition and alternative explanations"
+      ],
+      "sources": [
+        "equator",
+        "nih"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "case-control": {
+      "label": "Case–control study",
+      "family": "observational",
+      "goal": "observe",
+      "domains": [
+        "medical",
+        "environment",
+        "social",
+        "other"
+      ],
+      "fit": "You start with people or units with an outcome and sample controls from its source population.",
+      "needs": "Case definition, control selection mechanism and exposure information from the relevant period.",
+      "avoid": "The sampled case fraction does not estimate population disease prevalence.",
+      "question": "Is a prior workplace exposure associated with a rare health outcome?",
+      "fields": [
+        [
+          "controls",
+          "How are controls selected?",
+          "Explain the source population, sampling time and matching, if any."
+        ],
+        [
+          "exposure",
+          "How is prior exposure measured?",
+          "Specify records, recall period, blinding and differential measurement risks."
+        ]
+      ],
+      "analysis": "Estimate a sampling-appropriate association, often an odds ratio, accounting for matching and confounding. State conditions before interpreting it as another risk measure.",
+      "steps": [
+        "Define cases and source population",
+        "Select controls with a justified scheme",
+        "Ascertain prior exposures",
+        "Analyze respecting sampling and matching",
+        "Assess recall and selection bias"
+      ],
+      "sources": [
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "time-series": {
+      "label": "Time-series / repeated monitoring",
+      "family": "observational",
+      "goal": "observe",
+      "domains": [
+        "environment",
+        "engineering",
+        "software",
+        "medical",
+        "social",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "The same system is measured repeatedly and temporal patterns matter.",
+      "needs": "Timestamps, coverage, units, missing periods and known changes in measurement.",
+      "avoid": "Treating dependent time points as independent samples gives misleading uncertainty.",
+      "question": "How did monthly concentration at one monitoring station change between two years?",
+      "fields": [
+        [
+          "timebase",
+          "Define time resolution and coverage",
+          "State aggregation, missing intervals, station or system changes and the time window."
+        ],
+        [
+          "dependence",
+          "How will trends and seasonality be handled?",
+          "Distinguish a descriptive comparison, forecasting and intervention analysis."
+        ]
+      ],
+      "analysis": "Plot and inspect time ordering, trend and seasonality; use a model suitable for dependence if making inference. A frozen descriptive difference needs no invented p-value.",
+      "steps": [
+        "Bound system and time window",
+        "Check measurement continuity",
+        "Inspect missingness and seasonality",
+        "Compute the declared summary or time model",
+        "Assess sensitivity and scope"
+      ],
+      "sources": [
+        "nist",
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "diagnostic": {
+      "label": "Diagnostic accuracy study",
+      "family": "observational",
+      "goal": "predict",
+      "domains": [
+        "medical",
+        "engineering",
+        "software",
+        "other"
+      ],
+      "fit": "You compare an index test against an appropriate reference standard.",
+      "needs": "The target condition, prespecified threshold, reference method and representative sampling.",
+      "avoid": "Accuracy in selected cases may not transfer to screening populations; prediction is a different question.",
+      "question": "At a prespecified threshold, how often does a test agree with a reference condition?",
+      "fields": [
+        [
+          "reference",
+          "Define the reference and threshold",
+          "Specify independent assessment, timing, masking, indeterminate cases and verification."
+        ],
+        [
+          "spectrum",
+          "Who receives both tests?",
+          "Record participant spectrum, test failures and exclusions; avoid selective verification."
+        ]
+      ],
+      "analysis": "Retain the 2×2 table, calculate sensitivity and specificity with justified intervals, and report predictive values in context of prevalence. A synthetic table does not validate a test.",
+      "steps": [
+        "Define target condition and threshold",
+        "Recruit the intended spectrum",
+        "Apply index and reference procedures",
+        "Count outcomes including failures",
+        "Estimate accuracy and investigate bias"
+      ],
+      "sources": [
+        "fda",
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "prediction": {
+      "label": "Prediction / model validation",
+      "family": "computational",
+      "goal": "predict",
+      "domains": [
+        "software",
+        "medical",
+        "engineering",
+        "environment",
+        "social",
+        "mathematics",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "You need to predict outcomes in data that were not used to fit or tune the model.",
+      "needs": "A defined prediction time, target, baseline, split strategy and independent evaluation units.",
+      "avoid": "Leakage or repeated tuning on the test set invalidates the claimed held-out evaluation.",
+      "question": "Does a prediction model reduce absolute error compared with a prespecified baseline on held-out cases?",
+      "fields": [
+        [
+          "split",
+          "What stays unseen during fitting?",
+          "Define grouping or temporal splitting, preprocessing, tuning and a protected test set."
+        ],
+        [
+          "metrics",
+          "Which metrics and failure cases matter?",
+          "Choose calibration, discrimination or error metrics appropriate to the task and subgroup coverage."
+        ]
+      ],
+      "analysis": "Compare with a declared baseline on the same held-out units; report uncertainty, calibration or error distribution and failures. Association or accuracy alone does not establish clinical or social benefit.",
+      "steps": [
+        "Define deployment target and time",
+        "Separate train, validation and test units",
+        "Fit preprocessing using training only",
+        "Evaluate once with baseline",
+        "Inspect failures, shift and calibration"
+      ],
+      "sources": [
+        "sigsoft",
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "benchmark": {
+      "label": "Comparative benchmark",
+      "family": "computational",
+      "goal": "build",
+      "domains": [
+        "software",
+        "engineering",
+        "mathematics",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "You compare implementations on a declared set of workloads and metrics.",
+      "needs": "Correctness checks, identical inputs, versions, environment and a fair baseline.",
+      "avoid": "One small workload or operation count cannot establish general speed or real-user benefit.",
+      "question": "How many key comparisons do linear and binary search need on the same sorted inputs?",
+      "fields": [
+        [
+          "workload",
+          "Which workloads represent the claim?",
+          "Define sizes, distributions, failed queries, warm-up and repeat strategy for timing."
+        ],
+        [
+          "fairness",
+          "How is the comparison kept fair?",
+          "Use equal inputs, verified correctness, versions, hardware and resource limits."
+        ]
+      ],
+      "analysis": "Check correctness first; summarize paired performance over workloads and repeats. Distinguish counted operations from elapsed time; retain outliers and failures.",
+      "steps": [
+        "Bound performance claim",
+        "Specify workloads and baselines",
+        "Check implementation correctness",
+        "Measure declared metrics",
+        "Report distribution, failures and scope"
+      ],
+      "sources": [
+        "sigsoft"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "artifact": {
+      "label": "Build-and-evaluate artifact",
+      "family": "computational",
+      "goal": "build",
+      "domains": [
+        "engineering",
+        "software",
+        "social",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "You create a tool, process or design and evaluate whether it meets a demonstrated need.",
+      "needs": "Stakeholder requirements, design rationale, baseline and a credible evaluation context.",
+      "avoid": "A screenshot or implemented feature alone does not show usefulness or effectiveness.",
+      "question": "Can a new inspection tool identify specified defects under realistic operating constraints?",
+      "fields": [
+        [
+          "requirements",
+          "What evidence defines success?",
+          "Map each requirement to a measurable acceptance criterion and stakeholder need."
+        ],
+        [
+          "evaluation",
+          "How will the artifact be evaluated?",
+          "Specify comparator, test cases or user study, failures and iteration records."
+        ]
+      ],
+      "analysis": "Evaluate against requirements and alternatives using justified bench tests, field evidence or user methods. Report tradeoffs and negative cases; choose an empirical design for each claim.",
+      "steps": [
+        "Establish problem and requirements",
+        "Develop a traceable design",
+        "Choose an evaluation method",
+        "Test against baselines",
+        "Revise and retain failure evidence"
+      ],
+      "sources": [
+        "sigsoft"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    },
+    "interviews": {
+      "label": "Qualitative interviews / observation",
+      "family": "qualitative",
+      "goal": "understand",
+      "domains": [
+        "medical",
+        "social",
+        "software",
+        "environment",
+        "engineering",
+        "other"
+      ],
+      "fit": "You need accounts, practices and contextual meaning rather than only a numerical outcome.",
+      "needs": "A justified sampling strategy, permitted recordings or field notes and an interpretive approach.",
+      "avoid": "Code frequency alone is not thematic understanding; do not fabricate quotations or saturation.",
+      "question": "How do researchers describe barriers when moving a study plan into actual analysis?",
+      "fields": [
+        [
+          "sampling",
+          "Whose perspectives are needed?",
+          "State purposive or other sampling rationale, access and relevant variation."
+        ],
+        [
+          "interpretation",
+          "How will interpretation stay traceable?",
+          "Name the analytic approach, reflexive memos, source excerpts and contradictory cases."
+        ]
+      ],
+      "analysis": "Apply the chosen interpretive method to source material, retaining context, reflexivity and negative cases. Agreement statistics are not mandatory for every qualitative tradition.",
+      "steps": [
+        "Bound phenomenon and researcher position",
+        "Recruit and collect permitted material",
+        "Develop interpretations through documented analysis",
+        "Seek contradictory cases",
+        "Connect claims to contextual excerpts"
+      ],
+      "sources": [
+        "sigsoft",
+        "equator"
+      ],
+      "analysisSkill": "data-understanding"
+    },
+    "case-study": {
+      "label": "Contextual case study",
+      "family": "qualitative",
+      "goal": "understand",
+      "domains": [
+        "social",
+        "software",
+        "engineering",
+        "medical",
+        "environment",
+        "other"
+      ],
+      "fit": "You examine a bounded case in its real setting using multiple sources.",
+      "needs": "Case boundaries, selection rationale, access and a chain linking evidence to interpretation.",
+      "avoid": "One case is not a representative sample of every setting; case studies can use quantitative evidence too.",
+      "question": "How did one engineering team introduce a new inspection practice, and what shaped its use?",
+      "fields": [
+        [
+          "case",
+          "What bounds the case?",
+          "Define organization, event or system, time span and rationale for selection."
+        ],
+        [
+          "triangulation",
+          "How will sources be compared?",
+          "Specify documents, interviews or measures, conflicting evidence and alternative explanations."
+        ]
+      ],
+      "analysis": "Build a case account with triangulated evidence and alternative explanations. State the basis for analytical transfer rather than statistical generalization.",
+      "steps": [
+        "Define case and question",
+        "Plan evidence sources",
+        "Collect and retain a chain of evidence",
+        "Compare explanations",
+        "Report boundaries and transfer limits"
+      ],
+      "sources": [
+        "sigsoft"
+      ],
+      "analysisSkill": "data-understanding"
+    },
+    "systematic": {
+      "label": "Systematic review",
+      "family": "synthesis",
+      "goal": "synthesize",
+      "domains": [
+        "medical",
+        "engineering",
+        "software",
+        "social",
+        "environment",
+        "mathematics",
+        "other"
+      ],
+      "fit": "You need a reproducible answer to a focused question from eligible studies.",
+      "needs": "A protocol, searchable sources, eligibility, screening, extraction and risk-of-bias appraisal.",
+      "avoid": "Pooling is optional and requires compatible estimands and defensible assumptions.",
+      "question": "What do controlled studies show about reminders and missed appointments?",
+      "fields": [
+        [
+          "eligibility",
+          "Which studies can answer this question?",
+          "Define population, intervention/exposure, outcomes, designs and exclusions before screening."
+        ],
+        [
+          "synthesis-plan",
+          "How will evidence be combined?",
+          "Specify appraisal, duplicate handling, narrative or quantitative synthesis and heterogeneity."
+        ]
+      ],
+      "analysis": "Synthesize findings with bias and certainty limits; justify any meta-analysis and investigate heterogeneity. Record exclusions and avoid counting papers as votes.",
+      "steps": [
+        "Write protocol and eligibility",
+        "Search and retain queries",
+        "Screen with reasons",
+        "Extract and appraise",
+        "Synthesize with coverage and bias limits"
+      ],
+      "sources": [
+        "prisma",
+        "equator"
+      ],
+      "analysisSkill": "evidence-synthesis"
+    },
+    "scoping": {
+      "label": "Scoping review / evidence map",
+      "family": "synthesis",
+      "goal": "synthesize",
+      "domains": [
+        "medical",
+        "engineering",
+        "software",
+        "social",
+        "environment",
+        "mathematics",
+        "other"
+      ],
+      "fit": "You want to map concepts, methods and gaps across a broad area.",
+      "needs": "A bounded scope, systematic search and selection, and a charting framework.",
+      "avoid": "A map of available literature does not by itself establish intervention effectiveness.",
+      "question": "Which methods are used to evaluate research-planning tools, and what outcomes are measured?",
+      "fields": [
+        [
+          "scope",
+          "What concepts and settings are included?",
+          "Define the population or source type, concept and context."
+        ],
+        [
+          "charting",
+          "What will be charted?",
+          "Define categories, iterative changes, screening and coverage limitations."
+        ]
+      ],
+      "analysis": "Map the distribution of concepts and evidence with a transparent charting process. Do not present publication counts as quality or effectiveness.",
+      "steps": [
+        "Bound concepts and context",
+        "Search and screen transparently",
+        "Chart methods and outcomes",
+        "Map gaps without inventing absence",
+        "Report coverage and deviations"
+      ],
+      "sources": [
+        "equator"
+      ],
+      "analysisSkill": "evidence-synthesis"
+    },
+    "simulation": {
+      "label": "Computational simulation",
+      "family": "computational",
+      "goal": "model",
+      "domains": [
+        "engineering",
+        "environment",
+        "mathematics",
+        "software",
+        "medical",
+        "social",
+        "other",
+        "materials",
+        "chemistry",
+        "physics"
+      ],
+      "fit": "You study a system by executing an explicit model under controlled scenarios.",
+      "needs": "Equations or rules, parameters, numerical method, seeds and checks against known behavior.",
+      "avoid": "A model run is not an observation of the real system; calibration is not validation.",
+      "question": "How does time-step size affect Euler approximation of exponential decay?",
+      "fields": [
+        [
+          "model",
+          "What system and assumptions are represented?",
+          "Define equations, parameters, units, initial and boundary conditions."
+        ],
+        [
+          "verification",
+          "How will numerical and model error be separated?",
+          "Specify analytic checks, convergence, sensitivity and any external validation data."
+        ]
+      ],
+      "analysis": "Compare with analytical or independently verified cases, test convergence and vary assumptions. Report discretization and model uncertainty separately.",
+      "steps": [
+        "Define model and domain",
+        "Choose numerical method",
+        "Verify known cases",
+        "Run scenarios and sensitivity",
+        "Compare with real evidence only if available"
+      ],
+      "sources": [
+        "euler"
+      ],
+      "analysisSkill": "mathematical-analysis"
+    },
+    "proof": {
+      "label": "Mathematical proof / derivation",
+      "family": "computational",
+      "goal": "model",
+      "domains": [
+        "mathematics",
+        "software",
+        "engineering",
+        "other"
+      ],
+      "fit": "The claim follows from definitions and assumptions and needs a logically complete argument.",
+      "needs": "A precise statement, domains, definitions and valid inference steps.",
+      "avoid": "Numerical agreement or symbolic software output alone is not a proof of a general claim.",
+      "question": "Under what assumptions does a proposed recurrence have the claimed closed form?",
+      "fields": [
+        [
+          "statement",
+          "State the exact claim and domain",
+          "List quantified variables, assumptions and exceptional cases."
+        ],
+        [
+          "argument",
+          "What proof strategy and checks will you use?",
+          "Record lemmas, induction or construction, boundary cases and possible counterexamples."
+        ]
+      ],
+      "analysis": "Check each implication, boundary case and assumption; use symbolic or numerical tools as aids with their domains explicit. Distinguish a verified identity from an empirical conclusion.",
+      "steps": [
+        "Formalize the statement",
+        "Choose proof strategy",
+        "Establish lemmas and steps",
+        "Check boundary cases and counterexamples",
+        "State scope of the proven claim"
+      ],
+      "sources": [
+        "proof"
+      ],
+      "analysisSkill": "mathematical-analysis"
+    },
+    "game": {
+      "label": "Game-theory model",
+      "family": "game",
+      "goal": "model",
+      "domains": [
+        "mathematics",
+        "social",
+        "software",
+        "engineering",
+        "environment",
+        "medical",
+        "other"
+      ],
+      "fit": "Outcomes depend on decisions by interacting players with specified incentives.",
+      "needs": "Players, feasible strategies, payoffs, information, timing and a solution concept.",
+      "avoid": "Assumed payoffs and equilibrium calculations do not establish how people actually behave.",
+      "question": "Which pure-strategy equilibria exist under an explicitly stated two-player payoff matrix?",
+      "fields": [
+        [
+          "payoff-evidence",
+          "Where do incentives come from?",
+          "Separate assumed payoffs, measured estimates and institutional rules."
+        ],
+        [
+          "equilibrium-check",
+          "What deviations must be checked?",
+          "Specify pure or mixed strategies, information assumptions and alternative solution concepts."
+        ]
+      ],
+      "analysis": "Check unilateral deviations or the chosen equilibrium condition and vary payoffs. Report multiple or absent pure equilibria; do not rule out mixed solutions without checking.",
+      "steps": [
+        "Define players and rules",
+        "Specify payoff basis",
+        "Solve declared equilibrium conditions",
+        "Check deviations and sensitivity",
+        "Separate model conclusions from behavioral claims"
+      ],
+      "sources": [
+        "game"
+      ],
+      "analysisSkill": "mathematical-analysis"
+    },
+    "mixed": {
+      "label": "Mixed-methods study",
+      "family": "mixed",
+      "goal": "mixed",
+      "domains": [
+        "medical",
+        "engineering",
+        "software",
+        "social",
+        "environment",
+        "other"
+      ],
+      "fit": "The question needs both measurements and contextual accounts, with an explicit connection.",
+      "needs": "A rationale for both components, sequence or concurrency and an integration plan.",
+      "avoid": "Collecting a survey and interviews without integrating findings is not sufficient.",
+      "question": "Where does a planning tool cause delays, and how do users explain those delays?",
+      "fields": [
+        [
+          "sequence",
+          "How are the components connected?",
+          "Specify sequential or concurrent design, sampling links and which component informs the other."
+        ],
+        [
+          "integration",
+          "How will agreement and disagreement be interpreted?",
+          "Plan a joint display or other integration; retain conflicting findings and limits of each component."
+        ]
+      ],
+      "analysis": "Analyze each component with its own justified method, then integrate at the prespecified points. Keep discrepancies visible and bound combined inferences.",
+      "steps": [
+        "State why both forms of evidence are needed",
+        "Plan sampling and connection",
+        "Collect and analyze each component",
+        "Integrate results and contradictions",
+        "Explain combined and separate limitations"
+      ],
+      "sources": [
+        "sigsoft",
+        "equator"
+      ],
+      "analysisSkill": "data-understanding"
+    },
+    "survey": {
+      "label": "Survey / questionnaire study",
+      "family": "observational",
+      "goal": "observe",
+      "domains": [
+        "social",
+        "medical",
+        "software",
+        "engineering",
+        "environment",
+        "other"
+      ],
+      "fit": "You need structured responses about attitudes, practices or characteristics.",
+      "needs": "An instrument, target population, sampling frame, piloting and nonresponse plan.",
+      "avoid": "Convenience responses are not automatically representative; a questionnaire is a collection method, not proof of causality.",
+      "question": "Which data-management practices do researchers in a defined institution report using?",
+      "fields": [
+        [
+          "instrument",
+          "How are questions and constructs justified?",
+          "Use appropriate existing measures or document development and cognitive piloting."
+        ],
+        [
+          "response",
+          "How will participation bias be assessed?",
+          "Define invitations, denominators, response rate, missing items and weighting if warranted."
+        ]
+      ],
+      "analysis": "Analyze responses in relation to the sampling and measurement design. Report denominators and nonresponse, and avoid treating ordinal responses as interval data without justification.",
+      "steps": [
+        "Define constructs and population",
+        "Develop and pilot instrument",
+        "Sample and record invitations",
+        "Analyze with design-aware denominators",
+        "Assess measurement and nonresponse limits"
+      ],
+      "sources": [
+        "sigsoft",
+        "equator"
+      ],
+      "analysisSkill": "reproduce-analysis"
+    }
+  },
+  "examples": {
+    "noaa": {
+      "label": "NOAA monthly CO₂",
+      "domain": "environment",
+      "patterns": [
+        "time-series"
+      ],
+      "kind": "Real-data reanalysis",
+      "description": "How much did the equal-weight mean of NOAA Mauna Loa monthly CO₂ concentrations change from 2024 to 2025?",
+      "file": "examples/noaa.study.json",
+      "command": "python examples/noaa-co2/analyze.py --check",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/noaa-co2/README.md"
+    },
+    "diagnostic": {
+      "label": "Medical test arithmetic",
+      "domain": "medical",
+      "patterns": [
+        "diagnostic"
+      ],
+      "kind": "Synthetic calculation",
+      "description": "For a constructed 100-case table, what are sensitivity, specificity and predictive values at a fixed test threshold?",
+      "file": "examples/diagnostic.study.json",
+      "command": "python examples/study-patterns/analyze.py --example diagnostic --check",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/study-patterns/README.md#diagnostic"
+    },
+    "prediction": {
+      "label": "Prediction error comparison",
+      "domain": "software",
+      "patterns": [
+        "prediction"
+      ],
+      "kind": "Synthetic calculation",
+      "description": "How do absolute errors from supplied synthetic predictions compare with a fixed baseline?",
+      "file": "examples/prediction.study.json",
+      "command": "python examples/study-patterns/analyze.py --example prediction --check",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/study-patterns/README.md#prediction"
+    },
+    "benchmark": {
+      "label": "Software search benchmark",
+      "domain": "software",
+      "patterns": [
+        "benchmark"
+      ],
+      "kind": "Synthetic calculation",
+      "description": "How many array probes do linear and binary search use for four fixed queries on 16 sorted values?",
+      "file": "examples/benchmark.study.json",
+      "command": "python examples/study-patterns/analyze.py --example benchmark --check",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/study-patterns/README.md#benchmark"
+    },
+    "simulation": {
+      "label": "Decay simulation",
+      "domain": "mathematics",
+      "patterns": [
+        "simulation"
+      ],
+      "kind": "Mathematical demonstration",
+      "description": "Does halving the Euler step reduce final-value error for dy/dt = -0.5y over t = 0 to 2 with y(0) = 1?",
+      "file": "examples/simulation.study.json",
+      "command": "python examples/study-patterns/analyze.py --example simulation --check",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/study-patterns/README.md#simulation"
+    },
+    "factorial": {
+      "label": "Engineering factorial experiment",
+      "domain": "engineering",
+      "patterns": [
+        "factorial"
+      ],
+      "kind": "Synthetic calculation",
+      "description": "How do temperature and feed rate affect the yield of a manufacturing process?",
+      "file": "examples/factorial.study.json",
+      "command": "python examples/experimental-design/design.py --blocks 3 --seed 42 --demo",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/experimental-design/README.md"
+    },
+    "game": {
+      "label": "Two-player game model",
+      "domain": "mathematics",
+      "patterns": [
+        "game"
+      ],
+      "kind": "Mathematical demonstration",
+      "description": "Which pure-strategy equilibria exist under an explicitly stated two-player payoff matrix?",
+      "file": "examples/game.study.json",
+      "command": "python examples/game-theory/analyze.py --example coordination",
+      "guide": "https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/game-theory/README.md"
+    },
+    "interviews": {
+      "label": "Researcher workflow interviews",
+      "domain": "social",
+      "patterns": [
+        "interviews"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "How do researchers describe barriers when moving a study plan into actual analysis?",
+      "file": "examples/interviews.study.json",
+      "command": "python research.py designs --pattern interviews",
+      "guide": "designs.html#interviews"
+    },
+    "review": {
+      "label": "Appointment-reminder review plan",
+      "domain": "medical",
+      "patterns": [
+        "systematic"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "What do controlled studies show about reminders and missed appointments?",
+      "file": "examples/review.study.json",
+      "command": "python research.py designs --pattern systematic",
+      "guide": "designs.html#systematic"
+    },
+    "mixed": {
+      "label": "Planning-tool mixed-methods plan",
+      "domain": "software",
+      "patterns": [
+        "mixed"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "Where does a planning tool cause delays, and how do users explain those delays?",
+      "file": "examples/mixed.study.json",
+      "command": "python research.py designs --pattern mixed",
+      "guide": "designs.html#mixed"
+    },
+    "cohort": {
+      "label": "Return-to-work cohort plan",
+      "domain": "medical",
+      "patterns": [
+        "cohort"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "How does return-to-work over six months differ across baseline job conditions?",
+      "file": "examples/cohort.study.json",
+      "command": "python research.py designs --pattern cohort",
+      "guide": "designs.html#cohort"
+    },
+    "materials": {
+      "label": "Materials processing plan",
+      "domain": "materials",
+      "patterns": [
+        "factorial"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "Choose safe, justified factor levels, a baseline material, batch replication and specimen geometry; no levels or sample size are prescribed here.",
+      "file": "examples/materials.study.json",
+      "command": "python examples/experimental-design/design.py --blocks 3 --seed 42 --demo",
+      "guide": "materials.html"
+    },
+    "chemistry": {
+      "label": "Chemical kinetics plan",
+      "domain": "chemistry",
+      "patterns": [
+        "time-series"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "Define concentration measurement, blanks, calibration and independently prepared runs. The linked solver assumes exponential decay; it does not establish a mechanism.",
+      "file": "examples/chemistry.study.json",
+      "command": "python examples/study-patterns/analyze.py --example simulation --check",
+      "guide": "chemistry.html"
+    },
+    "physics": {
+      "label": "Physical measurement plan",
+      "domain": "physics",
+      "patterns": [
+        "time-series"
+      ],
+      "kind": "Unexecuted plan",
+      "description": "Specify the apparatus, background correction, time resolution, drift checks and correlated calibration uncertainty. The linked solver has no measured physical input.",
+      "file": "examples/physics.study.json",
+      "command": "python examples/study-patterns/analyze.py --example simulation --check",
+      "guide": "physics.html"
+    }
+  },
+  "guides": {
+    "medical": {
+      "title": "Medical and health",
+      "domain": "medical",
+      "intro": "Start with the patient, population or biological question, then determine the claim that your design can support.",
+      "choose": [
+        "Treatment effect: consider a randomized comparison when feasible and ethically justified; otherwise justify the identification strategy.",
+        "Exposure and outcome: distinguish follow-up cohorts, case-control sampling and a cross-sectional snapshot.",
+        "Test accuracy: define an appropriate reference standard and target population; prediction needs separate validation and calibration.",
+        "Evidence synthesis: choose a systematic review for a focused question or a scoping review to map evidence."
+      ],
+      "records": [
+        "Population, setting, eligibility, recruitment, time origin, exposure/intervention and comparator.",
+        "Primary estimand and outcome definition, measurement schedule, missing-data approach and precision/sample-size rationale.",
+        "Approval or exemption decision from the responsible body, consent process, privacy/access plan and applicable registration. Never invent these."
+      ],
+      "flow": [
+        "Frame the question and inspect prior evidence.",
+        "Write protocol and analysis plan; obtain the applicable approvals before recruitment or access.",
+        "Pilot measurement and records; collect according to the approved protocol.",
+        "Audit missingness and deviations, run the planned analysis, then sensitivity checks.",
+        "Report participant flow, findings, harms where relevant and limits; share only permitted data."
+      ],
+      "analysis": [
+        "Report effect estimates and uncertainty, not only significance.",
+        "For diagnostic work, inspect spectrum, reference misclassification and precision. A toy confusion matrix does not validate a clinical test."
+      ],
+      "formatting": [
+        "Use the design-specific reporting guideline from EQUATOR (for example CONSORT, STROBE or STARD); follow its current applicable extension.",
+        "Organize a research report around question, methods, results and interpretation. Include denominators, units and data-access details. Check the target journal for abstract structure and word limits."
+      ],
+      "completion": "A traceable protocol, authorized study records and supported results are needed before a completed research claim. The workbench provides no clinical authorization.",
+      "sources": [
+        "equator",
+        "icmje"
+      ],
+      "patterns": [
+        "randomized",
+        "cohort",
+        "case-control",
+        "diagnostic",
+        "systematic"
+      ],
+      "examples": [
+        "diagnostic",
+        "cohort",
+        "review"
+      ],
+      "sections": []
+    },
+    "engineering": {
+      "title": "Engineering",
+      "domain": "engineering",
+      "intro": "Separate a proposed artifact, a controlled performance test and evidence that it works in its intended setting.",
+      "choose": [
+        "Build or improve a device/process: use an artifact evaluation with explicit requirements.",
+        "Compare controllable factors: use a factorial design with independent experimental units and blocked nuisance variation.",
+        "Compare software or algorithms: use a benchmark with representative workloads and declared baselines."
+      ],
+      "records": [
+        "Requirement and acceptance criteria, units, load/environment envelope and failure definition.",
+        "Versioned drawings, configuration, bill of materials or software dependencies, calibration and operating conditions.",
+        "Independent specimens/runs, allocation, nuisance factors and exclusions; safety review where applicable."
+      ],
+      "flow": [
+        "Translate the problem into measurable requirements.",
+        "Choose a baseline and test envelope; plan replication and analysis before testing.",
+        "Build/version the artifact and validate the measurement chain.",
+        "Execute the test matrix and retain failed runs with reasons.",
+        "Compare performance and uncertainty against the requirement; report operating limits."
+      ],
+      "analysis": [
+        "Estimate main effects and interactions where the design supports them.",
+        "Separate within-device repeats from independent devices; check robustness across operating conditions."
+      ],
+      "formatting": [
+        "Include system schematic, test matrix, apparatus/configuration and requirements-to-results table.",
+        "Label units and tolerances; supply code/data versions and figure captions that explain independent sample counts. Use the relevant venue template after the evidence is stable."
+      ],
+      "completion": "A prototype or simulated improvement alone does not establish field reliability. State which conditions were actually tested.",
+      "sources": [
+        "nist",
+        "sigsoft"
+      ],
+      "patterns": [
+        "artifact",
+        "factorial",
+        "benchmark",
+        "simulation"
+      ],
+      "examples": [
+        "factorial",
+        "benchmark"
+      ],
+      "sections": []
+    },
+    "materials": {
+      "title": "Materials science",
+      "domain": "materials",
+      "intro": "Explain how processing and structure relate to the property you intend to measure.",
+      "choose": [
+        "Compare processing factors: consider a factorial experiment blocked by batch.",
+        "Characterize a material: specify which structural, compositional or property claim each instrument can support.",
+        "Predict properties: separate specimens or batches across validation splits to avoid leakage."
+      ],
+      "records": [
+        "Composition, supplier/lot, synthesis or processing history, storage, geometry and preparation.",
+        "Independent batches and specimens, allocation and characterization settings.",
+        "Raw spectra/images/curves, preprocessing, calibration, units and uncertainty components."
+      ],
+      "flow": [
+        "Define the property, application and smallest meaningful difference.",
+        "Plan independent batches, specimen allocation and a baseline material.",
+        "Prepare and characterize samples using documented procedures.",
+        "Measure the property; retain raw and processed data with specimen IDs.",
+        "Connect evidence across processing, structure and performance; test alternate explanations."
+      ],
+      "analysis": [
+        "Distinguish repeat readings from independent batches.",
+        "Avoid inferring bulk purity or uniformity from a single local measurement; examine heterogeneity and instrument limitations."
+      ],
+      "formatting": [
+        "Use a specimen table linking processing conditions, characterization and property tests.",
+        "Provide scale bars, axes/units, image-processing disclosure and uncertainty definitions; put reproducible preparation details and raw characterization in accessible supporting information."
+      ],
+      "completion": "A result needs specimen-linked observations. The materials example here is a plan; its linked factorial calculation uses synthetic responses.",
+      "sources": [
+        "rsc",
+        "gum",
+        "nist"
+      ],
+      "patterns": [
+        "factorial",
+        "prediction",
+        "simulation"
+      ],
+      "examples": [
+        "materials"
+      ],
+      "sections": []
+    },
+    "chemistry": {
+      "title": "Chemistry",
+      "domain": "chemistry",
+      "intro": "Choose organic, physical or experimental/analytical work below. The branches overlap; select the measurement or chemical claim that matters.",
+      "choose": [
+        "Organic: distinguish synthesis/identity/purity, a yield comparison and evidence for a proposed mechanism.",
+        "Physical: decide between measuring a relationship, estimating a rate/thermodynamic parameter and studying a theoretical model.",
+        "Experimental/analytical: define the measurand, matrix and intended use before calibrating or comparing a method."
+      ],
+      "records": [
+        "Chemical/sample identity, purity or concentration basis, batch, storage and relevant preparation conditions.",
+        "Apparatus and calibration, raw instrument files, processing steps and independent preparations.",
+        "Actual procedures and deviations, appropriate laboratory risk review, waste handling and required trained supervision."
+      ],
+      "flow": [
+        "State the chemical claim and inspect existing evidence.",
+        "Define controls, independent preparations and the measurement/analysis model.",
+        "Plan and authorize laboratory procedures locally; this guide is not an executable lab protocol.",
+        "Collect raw characterization or measurement records with identifiers.",
+        "Check model assumptions and alternate explanations; report limits and reproducible methods."
+      ],
+      "analysis": [
+        "Fit measured responses with an appropriate error model; inspect residuals and calibration range.",
+        "A fitted exponential does not by itself prove a reaction mechanism. Distinguish assumed model behavior from measured kinetics."
+      ],
+      "formatting": [
+        "Define symbols, concentrations, units and uncertainty; connect every plot or spectrum to a sample.",
+        "Report enough characterization and procedure information to assess the stated chemical claim. Follow the target journal for spectra, nomenclature and supporting-information layout."
+      ],
+      "completion": "No synthesis, characterization or laboratory observation is supplied by selecting a template. The example is an unexecuted kinetics plan linked to a mathematical ODE demonstration.",
+      "sources": [
+        "rsc",
+        "gum"
+      ],
+      "patterns": [
+        "factorial",
+        "time-series",
+        "simulation"
+      ],
+      "examples": [
+        "chemistry"
+      ],
+      "sections": [
+        {
+          "title": "Organic chemistry",
+          "text": "Record the reaction identity, actual conditions, isolation/quantification basis and independent preparations. Assess identity and purity with suitable characterization. Report unsuccessful attempts that affect the conclusion; yield alone cannot establish mechanism."
+        },
+        {
+          "title": "Physical chemistry",
+          "text": "Define state variables, equilibrium or kinetic assumptions, temperature control and the observable. Compare plausible models, fit parameters with uncertainty and examine residuals; document computational convergence when modelling."
+        },
+        {
+          "title": "Experimental and analytical chemistry",
+          "text": "Specify matrix, blanks, reference materials, calibration interval, recovery, precision and interference checks appropriate to intended use. Separate detection from quantification and document validation limits. Do not extrapolate a calibration beyond evidence."
+        }
+      ]
+    },
+    "physics": {
+      "title": "Experimental physics",
+      "domain": "physics",
+      "intro": "Turn the physical hypothesis into a measurable quantity and a traceable measurement model.",
+      "choose": [
+        "Measure a physical parameter: plan calibration, background and uncertainty propagation.",
+        "Test an apparatus change: compare controlled configurations while accounting for drift.",
+        "Compare a model with observations: define the prediction, fitting range and a check using evidence not used to tune the model."
+      ],
+      "records": [
+        "Measurand, units, apparatus diagram, instrument settings, calibration chain and acquisition timing.",
+        "Raw runs, backgrounds/blanks, environmental variables, exclusions and analysis code version.",
+        "Uncertainty budget including relevant correlations, independent runs and systematic contributions."
+      ],
+      "flow": [
+        "Derive the observable from the hypothesis and identify approximations.",
+        "Plan controls, instrument checks, independent runs and required resolution.",
+        "Acquire observations and calibration/background records.",
+        "Apply documented corrections and propagate uncertainty; inspect residuals and stability.",
+        "Compare the measured result with prediction and report the tested regime."
+      ],
+      "analysis": [
+        "Report uncertainty meaning, coverage assumptions and correlated terms; repeated readings do not remove systematic error.",
+        "Check model limits and numerical convergence. A small residual is not proof that all systematic effects are absent."
+      ],
+      "formatting": [
+        "Use defined symbols and consistent units; number equations referenced in prose.",
+        "Include apparatus schematic, calibration/uncertainty table, complete figure captions and a data/code availability statement. Check APS or the target venue for its actual template and figure requirements."
+      ],
+      "completion": "The physics example is a measurement plan. Its linked exponential-decay calculation verifies a solver, not a physical apparatus.",
+      "sources": [
+        "gum",
+        "aps"
+      ],
+      "patterns": [
+        "time-series",
+        "factorial",
+        "simulation"
+      ],
+      "examples": [
+        "physics"
+      ],
+      "sections": []
+    },
+    "theory": {
+      "title": "Theoretical research",
+      "domain": "mathematics",
+      "intro": "Theoretical work is an approach across disciplines. Choose the subject area in Plan and define whether you need a proof, a model or a numerical calculation.",
+      "choose": [
+        "A universal mathematical claim needs stated assumptions and a proof or counterexample.",
+        "A numerical model needs equations, boundary/initial conditions, approximation error and convergence checks.",
+        "Strategic interaction needs players, actions, information, payoffs and a solution concept; choose game theory only when those features answer the question."
+      ],
+      "records": [
+        "Definitions, variable domains, units where relevant, assumptions and the precise claim.",
+        "Derivations and dependency on prior theorems with inspected sources.",
+        "Versioned symbolic/numerical code, precision, seeds, boundary cases and counterexamples."
+      ],
+      "flow": [
+        "State the problem and known results.",
+        "Choose formal assumptions and derive consequences step by step.",
+        "Test simple and degenerate cases; seek counterexamples.",
+        "Verify the proof or computation and check sensitivity to assumptions.",
+        "Explain the scope; distinguish mathematical truth within a model from empirical adequacy."
+      ],
+      "analysis": [
+        "A finite set of successful computations does not prove a universal theorem.",
+        "Check unilateral deviations for claimed Nash equilibria; inspect sensitivity to assumed payoffs and multiple solutions."
+      ],
+      "formatting": [
+        "Introduce notation before use, state theorem assumptions together, and separate proof from interpretation.",
+        "Number equations, label approximations, and provide runnable code for computed claims. Attach validation records rather than reporting a tool response as proof."
+      ],
+      "completion": "An inspectable derivation or executed calculation can be research without collecting participants. It must still answer a substantive question and disclose its assumptions.",
+      "sources": [
+        "proof",
+        "euler",
+        "game"
+      ],
+      "patterns": [
+        "proof",
+        "simulation",
+        "game"
+      ],
+      "examples": [
+        "game",
+        "simulation"
+      ],
+      "sections": []
+    },
+    "research-papers": {
+      "title": "Research papers",
+      "domain": "other",
+      "intro": "Write from completed records. A paper is a report of work; selecting a format does not conduct the study.",
+      "choose": [
+        "Original empirical work: organize around the research question, actual methods, findings and interpretation.",
+        "Theory or artifact work: adapt the outline to definitions/derivation or design/evaluation; keep the claim-to-evidence link.",
+        "If work has not been executed, write a protocol or proposal and label it explicitly."
+      ],
+      "records": [
+        "Question and protocol history, actual methods, evidence and claims ledgers, and outputs.",
+        "Limitations, deviations, negative results, contributions, funding/conflicts and data/code access."
+      ],
+      "flow": [
+        "Audit which claims the evidence supports.",
+        "Prepare methods and result tables from records.",
+        "Draft the introduction and discussion around those findings.",
+        "Write an accurate abstract, check every citation and complete applicable reporting guidance.",
+        "Apply the venue format and obtain the necessary author and methodological review."
+      ],
+      "analysis": [
+        "Trace every quantitative sentence to an output and its denominator/uncertainty.",
+        "Do not turn planned work or literature background into observed results."
+      ],
+      "formatting": [
+        "Use meaningful headings and consistent citation style; distinguish tables, figures and supplementary records.",
+        "The Write panel exports Markdown or Quarto (.qmd). Quarto can render HTML or Word locally; journal templates and reference styles are separate choices. No automatic submission or journal certification is supplied."
+      ],
+      "completion": "The exported file is an authoring scaffold containing your recorded text. It remains a draft until an accountable author verifies its claims, sources and reporting.",
+      "sources": [
+        "icmje",
+        "quarto"
+      ],
+      "patterns": [
+        "cohort",
+        "artifact",
+        "proof"
+      ],
+      "examples": [
+        "noaa"
+      ],
+      "sections": []
+    },
+    "review-papers": {
+      "title": "Review papers",
+      "domain": "other",
+      "intro": "A review is a study of existing evidence. Its search, selection and synthesis are part of the method.",
+      "choose": [
+        "Systematic review: answer a focused question with explicit eligibility, reproducible search and critical appraisal.",
+        "Scoping review: map the extent and characteristics of evidence; use the appropriate PRISMA extension.",
+        "Narrative review: explain scope and source-selection limits; do not label it systematic or exhaustive without the corresponding method.",
+        "Meta-analysis is optional: pool only scientifically compatible estimates with a justified statistical model."
+      ],
+      "records": [
+        "Protocol and changes, databases and complete searches with dates, deduplication and screening records.",
+        "Eligibility, excluded full texts with reasons, extracted data and source locations.",
+        "Appraisal method, disagreements, synthesis decisions, missing evidence and limitations."
+      ],
+      "flow": [
+        "Define the review question and check whether an update or new synthesis is needed.",
+        "Specify eligibility, search, screening, extraction and appraisal before selection.",
+        "Run searches and document the flow of records; resolve screening/extraction differences.",
+        "Appraise and synthesize the included evidence without hiding disagreement.",
+        "Report the process, results, certainty limitations and any updates to the protocol."
+      ],
+      "analysis": [
+        "Check duplicate cohorts, incompatible outcomes, selective reporting and dependence before pooling.",
+        "Count studies separately from reports. A long reference list is neither a search method nor evidence certainty."
+      ],
+      "formatting": [
+        "For systematic reviews, use PRISMA 2020 and the relevant extension; include the flow diagram, included-study table and complete search strategy.",
+        "Use a structured Methods and Synthesis section. Narrative reviews should state selection limitations; avoid implying all relevant evidence was found. The review scaffold prompts these records without inventing them."
+      ],
+      "completion": "A review can be original research without new experiments. It needs an executed, inspectable evidence-selection and synthesis process.",
+      "sources": [
+        "prisma",
+        "equator"
+      ],
+      "patterns": [
+        "systematic",
+        "scoping"
+      ],
+      "examples": [
+        "review"
+      ],
+      "sections": []
+    }
+  },
+  "papers": {
+    "research": {
+      "label": "Research paper",
+      "guide": "research-papers",
+      "sections": [
+        [
+          "Introduction",
+          "Explain the problem, inspected prior evidence, gap and the question addressed."
+        ],
+        [
+          "Methods",
+          "Describe what was actually done, using the protocol and analysis records; disclose changes and measurement/analysis limits."
+        ],
+        [
+          "Results",
+          "Report observed or derived findings, denominators, uncertainty and negative results. Planned outputs remain unobserved."
+        ],
+        [
+          "Discussion",
+          "Interpret findings against verified evidence; explain alternatives and implications without extending the claim beyond the design."
+        ]
+      ]
+    },
+    "review": {
+      "label": "Review paper",
+      "guide": "review-papers",
+      "sections": [
+        [
+          "Introduction",
+          "State the review question, review type and why this synthesis is needed."
+        ],
+        [
+          "Search and eligibility",
+          "Report the executed databases, complete queries, dates, restrictions and inclusion/exclusion criteria."
+        ],
+        [
+          "Screening and extraction",
+          "Describe deduplication, reviewers, disagreement resolution, full-text exclusions and extraction records."
+        ],
+        [
+          "Appraisal and synthesis methods",
+          "State the actual appraisal and synthesis process, including pooling decisions and protocol deviations."
+        ],
+        [
+          "Review findings",
+          "Report study/report flow, included-study characteristics, appraisals and synthesis with traceable source IDs."
+        ],
+        [
+          "Discussion",
+          "Explain disagreement, evidence gaps and limits of coverage, bias and certainty; distinguish absence of evidence from evidence of absence."
+        ]
+      ]
+    }
+  }
+}

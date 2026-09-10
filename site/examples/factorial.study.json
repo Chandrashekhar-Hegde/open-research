@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "title": "Engineering factorial experiment",
+  "question": "How do temperature and feed rate affect the yield of a manufacturing process?",
+  "classification": {
+    "domain": "engineering",
+    "subarea": "materials",
+    "goal": "effect",
+    "pattern": "factorial"
+  },
+  "patternNotes": {
+    "factorial": {}
+  },
+  "method": "experiment",
+  "stage": "analyze",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Rehearse an explicit calculation before adapting a protocol to real research. These inputs are constructed teaching data, not collected observations.",
+    "sample": "Fixed teaching fixture, not a sample-size recommendation or a representative population.",
+    "safeguards": "Synthetic public inputs under the repository license; no participants, clinical validation or research approval implied.",
+    "validation": "Recompute using the command in Analyze and compare with the frozen output. Inspect invalid-input tests and the domain-specific limits.",
+    "review": "Self-check through code and known-answer tests; no independent research review.",
+    "units": "Twelve planned runs in three blocks with two coded factors.",
+    "comparison": "How do temperature and feed rate affect the yield of a manufacturing process?",
+    "outcome": "High-minus-low factor contrasts in artificial response units.",
+    "procedure": "Randomize a full 2×2 design within three blocks; generate responses from the documented noiseless equation; compute contrasts.",
+    "analysis": "Estimate factor and interaction contrasts using the actual design; account for blocks and inspect residuals. A noiseless demonstration cannot supply uncertainty for a real process.",
+    "sources": "examples/experimental-design/README.md; documented fixture definition and code.",
+    "data": "python examples/experimental-design/design.py --blocks 3 --seed 42 --demo; synthetic/model output.",
+    "limitations": "Define physical levels and independent experimental units. No power or significance claim.",
+    "interpretation": "A worked model calculation only. No measurements or behavior were observed.",
+    "results": "{\n  \"kind\": \"synthetic demonstration\",\n  \"seed\": 42,\n  \"blocks\": 3,\n  \"runs\": [\n    {\n      \"run\": 1,\n      \"block\": 1,\n      \"a\": 1,\n      \"b\": -1,\n      \"response\": 9\n    },\n    {\n      \"run\": 2,\n      \"block\": 1,\n      \"a\": -1,\n      \"b\": 1,\n      \"response\": 11\n    },\n    {\n      \"run\": 3,\n      \"block\": 1,\n      \"a\": 1,\n      \"b\": 1,\n      \"response\": 17\n    },\n    {\n      \"run\": 4,\n      \"block\": 1,\n      \"a\": -1,\n      \"b\": -1,\n      \"response\": 7\n    },\n    {\n      \"run\": 5,\n      \"block\": 2,\n      \"a\": 1,\n      \"b\": 1,\n      \"response\": 18\n    },\n    {\n      \"run\": 6,\n      \"block\": 2,\n      \"a\": 1,\n      \"b\": -1,\n      \"response\": 10\n    },\n    {\n      \"run\": 7,\n      \"block\": 2,\n      \"a\": -1,\n      \"b\": -1,\n      \"response\": 8\n    },\n    {\n      \"run\": 8,\n      \"block\": 2,\n      \"a\": -1,\n      \"b\": 1,\n      \"response\": 12\n    },\n    {\n      \"run\": 9,\n      \"block\": 3,\n      \"a\": -1,\n      \"b\": 1,\n      \"response\": 13\n    },\n    {\n      \"run\": 10,\n      \"block\": 3,\n      \"a\": 1,\n      \"b\": 1,\n      \"response\": 19\n    },\n    {\n      \"run\": 11,\n      \"block\": 3,\n      \"a\": 1,\n      \"b\": -1,\n      \"response\": 11\n    },\n    {\n      \"run\": 12,\n      \"block\": 3,\n      \"a\": -1,\n      \"b\": -1,\n      \"response\": 9\n    }\n  ],\n  \"limits\": \"Define physical levels and independent experimental units. No power or significance claim.\",\n  \"effects_high_minus_low\": {\n    \"a\": 4,\n    \"b\": 6,\n    \"ab\": 2\n  },\n  \"generating_equation\": \"10 + 2*a + 3*b + a*b + block; no random error\"\n}",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

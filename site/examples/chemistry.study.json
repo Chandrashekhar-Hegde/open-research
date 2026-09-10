@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "title": "Chemical kinetics plan",
+  "question": "Does a first-order decay model adequately describe the concentration-time observations under the chosen controlled conditions?",
+  "classification": {
+    "domain": "chemistry",
+    "subarea": "physical",
+    "goal": "observe",
+    "pattern": "time-series"
+  },
+  "patternNotes": {
+    "time-series": {}
+  },
+  "method": "observational",
+  "stage": "plan",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Unexecuted teaching plan. Choose organic, physical or experimental/analytical work below. The branches overlap; select the measurement or chemical claim that matters.",
+    "procedure": "Planned, not conducted:\n1. State the chemical claim and inspect existing evidence.\n2. Define controls, independent preparations and the measurement/analysis model.\n3. Plan and authorize laboratory procedures locally; this guide is not an executable lab protocol.\n4. Collect raw characterization or measurement records with identifiers.\n5. Check model assumptions and alternate explanations; report limits and reproducible methods.",
+    "analysis": "Planned: Fit measured responses with an appropriate error model; inspect residuals and calibration range. A fitted exponential does not by itself prove a reaction mechanism. Distinguish assumed model behavior from measured kinetics.",
+    "limitations": "No laboratory study or observations have been conducted. Define concentration measurement, blanks, calibration and independently prepared runs. The linked solver assumes exponential decay; it does not establish a mechanism.",
+    "sample": "Sampling and sample rationale have not been chosen.",
+    "safeguards": "Access, consent and applicable review must be resolved for the actual setting.",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed.",
+    "data": "Required records: Chemical/sample identity, purity or concentration basis, batch, storage and relevant preparation conditions. Apparatus and calibration, raw instrument files, processing steps and independent preparations. Actual procedures and deviations, appropriate laboratory risk review, waste handling and required trained supervision."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

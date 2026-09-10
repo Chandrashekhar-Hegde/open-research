@@ -60,6 +60,10 @@ def main():
     parser.add_argument('--external', action='store_true', help='also report network link status; not a CI gate')
     args = parser.parse_args()
     errors, urls = check_links(ROOT)
+    from build_catalog import outputs
+    for path, expected in outputs().items():
+        if not path.exists() or path.read_text(encoding='utf-8') != expected:
+            errors.append(f'Stale generated catalog/page: {path.name}; run python scripts/build_catalog.py')
     skills = list((ROOT / 'skills').glob('*/SKILL.md'))
     if not skills:
         errors.append('no research skills found')

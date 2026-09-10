@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "title": "Appointment-reminder review plan",
+  "question": "What do controlled studies show about reminders and missed appointments?",
+  "classification": {
+    "domain": "medical",
+    "subarea": "services",
+    "goal": "synthesize",
+    "pattern": "systematic"
+  },
+  "patternNotes": {
+    "systematic": {}
+  },
+  "method": "synthesis",
+  "stage": "plan",
+  "host": "standalone",
+  "answers": {
+    "purpose": "An illustrative protocol starting point. Resolve the actual context and feasibility before gathering evidence.",
+    "procedure": "Planned sequence, not conducted:\n1. Write protocol and eligibility\n2. Search and retain queries\n3. Screen with reasons\n4. Extract and appraise\n5. Synthesize with coverage and bias limits",
+    "analysis": "Planned, not executed: Synthesize findings with bias and certainty limits; justify any meta-analysis and investigate heterogeneity. Record exclusions and avoid counting papers as votes.",
+    "limitations": "No observations, interviews, search results or findings have been collected. Pooling is optional and requires compatible estimands and defensible assumptions.",
+    "sample": "Sampling and sample rationale have not been chosen.",
+    "safeguards": "Access, consent and applicable review must be resolved for the actual setting.",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

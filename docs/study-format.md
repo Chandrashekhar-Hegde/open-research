@@ -115,7 +115,57 @@ incomplete; see [academic writing](academic-writing.md).
 ## Browser import
 
 `python research.py import-browser draft.study.json studies/new-study` converts
-a version-1 browser backup into a new local study. See [setup](tool-setup.md).
+a version-1 or version-2 browser backup into a new local study. See [setup](tool-setup.md).
 It preserves the exact question, imports protocol and analysis notes, and retains
 the full original backup. Evidence notes must be turned into verified ledgers by
 the researcher. The destination must be new; missing metadata stays incomplete.
+
+## Classification and browser version 2
+
+New browser backups have `version: 2`. The existing version-1 format still loads;
+the browser adds an undecided classification and empty pattern notes while
+preserving the question, method, stage, answers, designs, checks and next actions.
+New backups preserve:
+
+```json
+{
+  "classification": {
+    "domain": "medical",
+    "subarea": "clinical",
+    "goal": "predict",
+    "pattern": "diagnostic"
+  },
+  "patternNotes": {
+    "diagnostic": {"reference": "Actual reference procedure", "spectrum": "Sampling decisions"}
+  }
+}
+```
+
+This is a field excerpt, not a complete backup. IDs come from the
+[canonical catalog](../catalog/study-designs.json). `undecided` is permitted.
+A subsection must belong to its area; a selected pattern must match its goal
+and broad method. Domains order candidates, never prohibit cross-disciplinary
+methods. Unknown IDs, mismatched selections and malformed notes are rejected.
+Changing goals clears the selected pattern/method but retains prior notes;
+changing area clears its subsection. Changing classification clears Plan,
+Analyze, Write and Review checks. Nothing silently reruns or reinterprets results.
+
+Pattern decisions live under `patternNotes[pattern]`, separate from the existing
+broad `designs[method]` notes. Markdown exports the selected pattern's decisions;
+JSON retains inactive notes. Copy and download use the same study serializer.
+
+The CLI's local manifest remains `schema_version: 1`, with an optional validated
+`classification` object. Old manifests without it remain valid. Import copies
+classification into the manifest and protocol and retains the full browser
+backup, including inactive notes. It creates an incomplete draft, not a release.
+Use the current CLI to import version 2; older versions do not understand it.
+
+`python research.py designs` lists areas, goals and explained candidates;
+`--domain`, `--goal` and `--pattern` narrow the guidance. `init` accepts `--domain`,
+`--subarea` and `--pattern`; it derives the goal from the chosen pattern and still
+requires the actual protocol, data and evidence. No observations are fabricated.
+
+Classified local initialization/import also writes `guide.md` when a matching
+subject path exists. It is guidance, not evidence or a completed protocol.
+Paper kind and file format in Write are export preferences and are not stored
+in browser JSON. Re-select them after reloading or opening another study.

@@ -38,3 +38,10 @@ Use [academic-writing](../skills/academic-writing/SKILL.md) for a draft or revis
 that is grounded in the supplied study. Ask for unsupported statements to be
 flagged, not smoothed into authoritative prose. Preserve attribution and disclose
 AI assistance according to the venue and actual work performed.
+
+## Subject and paper paths
+
+Use [the eight guide paths](guide-paths.md) for field-specific records and work
+sequences, and [manuscript formats](manuscript-formats.md) for research/review
+scaffolds in Markdown or Quarto. The same catalog is available locally with
+`python research.py guides --path chemistry`.

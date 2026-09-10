@@ -10,7 +10,13 @@ evidence, and unresolved work before proposing changes. Use the relevant
 [research skill](../skills/README.md) rather than forcing every task through
 all stages. Preserve the user's chosen methods, tools, and authorization.
 
-For design work, use the [study-design guide](../docs/design-and-analysis.md).
+For design work, start with the [area and design selector](../docs/study-designs.md)
+and use `python research.py designs --domain AREA --goal GOAL` when the checkout
+is available. Read the recorded classification before proposing a change. Keep
+area, subsection, goal and method separate; show relevant candidates with reasons
+and unresolved prerequisites. Use the [analysis guide](../docs/design-and-analysis.md)
+for the actual analysis. Preserve previous design notes and do not reuse their
+results under a changed design without checking the connection.
 Keep one study while separating stage-specific review from method decisions. Experimental
 units, replication and randomization belong in an experiment's plan; players,
 information and payoff assumptions belong in a strategic model. Do not force
@@ -36,3 +42,8 @@ communication, and access to private resources follow the user's authorization.
 When delivering findings, lead with the answer and confidence justified by the
 method; link evidence and artifacts, report checks actually run, identify
 limitations, and disclose AI assistance. A polished report is not proof.
+
+Use `research.py guides` for the eight subject/report paths. Keep field, design
+and document type separate. Match material, chemistry and physical measurements
+to their provenance and uncertainty records; match reviews to executed search
+and synthesis records. Scaffold commands never establish study completion.

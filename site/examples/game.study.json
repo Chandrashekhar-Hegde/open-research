@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "title": "Two-player game model",
+  "question": "Which pure-strategy equilibria exist under an explicitly stated two-player payoff matrix?",
+  "classification": {
+    "domain": "mathematics",
+    "subarea": "decision",
+    "goal": "model",
+    "pattern": "game"
+  },
+  "patternNotes": {
+    "game": {}
+  },
+  "method": "game",
+  "stage": "analyze",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Rehearse an explicit calculation before adapting a protocol to real research. These inputs are constructed teaching data, not collected observations.",
+    "sample": "Fixed teaching fixture, not a sample-size recommendation or a representative population.",
+    "safeguards": "Synthetic public inputs under the repository license; no participants, clinical validation or research approval implied.",
+    "validation": "Recompute using the command in Analyze and compare with the frozen output. Inspect invalid-input tests and the domain-specific limits.",
+    "review": "Self-check through code and known-answer tests; no independent research review.",
+    "units": "Two players with two strategies each; utility numbers are assumptions.",
+    "comparison": "Which pure-strategy equilibria exist under an explicitly stated two-player payoff matrix?",
+    "outcome": "Pure-strategy Nash equilibria in the stated payoff matrix.",
+    "procedure": "Enumerate all four strategy pairs and check each player’s unilateral deviations.",
+    "analysis": "Check unilateral deviations or the chosen equilibrium condition and vary payoffs. Report multiple or absent pure equilibria; do not rule out mixed solutions without checking.",
+    "sources": "examples/game-theory/README.md; documented fixture definition and code.",
+    "data": "python examples/game-theory/analyze.py --example coordination; synthetic/model output.",
+    "limitations": "Only pure strategies checked. An empty list does not rule out mixed equilibria. No empirical behavior predicted.",
+    "interpretation": "A worked model calculation only. No measurements or behavior were observed.",
+    "results": "{\n  \"kind\": \"mathematical model; payoffs are assumptions\",\n  \"payoffs\": [\n    [\n      [\n        2,\n        2\n      ],\n      [\n        0,\n        0\n      ]\n    ],\n    [\n      [\n        0,\n        0\n      ],\n      [\n        1,\n        1\n      ]\n    ]\n  ],\n  \"pure_equilibria_zero_based\": [\n    [\n      0,\n      0\n    ],\n    [\n      1,\n      1\n    ]\n  ],\n  \"limits\": \"Only pure strategies checked. An empty list does not rule out mixed equilibria. No empirical behavior predicted.\"\n}",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

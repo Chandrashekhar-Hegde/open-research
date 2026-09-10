@@ -1,0 +1,29 @@
+{
+  "kind": "prediction",
+  "rows": [
+    {
+      "id": "1",
+      "actual": 8,
+      "predicted": 9,
+      "baseline": 10
+    },
+    {
+      "id": "2",
+      "actual": 10,
+      "predicted": 10,
+      "baseline": 10
+    },
+    {
+      "id": "3",
+      "actual": 12,
+      "predicted": 11,
+      "baseline": 10
+    },
+    {
+      "id": "4",
+      "actual": 14,
+      "predicted": 12,
+      "baseline": 10
+    }
+  ]
+}

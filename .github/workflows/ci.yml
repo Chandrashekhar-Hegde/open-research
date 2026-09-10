@@ -44,6 +44,9 @@ jobs:
         with:
           version: '1.10.18'
       - run: quarto render examples/academic-writing/paper.qmd --to html
+      - run: python research.py draft examples/noaa-co2 --kind research --format quarto --output build/paper.qmd
+      - run: quarto render build/paper.qmd --to html
+      - run: quarto render build/paper.qmd --to docx
   pages:
     name: Publish GitHub Pages
     needs: [check, examples]

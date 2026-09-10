@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "title": "Prediction error comparison",
+  "question": "How do absolute errors from supplied synthetic predictions compare with a fixed baseline?",
+  "classification": {
+    "domain": "software",
+    "subarea": "ai",
+    "goal": "predict",
+    "pattern": "prediction"
+  },
+  "patternNotes": {
+    "prediction": {
+      "split": "No fitting or tuning occurs. The fixture evaluates supplied predictions only; a real project needs a protected split and leakage audit.",
+      "metrics": "Mean absolute error; no calibration, subgroup reliability or uncertainty estimate from four rows."
+    }
+  },
+  "method": "computational",
+  "stage": "analyze",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Rehearse an explicit calculation before adapting a protocol to real research. These inputs are constructed teaching data, not collected observations.",
+    "sample": "Fixed teaching fixture, not a sample-size recommendation or a representative population.",
+    "safeguards": "Synthetic public inputs under the repository license; no participants, clinical validation or research approval implied.",
+    "validation": "Recompute using the command in Analyze and compare with the frozen output. Inspect invalid-input tests and the domain-specific limits.",
+    "review": "Self-check through code and known-answer tests; no independent research review.",
+    "units": "Four independent fixture rows, with arbitrary-unit targets 8, 10, 12 and 14.",
+    "comparison": "How do absolute errors from supplied synthetic predictions compare with a fixed baseline?",
+    "outcome": "Mean absolute error in target units.",
+    "procedure": "Inspect supplied targets and predictions; compare both prediction columns with the same targets; average absolute errors without fitting any model.",
+    "analysis": "Compare with a declared baseline on the same held-out units; report uncertainty, calibration or error distribution and failures. Association or accuracy alone does not establish clinical or social benefit.",
+    "sources": "Local constructed fixture: examples/study-patterns/inputs/prediction.json; all entries.",
+    "data": "Input: examples/study-patterns/inputs/prediction.json. Code: examples/study-patterns/analyze.py. Expected output: examples/study-patterns/results/prediction.json.",
+    "limitations": "Synthetic supplied predictions in arbitrary units; no model was trained. This arithmetic does not establish a valid split, calibration, generalization or benefit.",
+    "interpretation": "The computed quantities describe this fixture only; they do not establish a finding about patients, deployed systems or the physical world.",
+    "results": "{\n  \"kind\": \"prediction\",\n  \"evidence_type\": \"synthetic or mathematical demonstration\",\n  \"n\": 4,\n  \"model_mae\": 1,\n  \"baseline_mae\": 2,\n  \"mae_reduction\": 1,\n  \"limits\": \"Synthetic supplied predictions in arbitrary units; no model was trained. This arithmetic does not establish a valid split, calibration, generalization or benefit.\",\n  \"input_sha256\": \"eedb76093879397f7ed706413cea9b15ea6970f680554d7551bbbce00432a25a\"\n}",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

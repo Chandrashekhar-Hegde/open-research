@@ -1,4 +1,5 @@
-import {hostSetup,stages,methods,STORAGE_KEY,MAX_FILE_SIZE,emptyStudy,decodeStudy,hasContent,fieldsFor,missingFor,studySections,studyMarkdown,fileStem,assistantBrief} from './study.mjs?v=tools-1';
+import {manuscript} from './manuscript.mjs?v=designs-2';
+import {catalog,designCandidates,setClassification,selectedPattern,hostSetup,stages,methods,STORAGE_KEY,MAX_FILE_SIZE,emptyStudy,decodeStudy,hasContent,fieldsFor,missingFor,studySections,studyMarkdown,fileStem,assistantBrief} from './study.mjs?v=designs-2';
 const $=id=>document.getElementById(id);
 let study=emptyStudy(), storageBlocked=false;
 try {
@@ -31,26 +32,35 @@ function buildPanels(){
     panel.append(node('h2',stage.title),node('p',stage.help,'panel-help'));
     const guide=node('a','Method guidance →','guide-link');guide.href='https://github.com/Chandrashekhar-Hegde/open-research/blob/main/docs/'+stage.guide;panel.append(guide);
     if(key==='plan'){
-      const wrap=node('div',undefined,'field'),label=node('label','Study design'),select=node('select');label.htmlFor='method';select.id='method';
+      buildClassifier(panel);
+      const advanced=node('details');advanced.append(node('summary','I already know the broad method / custom design'));
+      const wrap=node('div',undefined,'field'),label=node('label','Broad method'),select=node('select');label.htmlFor='method';select.id='method';
       for(const [value,{label}] of Object.entries(methods)){const option=node('option',label);option.value=value;select.append(option);}select.value=study.method;
-      select.addEventListener('change',()=>{study.method=select.value;resetReview('plan');buildDesignFields();save();updateOutput();});wrap.append(label,select,node('p','Changing design keeps the notes you entered for other designs.','hint'));panel.append(wrap);
+      select.addEventListener('change',()=>{study.method=select.value;study.classification.pattern='undecided';clearDependentReviews();refreshClassifier();buildDesignFields();refreshAnalysis();save();updateOutput();});
+      wrap.append(label,select,node('p','Use the guided choices above for a specific pattern. A custom method needs its own selection rationale.','hint'));advanced.append(wrap);panel.append(advanced);
       const design=node('div');design.id='design-fields';panel.append(design);
     }
-    for(const [id,label,hint] of stage.fields)field(panel,'answer-'+id,label,hint,study.answers[id]||'',value=>{study.answers[id]=value;resetReview(key);});
+    if(key==='write')buildWriter(panel);
+    if(key==='analyze'){const guide=node('div');guide.id='analysis-guidance';panel.append(guide);}
+    for(const [id,label,hint] of stage.fields)field(panel,'answer-'+id,label,hint,study.answers[id]||'',value=>{study.answers[id]=value;if(key==='plan')clearDependentReviews();else resetReview(key);});
     const review=node('fieldset',undefined,'stage-review');review.append(node('legend','Review for '+stage.label));
     stage.checks.forEach((text,i)=>{const label=node('label'),box=node('input');box.type='checkbox';box.checked=study.checks[key]?.[i]===true;box.addEventListener('change',()=>{study.checks[key]??=stage.checks.map(()=>false);study.checks[key][i]=box.checked;save();updateOutput();});label.append(box,node('span',text));review.append(label);});
     review.append(node('p','These are your review notes, not automatic validation. Editing this stage clears its checks; changing the question clears all stage checks.','hint'));panel.append(review);
     field(panel,'next-'+key,'Next action for '+stage.label,'Record the next concrete action, owner or unresolved decision.',study.next[key]||'',value=>study.next[key]=value);
     $('stage-panels').append(panel);
   }
-  buildDesignFields();
+  refreshClassifier();buildDesignFields();refreshAnalysis();
 }
 function buildDesignFields(){
   const container=$('design-fields');container.replaceChildren();
   if(study.method==='undecided'){container.append(node('p','Select a design to record the specific decisions your protocol needs.','notice'));return;}
   container.append(node('h3',methods[study.method].label+' decisions'));
   const guidance=node('a','How to conduct this study: steps, analysis and limits →','guide-link');guidance.href='guide.html#'+study.method;container.append(guidance);
-  for(const [id,label,hint] of methods[study.method].fields)field(container,'design-'+id,label,hint,study.designs[study.method]?.[id]||'',value=>{study.designs[study.method]??={};study.designs[study.method][id]=value;resetReview('plan');});
+  if(selectedPattern(study)){
+    container.append(node('h3',selectedPattern(study).label+' — your decisions'));
+    for(const [id,label,hint] of selectedPattern(study).fields)field(container,'pattern-'+id,label,hint,study.patternNotes[study.classification.pattern]?.[id]||'',value=>{study.patternNotes[study.classification.pattern]??={};study.patternNotes[study.classification.pattern][id]=value;clearDependentReviews();});
+  }
+  for(const [id,label,hint] of methods[study.method].fields)field(container,'design-'+id,label,hint,study.designs[study.method]?.[id]||'',value=>{study.designs[study.method]??={};study.designs[study.method][id]=value;clearDependentReviews();});
 }
 function selectStage(key){study.stage=key;showStage();save();updateOutput();}
 function showStage(){
@@ -58,16 +68,11 @@ function showStage(){
   document.querySelector('.editor-layout').classList.toggle('review-mode',study.stage==='share');
   if(study.stage==='share')$('preview-details').open=true;
 }
-const examples={
-  experiment:['python examples/experimental-design/design.py --blocks 3 --seed 42','A teaching schedule only: 12 planned runs. It does not choose the sample size or generate observations for your study.','experimental-design'],
-  game:['python examples/game-theory/analyze.py','Checks pure equilibria for toy payoffs. It does not estimate payoffs or predict real behavior.','game-theory'],
-  computational:['python -m pip install -r examples/mathematics/requirements.txt\npython examples/mathematics/verify.py','Optional SymPy demonstration. Use a virtual environment; these are known-answer examples.','mathematics'],
-  default:['python examples/paired-measurements/analyze.py --check','Reproduces eight synthetic pairs. This is separate from the observations in your study.','paired-measurements']
-};
 function updateOutput(){
   const ready=Boolean(study.question.trim()),stage=stages[study.stage],missing=missingFor(study,study.stage),fields=fieldsFor(study,study.stage);
+  updateManuscript();
   $('json-preview').textContent=JSON.stringify(study,null,2);
-  $('output-title').textContent=study.title.trim()||'Untitled study';$('output-question').textContent=ready?study.question:'Enter your research question to start.';$('output-method').textContent=methods[study.method].label;
+  $('output-title').textContent=study.title.trim()||'Untitled study';$('output-question').textContent=ready?study.question:'Enter your research question to start.';$('output-method').textContent=(selectedPattern(study)?.label||methods[study.method].label)+(study.classification.domain!=='undecided'?' · '+catalog.domains[study.classification.domain].label:'');
   $('output-status').textContent='Working draft · '+fields.filter(f=>f.value.trim()).length+' of '+fields.length+' fields recorded in '+stage.label+'.';
   $('missing-title').textContent='Next for '+stage.label;$('missing-fields').replaceChildren(...(missing.length?missing.map(label=>node('li',label)):[node('li','All fields in this stage have text. Review the evidence and assumptions before relying on it.')]));
   $('copy-study').disabled=!ready;$('download-study').disabled=!ready;$('copy-brief').disabled=!ready||study.host==='standalone';
@@ -83,7 +88,7 @@ function updateOutput(){
   $('assistant-preview').textContent=ready?assistantBrief(study):'Enter your question first.';
   $('setup-command').textContent=hostSetup(study.host);
   $('host-guide').href='tools.html#'+(['claude','codex','opencode'].includes(study.host)?study.host:'baseline');
-  const [command,limit,guide]=examples[study.method]||examples.default;$('example-command').textContent=command;$('example-limit').textContent=limit;$('example-guide').href='https://github.com/Chandrashekhar-Hegde/open-research/blob/main/examples/'+guide+'/README.md';
+  $('example-command').textContent='python research.py designs --pattern '+(study.classification.pattern==='undecided'?'time-series':study.classification.pattern);$('example-limit').textContent='Lists design guidance without running an analysis. Open Analyze to choose a worked example.';$('example-guide').href='designs.html';
 }
 function populate(){
   $('study-title').value=study.title;$('question').value=study.question;$('host').value=study.host;buildPanels();showStage();updateOutput();
@@ -118,15 +123,110 @@ $('import-file').addEventListener('change',async()=>{
 window.addEventListener('storage',event=>{
   if(event.key===STORAGE_KEY){storageBlocked=true;$('storage-warning').hidden=false;$('storage-warning').textContent='This draft changed in another tab. Saving here is paused so neither version is overwritten. Save a JSON backup of this tab, then reload to open the other tab’s draft.';$('save-status').textContent='Another tab changed the saved draft — saving paused.';}
 });
+for(const [id,e] of Object.entries(catalog.examples||{})){const option=node('option',e.label+' — '+e.kind);option.value=id;$('example-choice').append(option);}
 populate();
 if(storageBlocked)$('save-status').textContent='Not saved to browser storage — use JSON backup.';
 else if(hasContent(study))$('save-status').textContent='Restored your saved study from this device.';
 
-$('load-example').addEventListener('click',async()=>{
-  try{
-    const response=await fetch('noaa.study.json');if(!response.ok)throw new Error('Could not load example');
-    const imported=decodeStudy(await response.text());
-    if((hasContent(study)||storageBlocked)&&!confirm('Open the NOAA study and replace this draft? Save editable JSON first if you need your current work.'))return;
-    study=imported;storageBlocked=false;$('storage-warning').hidden=true;populate();save();$('export-status').textContent='Opened the real-data NOAA reanalysis. Read the walkthrough for source, code and limits.';
-  }catch(error){$('export-status').textContent=error.message;}
-});
+$('load-example').addEventListener('click',()=>loadExample($('example-choice').value));
+
+function clearDependentReviews(){for(const key of ['plan','analyze','write','share'])resetReview(key);}
+function selectControl(parent,id,label,options,value,onChange){
+ const wrap=node('div',undefined,'field'),lab=node('label',label),select=node('select');lab.htmlFor=id;select.id=id;
+ for(const [key,text] of options){const opt=node('option',text);opt.value=key;select.append(opt);}select.value=value;
+ select.addEventListener('change',()=>onChange(select.value));wrap.append(lab,select);parent.append(wrap);return select;
+}
+function changeClassification(key,value){
+ setClassification(study,key,value);clearDependentReviews();
+ // State checks have been reset; update rendered boxes too.
+ for(const stage of ['plan','analyze','write','share'])document.querySelectorAll('#panel-'+stage+' input[type="checkbox"]').forEach(b=>b.checked=false);
+ refreshClassifier();$('method').value=study.method;buildDesignFields();refreshAnalysis();save();updateOutput();
+}
+function buildClassifier(panel){
+ const box=node('section',undefined,'design-picker');box.setAttribute('aria-label','Choose a study design');
+ box.append(node('h3','Start with your research area'),node('p','Area tells us the setting. Your goal helps identify a design. You can change either without deleting your notes.','hint'));
+ const row=node('div',undefined,'classification-row');
+ selectControl(row,'research-area','1. What area are you working in?',Object.entries(catalog.domains).map(([k,v])=>[k,v.label]),study.classification.domain,v=>changeClassification('domain',v));
+ selectControl(row,'research-subarea','Subsection',[['undecided','Choose a subsection (optional)']],study.classification.subarea,v=>changeClassification('subarea',v));box.append(row);
+ const context=node('p',undefined,'domain-context');context.id='domain-context';box.append(context);const path=node('a');path.id='area-guide';path.className='guide-link';box.append(path);
+ selectControl(box,'research-goal','2. What do you want to find out?',Object.entries(catalog.goals).map(([k,v])=>[k,v.label]),study.classification.goal,v=>changeClassification('goal',v));
+ const goalHelp=node('p',undefined,'hint');goalHelp.id='goal-help';box.append(goalHelp);
+ const heading=node('h3','3. Choose the situation that matches your study');box.append(heading);
+ const choices=node('div',undefined,'design-candidates');choices.id='design-candidates';box.append(choices);
+ const status=node('p',undefined,'hint');status.id='design-selection-status';status.setAttribute('role','status');box.append(status);
+ const guide=node('a','Compare all areas and designs →');guide.href='designs.html';box.append(guide);panel.append(box);
+ // The classifier has been attached, so named controls can now be updated.
+ refreshClassifier();
+}
+function refreshClassifier(){
+ if(!$('research-area'))return;
+ const c=study.classification,area=catalog.domains[c.domain];$('research-area').value=c.domain;$('research-goal').value=c.goal;
+ $('research-subarea').replaceChildren(...[['undecided','Choose a subsection (optional)'],...Object.entries(area.subareas)].map(([key,label])=>{const opt=node('option',label);opt.value=key;return opt;}));$('research-subarea').value=c.subarea;$('research-subarea').disabled=c.domain==='undecided';
+ $('area-guide').href=area.guide?area.guide+'.html':'paths.html';$('area-guide').textContent=area.guide?'Follow the '+catalog.guides[area.guide].title+' guide →':'Browse the research guide paths →';
+ $('domain-context').textContent=area.context;$('goal-help').textContent=catalog.goals[c.goal].help;
+ const choices=$('design-candidates');choices.replaceChildren();
+ if(c.goal==='undecided')choices.append(node('p','Choose your goal above. You do not need to know a study-design name.','notice'));
+ else for(const [id,p] of designCandidates(c.domain,c.goal)){
+  const card=node('article',undefined,'design-option');card.classList.toggle('chosen',c.pattern===id);
+  card.append(node('h4',p.label),node('p',p.fit));
+  const details=node('details');details.append(node('summary','What this needs and when to reconsider'),node('p','Requires: '+p.needs),node('p','Reconsider when: '+p.avoid));card.append(details);
+  const choose=node('button',c.pattern===id?'Selected':'Use this design');choose.type='button';choose.id='choose-'+id;choose.setAttribute('aria-pressed',String(c.pattern===id));choose.setAttribute('aria-label',(c.pattern===id?'Selected: ':'Use ')+p.label);
+  choose.addEventListener('click',()=>{changeClassification('pattern',id);$('choose-'+id).focus({preventScroll:true});});card.append(choose);choices.append(card);
+ }
+ $('design-selection-status').textContent=selectedPattern(study)?'Selected: '+selectedPattern(study).label+'. Notes from other designs remain in your JSON backup. Recheck existing analysis and results after changing design.':'No specific design selected yet. Choose a situation above or describe a custom design below.';
+}
+function relevantExamples(){return Object.entries(catalog.examples||{}).filter(([,e])=>study.classification.pattern==='undecided'||e.patterns.includes(study.classification.pattern));}
+function refreshAnalysis(){
+ const box=$('analysis-guidance');if(!box)return;box.replaceChildren();const p=selectedPattern(study);
+ box.append(node('h3',p?'Analysis for '+p.label:'Choose a design to get analysis guidance'));
+ if(p){box.append(node('p',p.analysis,'analysis-direction'));const steps=node('ol');for(const step of p.steps)steps.append(node('li',step));box.append(steps);
+  const plan=node('button','Open an example plan for '+p.label);plan.type='button';plan.addEventListener('click',()=>loadPatternPlan(study.classification.pattern));box.append(plan,node('p','This is an illustrative plan with no results. It opens only after you confirm replacing your draft.','hint'));
+ }else box.append(node('p','Use Plan to select a research area, goal and design. No statistical test is selected automatically.'));
+ box.append(node('h3','Worked examples for this design'));
+ const entries=relevantExamples();
+ if(!entries.length)box.append(node('p','No executed example is supplied for this specific pattern yet. Use the example plan above; collect and analyze actual evidence before claiming results.','notice'));
+ for(const [id,e] of entries){const card=node('article',undefined,'analysis-example');card.append(node('h4',e.label),node('p',e.kind,'example-kind'),node('p',e.description));
+  const cmd=node('pre',e.command);cmd.tabIndex=0;card.append(cmd);const open=node('button','Open '+e.label);open.type='button';open.addEventListener('click',()=>loadExample(id));card.append(open);
+  const link=node('a','Data, code and limits →');link.href=e.guide;card.append(link);box.append(card);
+ }
+ const library=node('a','Browse all study examples →');library.href='examples.html';box.append(library);
+}
+function replaceStudy(imported,message){
+ if((hasContent(study)||storageBlocked)&&!confirm('Replace your current draft with this example? Save editable JSON first to keep your work.'))return;
+ study=imported;storageBlocked=false;$('storage-warning').hidden=true;populate();save();$('export-status').textContent=message;
+}
+async function loadExample(id){
+ try{const e=catalog.examples[id];if(!e)throw new Error('Choose an example first.');const response=await fetch(e.file);if(!response.ok)throw new Error('Could not load example.');replaceStudy(decodeStudy(await response.text()),'Opened '+e.label+' — '+e.kind+'. Read its code and limits.');}
+ catch(error){$('export-status').textContent=error.message;}
+}
+function loadPatternPlan(id){
+ const p=catalog.patterns[id],example=emptyStudy();example.title='Example plan: '+p.label;example.question=p.question;example.stage='plan';
+ setClassification(example,'domain',study.classification.domain==='undecided'?p.domains[0]:study.classification.domain);setClassification(example,'pattern',id);
+ example.answers={purpose:'Illustrative study plan for learning this design. Adapt the question and justify it for your setting; no study has been conducted.',procedure:'Planned sequence:\n'+p.steps.map((s,i)=>(i+1)+'. '+s).join('\n'),analysis:'Planned approach (not executed): '+p.analysis,limitations:'No observations or results have been collected for this example plan. '+p.avoid};
+ replaceStudy(example,'Opened an unexecuted '+p.label+' plan. Supply your actual setting, decisions and evidence.');
+}
+
+function buildWriter(panel){
+ const box=node('section',undefined,'manuscript-tools');box.append(node('h3','Create a manuscript scaffold'),node('p','Choose a paper type and file format. Your question and entered records are included; you must write and verify the manuscript. Export choices affect this file only.','hint'));
+ selectControl(box,'paper-kind','Paper type',Object.entries(catalog.papers).map(([id,p])=>[id,p.label]),study.method==='synthesis'?'review':'research',()=>updateManuscript());
+ selectControl(box,'paper-format','File format',[['markdown','Markdown (.md)'],['quarto','Quarto (.qmd) — render HTML or Word locally']],'markdown',()=>updateManuscript());
+ const link=node('a');link.id='paper-guide';box.append(link);
+ const structure=node('ul');structure.id='paper-structure';box.append(structure);
+ const button=node('button','Download manuscript scaffold');button.type='button';button.id='download-manuscript';button.addEventListener('click',()=>download(manuscript(study,$('paper-kind').value,$('paper-format').value),'.'+$('paper-kind').value+($('paper-format').value==='quarto'?'.qmd':'.md'),'text/plain;charset=utf-8'));box.append(button);
+ const details=node('details');details.append(node('summary','Preview / manually copy manuscript scaffold'));const preview=node('pre');preview.id='manuscript-preview';preview.tabIndex=0;details.append(preview);box.append(details);
+ const formats=node('a','Formatting, citations and rendering instructions →');formats.href='formats.html';box.append(formats);panel.append(box);
+}
+function updateManuscript(){
+ if(!$('paper-kind'))return;
+ const kind=$('paper-kind').value,p=catalog.papers[kind];$('paper-guide').href=p.guide+'.html';$('paper-guide').textContent='Read the '+p.label.toLowerCase()+' guide →';
+ $('paper-structure').replaceChildren(...p.sections.map(([heading,guidance])=>node('li',heading+': '+guidance)));
+ $('download-manuscript').disabled=!study.question.trim();$('manuscript-preview').textContent=study.question.trim()?manuscript(study,kind,$('paper-format').value):'Enter your research question first. Missing results will remain marked as not recorded.';
+}
+
+const route=new URLSearchParams(window.location.search);
+if(route.has('example')){const id=route.get('example');if(Object.hasOwn(catalog.examples,id))loadExample(id);else $('export-status').textContent='Unknown example. Choose one from the library.';}
+else if(route.has('design')){const id=route.get('design');if(Object.hasOwn(catalog.patterns,id)){changeClassification('pattern',id);selectStage('plan');}else $('export-status').textContent='Unknown design. Use the guided selector in Plan.';}
+else if(route.has('area')){const area=route.get('area');if(Object.hasOwn(catalog.domains,area)){changeClassification('domain',area);selectStage('plan');}}
+else if(route.has('paper')){const kind=route.get('paper');if(Object.hasOwn(catalog.papers,kind)){$('paper-kind').value=kind;selectStage('write');}}
+else if(route.get('stage')==='plan')selectStage('plan');
+if(route.has('example')||route.has('design')||route.has('stage')||route.has('area')||route.has('paper'))history.replaceState(null,'',window.location.pathname+window.location.hash);

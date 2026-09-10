@@ -191,3 +191,19 @@ or model response is an environment failure, not a finding. Keep claims unverifi
 when sources or computations cannot be checked.
 
 [Observed integration results and limits](integration-verification.md).
+
+## Design-aware task handoffs
+
+The editor now includes area, subsection, goal and selected pattern. Analyze
+routes proofs/simulations/games to mathematical analysis, reviews to evidence
+synthesis, qualitative/mixed interpretation to data understanding, and executable
+comparisons to reproduction. Inspect routes review evidence to evidence synthesis.
+These routes choose an instruction procedure, not a statistical test or approval.
+Use `python research.py designs --pattern PATTERN` for the same guidance locally.
+
+## Subject and paper paths
+
+Use [the eight guide paths](guide-paths.md) for field-specific records and work
+sequences, and [manuscript formats](manuscript-formats.md) for research/review
+scaffolds in Markdown or Quarto. The same catalog is available locally with
+`python research.py guides --path chemistry`.

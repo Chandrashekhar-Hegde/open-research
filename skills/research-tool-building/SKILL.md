@@ -23,3 +23,25 @@ Return working code, checks and limitations. Add a focused skill only when
 an assistant needs guidance selecting the tool and interpreting its output.
 Do not create a model provider, hosted service, or MCP wrapper unless the
 requested integration needs it. Preserve the user's permissions and scope.
+
+## Keep browser and CLI design guidance aligned
+
+In Open Research, edit `catalog/study-designs.json` for classification and example
+metadata, then run `python scripts/build_catalog.py`. Do not edit the generated
+browser catalog or design reference directly. Run the generator with `--check`,
+exercise the actual CLI import and a malformed classification, and preserve old
+backups. A new calculation needs declared evidence type, inputs, units, known
+answer, failure case and links from its appropriate pattern; avoid a generic
+function that selects statistical tests without study assumptions.
+
+## Follow the subject and report paths
+
+When working in an Open Research checkout, inspect `python research.py guides`
+and the selected path with `--path medical`, `engineering`, `materials`,
+`chemistry`, `physics`, `theory`, `research-papers` or `review-papers`. Match the
+required records and checks to the actual claim; theoretical work crosses fields.
+Chemistry includes organic, physical and experimental/analytical branches.
+
+Update the canonical `catalog/study-designs.json`, run
+`python scripts/build_catalog.py`, and test Python and browser choices together.
+Do not maintain different field or manuscript outlines for different hosts.

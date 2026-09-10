@@ -111,3 +111,6 @@ help someone resume or inspect the work. A short study needs a short record.
 Do not add forms solely to complete a process. Keep the original question,
 important decisions, actual inputs/outputs, checks, limitations and next step.
 See [the daily workflow](daily-workflow.md) for local commands.
+
+See [research areas and 20 design patterns](study-designs.md) for selection criteria,
+subsections, work sequences and the connected example library.

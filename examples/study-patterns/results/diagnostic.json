@@ -1,0 +1,17 @@
+{
+  "kind": "diagnostic",
+  "evidence_type": "synthetic or mathematical demonstration",
+  "table": {
+    "tp": 18,
+    "fn": 2,
+    "fp": 8,
+    "tn": 72
+  },
+  "n": 100,
+  "sensitivity": 0.9,
+  "specificity": 0.9,
+  "positive_predictive_value": 0.6923076923076923,
+  "negative_predictive_value": 0.972972972972973,
+  "limits": "Synthetic counts, no clinical validation or uncertainty interval. Null means undefined denominator. Predictive values depend on the sampled prevalence.",
+  "input_sha256": "b19ea52c68dce96889549643bc1813d50ae1ff3bdd1d240ffb4c65df5628c675"
+}

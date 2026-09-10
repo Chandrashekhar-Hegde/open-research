@@ -28,3 +28,20 @@ Verify every material citation against the exact location. Inspect selected
 extractions for transcription errors. Return the search/screening record,
 evidence ledger, claim ledger, synthesis, and coverage limits. Use CSV or
 Markdown; follow an existing study format when one is supplied.
+
+## Match the review to its purpose
+
+Read the selected research area and review pattern. A systematic review answers
+a focused eligible-study question; a scoping review maps concepts and coverage.
+Use `python research.py designs --pattern systematic` or `--pattern scoping` in
+an Open Research checkout. Apply the actual protocol and relevant reporting
+guidance. Neither option makes pooling mandatory or fills missing searches,
+appraisal, extraction, quotations or study findings automatically.
+
+## Follow the subject and report paths
+
+When working in an Open Research checkout, inspect `python research.py guides`
+and the selected path with `--path medical`, `engineering`, `materials`,
+`chemistry`, `physics`, `theory`, `research-papers` or `review-papers`. Match the
+required records and checks to the actual claim; theoretical work crosses fields.
+Chemistry includes organic, physical and experimental/analytical branches.

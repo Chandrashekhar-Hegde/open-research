@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "title": "Materials processing plan",
+  "question": "How do curing temperature and filler fraction affect the tensile response of independently prepared composite batches?",
+  "classification": {
+    "domain": "materials",
+    "subarea": "polymers",
+    "goal": "effect",
+    "pattern": "factorial"
+  },
+  "patternNotes": {
+    "factorial": {}
+  },
+  "method": "experiment",
+  "stage": "plan",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Unexecuted teaching plan. Explain how processing and structure relate to the property you intend to measure.",
+    "procedure": "Planned, not conducted:\n1. Define the property, application and smallest meaningful difference.\n2. Plan independent batches, specimen allocation and a baseline material.\n3. Prepare and characterize samples using documented procedures.\n4. Measure the property; retain raw and processed data with specimen IDs.\n5. Connect evidence across processing, structure and performance; test alternate explanations.",
+    "analysis": "Planned: Distinguish repeat readings from independent batches. Avoid inferring bulk purity or uniformity from a single local measurement; examine heterogeneity and instrument limitations.",
+    "limitations": "No laboratory study or observations have been conducted. Choose safe, justified factor levels, a baseline material, batch replication and specimen geometry; no levels or sample size are prescribed here.",
+    "sample": "Sampling and sample rationale have not been chosen.",
+    "safeguards": "Access, consent and applicable review must be resolved for the actual setting.",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed.",
+    "data": "Required records: Composition, supplier/lot, synthesis or processing history, storage, geometry and preparation. Independent batches and specimens, allocation and characterization settings. Raw spectra/images/curves, preprocessing, calibration, units and uncertainty components."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

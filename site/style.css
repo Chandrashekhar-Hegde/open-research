@@ -12,3 +12,12 @@ html{overflow-anchor:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .skill-recipes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem}.skill-recipes article{border:1px solid var(--line);border-radius:5px;padding:1rem}.skill-recipes h3{margin-top:0}.skill-recipes code{overflow-wrap:anywhere}
+
+.classification-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.design-picker{background:#f3f7f2;border:1px solid var(--line);border-radius:7px;padding:1rem;margin:1rem 0}.design-picker h3{margin-top:.4rem}.design-picker .field{margin:.6rem 0 1rem}.domain-context{font-size:.9rem;color:var(--muted)}.design-candidates{display:grid;gap:.8rem}.design-option,.design-reference,.analysis-example{background:white;border:1px solid var(--line);border-radius:6px;padding:1rem;margin:.5rem 0}.design-option.chosen{border:2px solid var(--accent);background:#edf7ee}.design-option h4,.analysis-example h4{margin:0;font-size:1.05rem}.design-option p{font-size:.95rem;margin:.5rem 0}.design-option button{margin-top:.6rem}.design-option[aria-pressed=true]{background:var(--accent)}.analysis-direction{border-left:3px solid var(--accent);padding:.7rem 1rem;background:var(--soft)}.analysis-example a{display:block;margin-top:.6rem}.example-kind{font-size:.78rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.03em}.example-picker{display:grid;grid-template-columns:minmax(160px,1fr) auto;gap:.5rem;max-width:550px}.example-picker label,.example-picker>a{grid-column:1/-1;font-size:.85rem}.start-strip{align-items:center;gap:1rem}.design-reference{margin:1rem 0}.guide-page>section{margin:2rem 0}.guide-page .skill-recipes h2{font-size:1.3rem}@media(max-width:650px){.classification-row{grid-template-columns:1fr}.example-picker{grid-template-columns:1fr;width:100%}.example-picker label,.example-picker>a{grid-column:auto}.design-picker{padding:.8rem}.start-strip{align-items:stretch}}
+
+.path-contents {display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;padding:1rem 0;border-bottom:1px solid var(--line,#dce2df);margin-bottom:1rem}
+.manuscript-tools {padding:1rem;margin:1.2rem 0;background:var(--paper,#f7f9f7);border:1px solid var(--line,#dce2df);border-radius:.6rem}
+.manuscript-tools select {max-width:100%}
+.manuscript-tools pre {max-height:28rem;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.guide-page pre {overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.guide-page li {margin:.65rem 0}

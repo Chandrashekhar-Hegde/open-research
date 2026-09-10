@@ -1,0 +1,35 @@
+{
+  "kind": "benchmark",
+  "evidence_type": "synthetic or mathematical demonstration",
+  "n": 16,
+  "queries": [
+    {
+      "query": 0,
+      "found": true,
+      "linear_probes": 1,
+      "binary_probes": 4
+    },
+    {
+      "query": 14,
+      "found": true,
+      "linear_probes": 8,
+      "binary_probes": 1
+    },
+    {
+      "query": 30,
+      "found": true,
+      "linear_probes": 16,
+      "binary_probes": 5
+    },
+    {
+      "query": 31,
+      "found": false,
+      "linear_probes": 16,
+      "binary_probes": 5
+    }
+  ],
+  "total_linear_probes": 41,
+  "total_binary_probes": 15,
+  "limits": "A probe inspects one array element, not one CPU operation. Deterministic synthetic workload; no elapsed-time or general-performance claim. Sorting costs are excluded.",
+  "input_sha256": "1b7a8c0c8455584a409e625c7fa241953a12dd720a57d5df9ac7e2478372a3de"
+}

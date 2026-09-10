@@ -115,7 +115,7 @@ def journal(study, note, next_action):
     return record
 
 
-def draft(study):
+def draft(study, kind=None, output_format="markdown"):
     from research import check_study, load_table, local_file
     study = Path(study).resolve()
     errors = check_study(study)
@@ -124,21 +124,33 @@ def draft(study):
     meta = json.loads(local_file(study, 'study.json').read_text(encoding='utf-8'))
     claims = load_table(local_file(study, 'claims.csv'), ['claim_id', 'claim', 'source_ids', 'status', 'limitations'])
     sources = load_table(local_file(study, 'evidence.csv'), ['source_id', 'title', 'url', 'accessed', 'locator', 'notes'])
+    from study_catalog import CATALOG
+    if kind is None:
+        kind = 'review' if meta.get('classification', {}).get('pattern') in ('systematic', 'scoping') else 'research'
+    if kind not in CATALOG['papers'] or output_format not in ('markdown', 'quarto'):
+        raise ValueError('Unknown manuscript kind or format')
+    paper = CATALOG['papers'][kind]
     lines = ['# '+meta['title'], '', '> Authoring scaffold from recorded evidence. Not a finished manuscript.', '',
-             '## Research question', '', meta['question'], '', '## Abstract', '',
-             '[Author: summarize the actual design, results, uncertainty, and limitations after verification.]', '',
-             '## Methods', '', '[Author: describe the method actually used from protocol.md and analysis-plan.md; disclose deviations.]', '',
-             '## Recorded findings', '']
+             'Paper type: ' + paper['label'], '', '## Research question', '', meta['question'], '',
+             '## Abstract', '', '[Author: summarize actual work only after the evidence is verified.]', '']
+    for heading, guidance in paper['sections']:
+        lines += ['## ' + heading, '', '[Author: ' + guidance + ']', '']
+    lines += ['## Recorded findings', '']
+    if 'classification' in meta:
+        from study_catalog import classification_text
+        lines += ['### Research classification', '', classification_text(meta['classification']), '']
     if not claims:
         lines += ['No claims recorded. Gather and verify evidence before writing conclusions.', '']
     for row in claims:
         lines += [f"- **{row['claim_id']} — {row['status']}**: {row['claim']}",
                   f"  Evidence IDs: {row['source_ids'] or 'none'}. Limitations: {row['limitations']}"]
-    lines += ['', '## Discussion', '', '[Author: compare findings with verified literature; separate interpretation from observation.]', '',
-              '## Limitations', '', '[Author: explain bias, uncertainty, missing evidence, and generalization limits.]', '',
+    lines += ['', '## Limitations', '', '[Author: explain bias, uncertainty, missing evidence, and generalization limits.]', '',
               '## Evidence inventory', '']
     for row in sources:
         lines += [f"- {row['source_id']}: {row['title']}. Location: {row['locator']}. Source: {row['url']}. Accessed: {row['accessed']}. {row['notes']}"]
     lines += ['', '## Availability and disclosure', '', f"Recorded license: {meta['license']}. Data access: {meta['data_access']}",
               '', '[Author: verify redistribution rights, funding/conflicts, authorship, and ai-use.md before sharing.]', '']
-    return '\n'.join(lines)
+    text = '\n'.join(lines)
+    if output_format == 'quarto':
+        text = '---\ntitle: ' + json.dumps(meta['title'], ensure_ascii=False) + '\nformat:\n  html:\n    toc: true\n  docx: default\nexecute:\n  enabled: false\n---\n\n' + '\n'.join(lines[2:])
+    return text

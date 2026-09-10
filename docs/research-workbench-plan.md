@@ -95,3 +95,9 @@ The [integration plan](integration-plan.md) adds named host setup, installation
 targets, executable workflow checks and a public tools guide. The
 [verification record](integration-verification.md) reports actual execution and
 untested hosts separately. Tool names describe supported usage, not authorship.
+
+## Classification and example follow-up
+
+The [study design plan](study-design-plan.md) adds area, subsection, goal and
+specific-pattern guidance, versioned backups, a shared CLI catalog and a
+classified library with distinct evidence labels.

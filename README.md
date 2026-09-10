@@ -13,7 +13,7 @@ CLI, method guidance, reusable task procedures, and code you can inspect and run
 ## Your first study
 
 1. Define the question and who needs the answer.
-2. Use the [methodology guide](docs/methodology.md) to choose and justify a design.
+2. In Plan, choose your area and subsection, describe your goal, and compare the explained design choices.
 3. Record the protocol before collecting or analyzing outcomes; date changes.
 4. Inspect permitted sources/data, execute the analysis, and retain the outputs.
 5. Write supported claims, limitations and implications; review before sharing.
@@ -22,6 +22,44 @@ The editor follows **Research → Plan → Inspect → Analyze → Write → Rev
 You can revisit stages without losing notes. Each has its own review checks.
 Missing evidence stays missing. Save editable JSON to back up or move your draft;
 the hosted editor stores one draft on your device and uploads nothing.
+
+## Choose your area and design
+
+Plan separates **research area → subsection → goal → design**. Choose among
+medical/health, engineering, materials science, chemistry, experimental physics,
+software/computing, social/behavioral,
+environment/agriculture, mathematics and other/interdisciplinary work. The
+[20-pattern guide](docs/study-designs.md) explains when each design fits, what
+inputs it needs and how its analysis works. Areas provide context, not automatic
+method selection. Analyze shows the selected pattern and relevant examples.
+
+```sh
+python research.py designs --domain medical --goal predict
+python research.py designs --pattern diagnostic
+python research.py init studies/test-study --title "My test question" --domain medical --subarea clinical --pattern diagnostic
+```
+
+[Browse 14 examples](https://chandrashekhar-hegde.github.io/open-research/examples.html):
+one real-data reanalysis, six executed synthetic/mathematical demonstrations,
+and seven unexecuted plans. Each is labeled; no plan is presented as a completed
+study. Changing a design preserves notes and clears affected review checks.
+
+## Follow a guide and write the report
+
+[Eight guide paths](docs/guide-paths.md) cover medical/health, engineering,
+materials, chemistry (organic, physical and experimental), experimental physics,
+theory, research papers and review papers. Each links decisions, records, study
+flow, analysis and formatting. Theoretical work crosses subject areas.
+
+```sh
+python research.py guides --path chemistry
+python research.py draft examples/noaa-co2 --kind research --format quarto --output build/paper.qmd
+```
+
+Write also exports Markdown or Quarto scaffolds with your actual question and
+notes. [Formatting and rendering](docs/manuscript-formats.md) explains citations,
+figures, equations and optional HTML/Word rendering. Missing evidence is never
+filled in automatically.
 
 ## Run a real reanalysis
 

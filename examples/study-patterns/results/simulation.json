@@ -1,0 +1,13 @@
+{
+  "kind": "simulation",
+  "evidence_type": "synthetic or mathematical demonstration",
+  "equation": "dy/dt = -rate*y",
+  "exact_final": 0.36787944117144233,
+  "steps": 20,
+  "euler_final": 0.3584859224085422,
+  "half_step_final": 0.3632324398878806,
+  "absolute_error": 0.009393518762900122,
+  "half_step_error": 0.004647001283561714,
+  "limits": "Mathematical decay model with assumed parameters; no empirical validation. This one convergence check does not validate another solver or model.",
+  "input_sha256": "022632f03f6d1c07160e82b01da57f635a856ac0c2721b6ad03b4eec657051da"
+}

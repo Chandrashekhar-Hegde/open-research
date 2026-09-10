@@ -6,6 +6,8 @@ procedure; the linked Python files implement the available operations.
 
 | Work | Procedure | Actual code / command | Record produced or required |
 | --- | --- | --- | --- |
+| Select a design | [Area and goal guide](study-designs.md) | [Catalog CLI](../scripts/study_catalog.py): `python research.py designs --domain engineering --goal effect` | Explained patterns; selection still needs justified prerequisites |
+| Rehearse pattern calculations | [Teaching examples](../examples/study-patterns/README.md) | [Executable calculations](../examples/study-patterns/analyze.py) | Diagnostic table, prediction error, search probes and numerical convergence; synthetic/model inputs |
 | Frame and plan | [research-protocol](../skills/research-protocol/SKILL.md) | [CLI](../scripts/research.py): `python research.py init studies/my-study --title "My question"` | Incomplete study folder to fill |
 | Move web work locally | [Setup](tool-setup.md) | [Importer](../scripts/import_study.py): `python research.py import-browser draft.study.json studies/my-study` | Exact question, mapped notes, original backup |
 | Inspect data | [data-understanding](../skills/data-understanding/SKILL.md) | [CSV profiler](../scripts/workbench.py): `python research.py profile data.csv` | Shape, missingness, duplicates, descriptive summaries |
@@ -35,3 +37,10 @@ For your own study, copy the structure, not the conclusion. Replace the question
 justify the design, obtain permitted observations or sources, inspect and execute
 the analysis, then support new claims with the resulting evidence. Record which
 parts were adapted and what was checked.
+
+## Subject and paper paths
+
+Use [the eight guide paths](guide-paths.md) for field-specific records and work
+sequences, and [manuscript formats](manuscript-formats.md) for research/review
+scaffolds in Markdown or Quarto. The same catalog is available locally with
+`python research.py guides --path chemistry`.

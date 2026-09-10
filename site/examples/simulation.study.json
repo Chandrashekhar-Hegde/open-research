@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "title": "Decay simulation",
+  "question": "Does halving the Euler step reduce final-value error for dy/dt = -0.5y over t = 0 to 2 with y(0) = 1?",
+  "classification": {
+    "domain": "mathematics",
+    "subarea": "applied",
+    "goal": "model",
+    "pattern": "simulation"
+  },
+  "patternNotes": {
+    "simulation": {
+      "model": "dy/dt = -0.5y; y(0)=1; final time=2; assumed deterministic decay.",
+      "verification": "Compare with y(2)=exp(-1); halve the step. This checks one numerical example, not physical validity."
+    }
+  },
+  "method": "computational",
+  "stage": "analyze",
+  "host": "standalone",
+  "answers": {
+    "purpose": "Rehearse an explicit calculation before adapting a protocol to real research. These inputs are constructed teaching data, not collected observations.",
+    "sample": "Fixed teaching fixture, not a sample-size recommendation or a representative population.",
+    "safeguards": "Synthetic public inputs under the repository license; no participants, clinical validation or research approval implied.",
+    "validation": "Recompute using the command in Analyze and compare with the frozen output. Inspect invalid-input tests and the domain-specific limits.",
+    "review": "Self-check through code and known-answer tests; no independent research review.",
+    "units": "A mathematical trajectory with assumed rate 0.5 per time unit.",
+    "comparison": "Does halving the Euler step reduce final-value error for dy/dt = -0.5y over t = 0 to 2 with y(0) = 1?",
+    "outcome": "Absolute final-value error against exp(-1).",
+    "procedure": "Evaluate the exact solution and Euler approximations with 20 and 40 steps; compare errors. No observations are collected.",
+    "analysis": "Compare with analytical or independently verified cases, test convergence and vary assumptions. Report discretization and model uncertainty separately.",
+    "sources": "Local constructed fixture: examples/study-patterns/inputs/simulation.json; all entries.",
+    "data": "Input: examples/study-patterns/inputs/simulation.json. Code: examples/study-patterns/analyze.py. Expected output: examples/study-patterns/results/simulation.json.",
+    "limitations": "Mathematical decay model with assumed parameters; no empirical validation. This one convergence check does not validate another solver or model.",
+    "interpretation": "The computed quantities describe this fixture only; they do not establish a finding about patients, deployed systems or the physical world.",
+    "results": "{\n  \"kind\": \"simulation\",\n  \"evidence_type\": \"synthetic or mathematical demonstration\",\n  \"equation\": \"dy/dt = -rate*y\",\n  \"exact_final\": 0.36787944117144233,\n  \"steps\": 20,\n  \"euler_final\": 0.3584859224085422,\n  \"half_step_final\": 0.3632324398878806,\n  \"absolute_error\": 0.009393518762900122,\n  \"half_step_error\": 0.004647001283561714,\n  \"limits\": \"Mathematical decay model with assumed parameters; no empirical validation. This one convergence check does not validate another solver or model.\",\n  \"input_sha256\": \"022632f03f6d1c07160e82b01da57f635a856ac0c2721b6ad03b4eec657051da\"\n}",
+    "disclosure": "Teaching material assembled with automated assistance and checked through executable calculations where supplied. No independent review is claimed."
+  },
+  "designs": {},
+  "checks": {},
+  "next": {}
+}

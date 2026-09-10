@@ -46,3 +46,22 @@ The release check validates records and hashes; it does not validate inference.
 For a new study, substitute its reviewed code and predeclared comparison criterion.
 If these example paths do not exist in the current project, ask for the local
 checkout or inspect the user's own documented analysis; do not invent a path.
+
+## Reproduce the selected pattern
+
+Read the study classification before choosing a rehearsal. NOAA covers a
+retrospective time-series summary only. The example library in
+`catalog/study-designs.json` also links factorial, game, diagnostic, prediction,
+benchmark and simulation calculations. For example, inspect and run
+`python examples/study-patterns/analyze.py --example benchmark --check`.
+Keep synthetic inputs, assumed models and real observations distinct. Plans for
+interviews, cohorts, reviews and mixed methods do not contain executed findings;
+never claim to reproduce an analysis absent from the records.
+
+## Follow the subject and report paths
+
+When working in an Open Research checkout, inspect `python research.py guides`
+and the selected path with `--path medical`, `engineering`, `materials`,
+`chemistry`, `physics`, `theory`, `research-papers` or `review-papers`. Match the
+required records and checks to the actual claim; theoretical work crosses fields.
+Chemistry includes organic, physical and experimental/analytical branches.
